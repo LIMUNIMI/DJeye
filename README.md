@@ -1,4 +1,4 @@
 # TestGUI
-progetto per testare robe con juce
+progetto per testare robe con juce.
 
 ciao :)
