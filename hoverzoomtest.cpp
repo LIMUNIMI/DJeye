@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include <JuceHeader.h>
 #include "hoverzoomtest.h"
 
@@ -16,9 +16,10 @@ hoverZoomTest::hoverZoomTest():
     }
     //animator = Desktop::getInstance().getAnimator ();
     buttonSx.onClick = [this] {sendMidi(34);};
-    buttonSx.onStateChange = [this] {toggleZoom(&buttonSx);};
+    buttonSx.onStateChange = [this] {manageActionOnButton(&buttonSx);};
     buttonDx.onClick = [this] {sendMidi(37);};
-    buttonDx.onStateChange = [this] {toggleZoom(&buttonDx);};
+    buttonDx.onStateChange = [this] {manageActionOnButton(&buttonDx);};
+
 
     addAndMakeVisible(buttonSx);
     addAndMakeVisible(buttonDx);
@@ -48,7 +49,7 @@ void hoverZoomTest::resized()
     buttonSx.setBounds(area.removeFromLeft(getWidth()/2).reduced (20));
     buttonDx.setBounds(area.removeFromRight(getWidth()/2).reduced (20));
     if (selectedButton != nullptr)
-        zoom(selectedButton);
+        toggleZoom(selectedButton);
 }
 
 void hoverZoomTest::sendMidi(const int noteNumber)
@@ -56,16 +57,24 @@ void hoverZoomTest::sendMidi(const int noteNumber)
     midiOut->sendMessageNow(juce::MidiMessage::noteOn (1, noteNumber, (juce::uint8) 100));
 }
 
-void hoverZoomTest::toggleZoom(ShapeButtonAdaptedv2* button)
-{
-    selectedButton = button;
-    if (button->getState() == juce::Button::ButtonState::buttonOver)
-        zoom(selectedButton);
+void hoverZoomTest::manageActionOnButton(ShapeButtonAdaptedv2* button){
 
-    //juce::Button::buttonDown
+    switch(button->getState() ) {
+      case juce::Button::ButtonState::buttonOver:
+        toggleZoom (button);
+        break;
+//      case juce::Button::ButtonState::buttonDown:
+//        sendMidi (34);
+//        break;
+//    case juce::Button::ButtonState::buttonNormal:
+
+//        break;
+    }
+
 }
 
-void hoverZoomTest::zoom(ShapeButtonAdaptedv2* buttonToZoom){
+
+void hoverZoomTest::toggleZoom(ShapeButtonAdaptedv2* buttonToZoom){
     auto area = getLocalBounds ();
     auto buttonToUnZoom = buttonToZoom == &buttonDx ? &buttonSx : &buttonDx;
     auto boundsBig = buttonToZoom == &buttonSx ? area.removeFromLeft (getWidth()*2/3) :

@@ -17,8 +17,8 @@ public:
 
 protected:
     void sendMidi (const int noteNumber);
-    void toggleZoom (ShapeButtonAdaptedv2* button);
-    void zoom (ShapeButtonAdaptedv2* buttonToZoom);
+    void toggleZoom (ShapeButtonAdaptedv2* buttonToZoom);
+    void manageActionOnButton(ShapeButtonAdaptedv2* button);
 
 private:
 
