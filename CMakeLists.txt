@@ -57,6 +57,7 @@ target_sources(${TargetName}
         Main.cpp
         MainComponent.cpp
         shapebuttonadaptedv2.h
+        uml.qmodel
         #shapebuttonadaptedv2.cpp
         #hoverzoomtest.h
         hoverzoomtest.cpp
