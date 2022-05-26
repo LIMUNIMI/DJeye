@@ -56,12 +56,14 @@ target_sources(${TargetName}
     PRIVATE
         Main.cpp
         MainComponent.cpp
-        shapebuttonadaptedv2.h
-        uml.qmodel
-        #shapebuttonadaptedv2.cpp
-        #hoverzoomtest.h
         hoverzoomtest.cpp
-        ShapeButtonAdapted.h)
+        Deck.cpp
+        MyLookAndFeel.h
+        Parameters.h
+        #shapebuttonadaptedv2.h
+        #ShapeButtonAdapted.h
+        #DrawableButtonAdapted.cpp
+    )
 
 
 
@@ -87,7 +89,10 @@ target_compile_definitions(${TargetName}
 # static library. These source files can be of any kind (wav data, images, fonts, icons etc.).
 # Conversion to binary-data will happen when your target is built.
 
-# juce_add_binary_data(GuiAppData SOURCES ...)
+juce_add_binary_data(GuiAppData SOURCES
+#images/megabottone.png
+images/circleButton.png
+images/radiousButton.png)
 
 # `target_link_libraries` links libraries and JUCE modules to other libraries or executables. Here,
 # we're linking our executable target to the `juce::juce_gui_extra` module. Inter-module
@@ -100,6 +105,7 @@ target_link_libraries(${TargetName}
         # GuiAppData            # If we'd created a binary data target, we'd link to it here
         juce::juce_audio_utils
         juce::juce_gui_extra
+        GuiAppData
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
