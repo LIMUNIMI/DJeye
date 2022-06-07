@@ -5,14 +5,14 @@
 hoverZoomTest::hoverZoomTest():
     buttonSx("buttonSx"),
     buttonDx("buttonDx")
-//    buttonSx ("buttonSx",DrawableButton::ButtonStyle::ImageFitted),
-//    buttonDx ("buttonDx",DrawableButton::ButtonStyle::ImageFitted)
+  //    buttonSx ("buttonSx",DrawableButton::ButtonStyle::ImageFitted),
+  //    buttonDx ("buttonDx",DrawableButton::ButtonStyle::ImageFitted)
 {
-    #if JUCE_LINUX || JUCE_BSD || JUCE_MAC || JUCE_IOS || DOXYGEN
+#if JUCE_LINUX || JUCE_BSD || JUCE_MAC || JUCE_IOS || DOXYGEN
     midiOut = juce::MidiOutput::createNewDevice("DJEYE");
-    #else
+#else
     midiOut = juce::MidiOutput::openDevice("DJEYE"); //TODO: da testare
-    #endif
+#endif
     if (midiOut == nullptr){
         //eccezione
     }
@@ -64,15 +64,15 @@ void hoverZoomTest::sendMidi(const int noteNumber)
 void hoverZoomTest::manageActionOnButton(Button* button){
 
     switch(button->getState() ) {
-      case juce::Button::ButtonState::buttonOver:
+    case juce::Button::ButtonState::buttonOver:
         toggleZoom (button);
         break;
-//      case juce::Button::ButtonState::buttonDown:
-//        sendMidi (34);
-//        break;
-//    case juce::Button::ButtonState::buttonNormal:
+        //      case juce::Button::ButtonState::buttonDown:
+        //        sendMidi (34);
+        //        break;
+        //    case juce::Button::ButtonState::buttonNormal:
 
-//        break;
+        //        break;
     }
 
 }

@@ -7,7 +7,7 @@
 # CMake's behaviour is compatible with the named version. This is a standard CMake command, so more
 # information can be found in the CMake docs.
 
-set (TargetName "DJeye_gui") # imposta nome progetto
+set (TargetName "DJeye") # imposta nome progetto
 
 cmake_minimum_required(VERSION 3.15)
 
@@ -60,6 +60,8 @@ target_sources(${TargetName}
         Deck.cpp
         MyLookAndFeel.h
         Parameters.h
+        SliderAdapted.cpp
+        Utils.cpp
         #shapebuttonadaptedv2.h
         #ShapeButtonAdapted.h
         #DrawableButtonAdapted.cpp
@@ -102,10 +104,9 @@ images/radiousButton.png)
 
 target_link_libraries(${TargetName}
     PRIVATE
-        # GuiAppData            # If we'd created a binary data target, we'd link to it here
+        GuiAppData            # If we'd created a binary data target, we'd link to it here
         juce::juce_audio_utils
         juce::juce_gui_extra
-        GuiAppData
     PUBLIC
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
