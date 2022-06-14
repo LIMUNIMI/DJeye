@@ -56,15 +56,15 @@ target_sources(${TargetName}
     PRIVATE
         Main.cpp
         MainComponent.cpp
-        hoverzoomtest.cpp
+        Parameters.h
         Deck.cpp
         MyLookAndFeel.h
-        Parameters.h
         SliderAdapted.cpp
-        Utils.cpp
+        DrawableButtonAdapted.cpp
+        #Utils.cpp
+        #hoverzoomtest.cpp
         #shapebuttonadaptedv2.h
-        #ShapeButtonAdapted.h
-        #DrawableButtonAdapted.cpp
+        #ShapeButtonAdapted.h        
     )
 
 

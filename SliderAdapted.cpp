@@ -9,9 +9,9 @@ void SliderAdapted::resizeBoundingBoxToFitRotaryParameters (){
     auto rotParams = getRotaryParameters();
     Path slice;
 
-    //nota: questo approccio riduce tutti i margini eccetto quello del cerchio più esterno
+    //NB: questo approccio riduce tutti i margini eccetto quello del cerchio più esterno
     //inoltre non è accurato aggiungere un padding relativo al raggio al cerchio interno
-    auto padding = std::abs(rotParams.startAngleRadians - rotParams.endAngleRadians)*COMPONENT_ACCURACY_PADDING_RATIO;
+    auto padding = std::abs(rotParams.startAngleRadians - rotParams.endAngleRadians)*COMPONENT_ACCURACY_PADDING_RATIO*2;//*2 perchè il padding viene tolto da entrambi i lati
     slice.addPieSegment (getLocalBounds ().toFloat (),
                          rotParams.startAngleRadians + padding,
                          rotParams.endAngleRadians - padding,

@@ -40,4 +40,10 @@ public:
         g.setColour (PRIMARY_COLOUR);
         g.fillPath (section);
     }
+
+    //modificare drawDrawableButton? implementata in v2 oppure drawbuttonbackground?
+    //oppure drawButtonBackground? in teoria no perchè solo i drawable li metto nel radiale,
+    //che bordello, non so che fare se più bottoni devono avere forme diverse
+    //usare shapebutton? problema sono uno shape
+
 };

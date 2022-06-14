@@ -1,11 +1,11 @@
 #include "DrawableButtonAdapted.h"
 
-DrawableButtonAdapted::DrawableButtonAdapted()
+DrawableButtonAdapted::DrawableButtonAdapted(const String &buttonName, ButtonStyle buttonStyle):
+    DrawableButton::DrawableButton(buttonName,buttonStyle)
 {
-    bool hitTest(int x, int y)
-    {
-        //return .contains (x,y,1.0f);
+}
 
-    }
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (ShapeButtonAdaptedv2)
+bool DrawableButtonAdapted::hitTest(int x, int y)
+{
+    return boundingBox.getPath ().contains (x,y/*,0.1f*/);
 }
