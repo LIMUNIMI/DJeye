@@ -25,6 +25,7 @@ public:
     Path getBoundingBox();
 
     void resizeBoundingBoxToFit();
+    void moved();
 protected:
 
 private:
