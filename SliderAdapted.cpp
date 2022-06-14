@@ -10,16 +10,12 @@ void SliderAdapted::resizeBoundingBoxToFitRotaryParameters (){
     Path slice;
 
     //nota: questo approccio riduce tutti i margini eccetto quello del cerchio più esterno
-    auto padding = (rotParams.startAngleRadians - rotParams.endAngleRadians)*COMPONENT_ACCURACY_PADDING_RATIO;
+    //inoltre non è accurato aggiungere un padding relativo al raggio al cerchio interno
+    auto padding = std::abs(rotParams.startAngleRadians - rotParams.endAngleRadians)*COMPONENT_ACCURACY_PADDING_RATIO;
     slice.addPieSegment (getLocalBounds ().toFloat (),
                          rotParams.startAngleRadians + padding,
                          rotParams.endAngleRadians - padding,
                          SLIDER_TO_INNER_CIRCLE_RATIO + padding);
-
-    /*slice.addPieSegment (getLocalBounds ().toFloat (),
-                         rotParams.startAngleRadians,
-                         rotParams.endAngleRadians,
-                         SLIDER_TO_INNER_CIRCLE_RATIO);*/
 
     //getlocalBounds() restuisce un rettangolo con dimensioni del componente che lo chiama posizionato a 0,0. usalo per impostare i parametri dei componenti figliù
     // è equivalente ad un rect<> (0, 0, getWidth(), getHeight())

@@ -26,7 +26,7 @@ Deck::~Deck(){
 }
 
 void Deck::paint (juce::Graphics& g) {
-    g.fillAll (Colours::grey);
+    g.fillAll (Colours::blueviolet);
 
     auto minDim = jmin(getWidth (),getHeight());
     auto componentsContainer = Rectangle (minDim,minDim)/*.reduced (5)*/;//TODO: magic number 5
@@ -47,7 +47,7 @@ void Deck::paint (juce::Graphics& g) {
 void Deck::resized()
 {
     auto minDim = jmin(getWidth (),getHeight());
-    auto componentsContainer = Rectangle (minDim,minDim).reduced (5);//TODO: magic number 5
+    auto componentsContainer = Rectangle (minDim,minDim).reduced (10);//TODO: magic number
     componentsContainer.setCentre (getBounds ().getCentre ());
     testSlider1.setBounds(componentsContainer);
     testSlider2.setBounds(componentsContainer);

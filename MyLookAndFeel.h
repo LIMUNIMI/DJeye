@@ -20,7 +20,7 @@ public:
         //TODO: bordo più spesso
 
         const auto minDim = jmin(width,height);
-        auto bounds = Rectangle<int> (minDim, minDim).toFloat()/*.reduced (COMPONENT_MARGIN)*/;
+        auto bounds = Rectangle<int> (minDim, minDim).toFloat().reduced (DECK_PADDING); //va ridotto perchè il path di aoutline viene disegnato a cavallo dell'utline
         bounds.setCentre(width/2,height/2);//GCC traduce da solo /2 in *0.5? boh, credo di si
 
         // Draw outline
@@ -29,6 +29,7 @@ public:
 
         g.setColour (SECONDARY_COLOUR);
         const auto lineThickness = jmin (15.0f, (float) minDim * 0.45f) * 0.2f;//TODO: aggiustare magic numbers
+        //const auto lineThickness = DECK_PADDING*2;
         g.strokePath (outline,PathStrokeType (lineThickness));
 
         // Draw value
