@@ -2,4 +2,4 @@
 #define SEPARATION_TO_COMPONENT_RATIO 0.15f //lo spazio di separazione tra i componenti è SEPARATION_TO_COMPONENT_RATIO della loro dimensione
 #define SLIDER_TO_INNER_CIRCLE_RATIO 0.5f
 #define COMPONENT_MARGIN 10
-#define COMPONENT_ACCURACY_PADDING_RATIO 0.1f //quanto restringere le hitbox dei componenti in relazione alla loro grandezza
+#define COMPONENT_ACCURACY_PADDING_RATIO 0.1f //quanto restringere le hitbox dei componenti in relazione alla loro grandezza 0=nessuna restrizione, 0.5 = restrizione completa

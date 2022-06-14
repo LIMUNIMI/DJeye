@@ -2,21 +2,28 @@
 
 SliderAdapted::SliderAdapted()/*:Slider::Slider()*/
 {
-    //ResizeBoundingBoxToFit ();
+    addChildComponent (boundingBox);
 }
-void SliderAdapted::resizeBoundingBoxToFit (){
+void SliderAdapted::resizeBoundingBoxToFitRotaryParameters (){
 
     auto rotParams = getRotaryParameters();
     Path slice;
-    /*slice.addPieSegment (getBounds ().toFloat (),
-                         rotParams.startAngleRadians + (rotParams.startAngleRadians * COMPONENT_ACCURACY_PADDING_RATIO),
-                         rotParams.endAngleRadians - (rotParams.endAngleRadians * COMPONENT_ACCURACY_PADDING_RATIO),
-                         SLIDER_TO_INNER_CIRCLE_RATIO + ( SLIDER_TO_INNER_CIRCLE_RATIO * COMPONENT_ACCURACY_PADDING_RATIO));*/
+
+    //nota: questo approccio riduce tutti i margini eccetto quello del cerchio più esterno
+    auto padding = (rotParams.startAngleRadians - rotParams.endAngleRadians)*COMPONENT_ACCURACY_PADDING_RATIO;
     slice.addPieSegment (getLocalBounds ().toFloat (),
+                         rotParams.startAngleRadians + padding,
+                         rotParams.endAngleRadians - padding,
+                         SLIDER_TO_INNER_CIRCLE_RATIO + padding);
+
+    /*slice.addPieSegment (getLocalBounds ().toFloat (),
                          rotParams.startAngleRadians,
                          rotParams.endAngleRadians,
-                         SLIDER_TO_INNER_CIRCLE_RATIO);
-    //TODO: getlocalBounds o getBounds() o getScreenBounds ()?
+                         SLIDER_TO_INNER_CIRCLE_RATIO);*/
+
+    //getlocalBounds() restuisce un rettangolo con dimensioni del componente che lo chiama posizionato a 0,0. usalo per impostare i parametri dei componenti figliù
+    // è equivalente ad un rect<> (0, 0, getWidth(), getHeight())
+    //getBounds() stessa roba ma le coordinate sono relative al componente padre
     setBoundingBox (slice);
 }
 
@@ -24,37 +31,30 @@ void SliderAdapted::resizeBoundingBoxToFit (){
 void SliderAdapted::setRotaryParameters(RotaryParameters p) noexcept
 {
     Slider::setRotaryParameters (p);
-    resizeBoundingBoxToFit ();
+    resizeBoundingBoxToFitRotaryParameters ();
 };
 
 void SliderAdapted::setRotaryParameters(float startAngleRadians, float endAngleRadians, bool stopAtEnd) noexcept{
     Slider::setRotaryParameters (startAngleRadians,endAngleRadians,stopAtEnd);
-    resizeBoundingBoxToFit ();
+    resizeBoundingBoxToFitRotaryParameters ();
 }
-
 
 bool SliderAdapted::hitTest(int x, int y)
 {
-    //resizeBoundingBoxToFit ();
-    return boundingBox.contains (x,y/*,0.1f*/);
+    return boundingBox.getPath ().contains (x,y/*,0.1f*/);
 }
 
 void SliderAdapted::resized()
 {
     Slider::resized ();
-    resizeBoundingBoxToFit ();
-}
-void SliderAdapted::moved()
-{
-    Slider::moved ();
-    //resizeBoundingBoxToFit ();
+    resizeBoundingBoxToFitRotaryParameters ();
 }
 
 void SliderAdapted::setBoundingBox(Path newBoundingBox) //protected?
 {
-    boundingBox = newBoundingBox;
+    boundingBox.setPath (newBoundingBox);
 }
 
-Path SliderAdapted::getBoundingBox(){
-    return boundingBox;
+Path SliderAdapted::getBoundingBox(){ //protected?
+    return boundingBox.getPath ();
 };

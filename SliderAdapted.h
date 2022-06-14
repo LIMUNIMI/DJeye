@@ -1,14 +1,18 @@
 #include <JuceHeader.h>
 #include "Parameters.h"
+/* A slider that hit-tests only in the pie shape of the slider's rotary parameters
+ * volevo farlo in modo che fosse impostebile dall'esterno lo shape ma KISS
+*/
 class SliderAdapted : public Slider
 {
 public:
     SliderAdapted();
-    //TODO: decidere se fare uno sliderAdapted (che si adatta automaticamente) e quindi fare lo shading di setRotaryParameters
-    // oppure fare uno sliderAdaptive, per il quale va chaimato ResizeBoundingBoxToFit() a mano dopo aver richiamato setRotaryParameters
-    //TODO pensare se devo overridare entrambe o ne basta una
+
+    //TODO pensare se devo overridare entrambe o ne basta una: credo che servano entrambe
+    //note: shadows the component's method
     void setRotaryParameters (RotaryParameters p) noexcept;
 
+    //note: shadows the component's method
     void setRotaryParameters (float startAngleRadians,
                               float endAngleRadians,
                               bool stopAtEnd) noexcept;
@@ -20,16 +24,30 @@ public:
 
     void resized () override;
 
-    void setBoundingBox (Path newBoundingBox);
-
+    /**
+     * @brief getBoundingBox get the path used for hit-testing
+     */
     Path getBoundingBox();
 
-    void resizeBoundingBoxToFit();
-    void moved();
+    /**
+     * @brief resizeBoundingBoxToFitRotaryParameters update the bounding box to match the pie-shape delimited by the rotary parameters
+     */
+    void resizeBoundingBoxToFitRotaryParameters();
 protected:
+    /**
+     * @brief setBoundingBox set the new path for hit-testing
+     */
+    void setBoundingBox (Path newBoundingBox);
 
 private:
-    Path boundingBox;
+    //
+    /**
+     * @brief boundingBox the component's path used for hit-testing
+     * utilizzo un drawablepath invece che un path perchè è un component
+     * => può essere messo come figlio del deck
+     * => si muove da solo insieme la parent
+     */
+    DrawablePath boundingBox;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAdapted)
 };

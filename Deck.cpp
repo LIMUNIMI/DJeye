@@ -3,7 +3,7 @@
 
 Deck::Deck(){
 
-    /*testSlider2.*/setLookAndFeel (&laf);
+    setLookAndFeel (&laf);
 
     //TODO: setMouseDragSensitivity
 
@@ -16,7 +16,7 @@ Deck::Deck(){
 
     testSlider2.setSliderStyle (juce::Slider::RotaryVerticalDrag);
     testSlider2.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
-    testSlider2.setRotaryParameters (componentAngle+componentSeparationAngle,componentAngle*3/2 + componentSeparationAngle,true);
+    testSlider2.setRotaryParameters (componentAngle+componentSeparationAngle, 2 * componentAngle + componentSeparationAngle,true);
     addAndMakeVisible (testSlider2);
 
 }
@@ -35,20 +35,19 @@ void Deck::paint (juce::Graphics& g) {
     g.drawRect (componentsContainer);
     //g.drawEllipse (componentsContainer.reduced (55).toFloat (),4.0f);
 
-
-    /**/
+    /*
     g.setColour (Colours::blue);
     //g.drawRect (testSlider1.getBounds ());
     //g.drawRect (testSlider2.getBounds ());
-    g.fillPath (testSlider1.getBoundingBox ());
+    //g.fillPath (testSlider1.getBoundingBox ());
     //g.fillPath (testSlider2.getBoundingBox ());
-/**/
+    */
 }
 
 void Deck::resized()
 {
     auto minDim = jmin(getWidth (),getHeight());
-    auto componentsContainer = Rectangle (minDim,minDim)/*.reduced (5)*/;//TODO: magic number 5
+    auto componentsContainer = Rectangle (minDim,minDim).reduced (5);//TODO: magic number 5
     componentsContainer.setCentre (getBounds ().getCentre ());
     testSlider1.setBounds(componentsContainer);
     testSlider2.setBounds(componentsContainer);
