@@ -1,8 +1,5 @@
 #include "SliderAdapted.h"
 
-/*nn utilizzo un oggetto di tipo drawableShape per mantenere il path
- * perchè credo che aggiunga un livello di complicazione inutile.
-*/
 SliderAdapted::SliderAdapted()/*:Slider::Slider()*/
 {
     //ResizeBoundingBoxToFit ();
