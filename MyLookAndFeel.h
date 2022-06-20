@@ -26,11 +26,12 @@ public:
         // Draw outline
         Path outline;
         outline.addPieSegment (bounds,rotaryStartAngle,rotaryEndAngle,SLIDER_TO_INNER_CIRCLE_RATIO);
+        //outline.closeSubPath ();
 
         g.setColour (SECONDARY_COLOUR);
-        const auto lineThickness = jmin (15.0f, (float) minDim * 0.45f) * 0.2f;//TODO: aggiustare magic numbers
+        const auto lineThickness = jmin (15.0f, (float) minDim * 0.45f) * 0.3f;//TODO: aggiustare magic numbers
         //const auto lineThickness = DECK_PADDING*2;
-        g.strokePath (outline,PathStrokeType (lineThickness));
+        g.strokePath (outline.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING),PathStrokeType (lineThickness));//TODO: aggiustare magic numbers
 
         // Draw value
         Path section;
@@ -38,7 +39,7 @@ public:
         section.addPieSegment (bounds,rotaryStartAngle,angle,SLIDER_TO_INNER_CIRCLE_RATIO);
 
         g.setColour (PRIMARY_COLOUR);
-        g.fillPath (section);
+        g.fillPath (section.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));
     }
 
     //modificare drawDrawableButton? implementata in v2 oppure drawbuttonbackground?

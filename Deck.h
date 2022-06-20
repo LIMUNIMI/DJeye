@@ -3,6 +3,7 @@
 #include "Parameters.h"
 #include "MyLookAndFeel.h"
 #include "SliderAdapted.h"
+#include "SliderAdaptedSnap.h"
 
 class Deck : public juce::Component
 {
@@ -15,7 +16,7 @@ public:
     void resized() override;
 protected:
     SliderAdapted testSlider1;
-    SliderAdapted testSlider2;
+    SliderAdaptedSnap testSlider2;
     MyLookAndFeel laf;
 
 private:

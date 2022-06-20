@@ -3,10 +3,10 @@
 #include "hoverzoomtest.h"
 
 hoverZoomTest::hoverZoomTest():
-    buttonSx("buttonSx"),
-    buttonDx("buttonDx")
-  //    buttonSx ("buttonSx",DrawableButton::ButtonStyle::ImageFitted),
-  //    buttonDx ("buttonDx",DrawableButton::ButtonStyle::ImageFitted)
+//    buttonSx("buttonSx"),
+//    buttonDx("buttonDx")
+      buttonSx ("buttonSx",DrawableButton::ButtonStyle::ImageFitted),
+      buttonDx ("buttonDx",DrawableButton::ButtonStyle::ImageFitted)
 {
 #if JUCE_LINUX || JUCE_BSD || JUCE_MAC || JUCE_IOS || DOXYGEN
     midiOut = juce::MidiOutput::createNewDevice("DJEYE");
@@ -24,15 +24,15 @@ hoverZoomTest::hoverZoomTest():
 
     setLookAndFeel (&customTheme);
 
-    auto image = ImageCache::getFromMemory (BinaryData::circleButton_png, BinaryData::circleButton_pngSize);
-    auto transp = Colours::transparentWhite;
+//    auto image = ImageCache::getFromMemory (BinaryData::circleButton_png, BinaryData::circleButton_pngSize);
+//    auto transp = Colours::transparentWhite;
 
-    buttonSx.setImages (false,true,true,image,1.0f,transp,Image(),0.5f,transp,Image(),1.0f,transp,0.8f);
-    buttonDx.setImages (false,true,true,image.createCopy (),1.0f,transp,Image(),0.5f,transp,Image(),1.0f,transp,0.8f);
+//    buttonSx.setImages (false,true,true,image,1.0f,transp,Image(),0.5f,transp,Image(),1.0f,transp,0.8f);
+//    buttonDx.setImages (false,true,true,image.createCopy (),1.0f,transp,Image(),0.5f,transp,Image(),1.0f,transp,0.8f);
 
-    //auto shape = Drawable::createFromImageData (BinaryData::circleButton_svg,BinaryData::circleButton_svgSize);
-    //buttonDx.setImages (shape.release ());
-    //buttonSx.setImages (shape.release ());
+    auto shape = Drawable::createFromImageData (BinaryData::knob_svg,BinaryData::knob_svgSize);
+    buttonDx.setImages (shape.get ());
+    buttonSx.setImages (shape.get ());
 
     addAndMakeVisible(buttonSx);
     addAndMakeVisible(buttonDx);

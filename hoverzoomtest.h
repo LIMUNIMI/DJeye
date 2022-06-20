@@ -25,8 +25,10 @@ protected:
 private:
     MyLookAndFeel customTheme;
 
-    ImageButton buttonSx;
-    ImageButton buttonDx;
+    //ImageButton buttonSx;
+    //ImageButton buttonDx;
+    DrawableButton buttonSx;
+    DrawableButton buttonDx;
     Button* selectedButton;
     std::unique_ptr<MidiOutput>  midiOut;
     ComponentAnimator animator;

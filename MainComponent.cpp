@@ -25,12 +25,6 @@ void MainComponent::update()
 void MainComponent::paint (juce::Graphics& g) //chiamata dopo il resized
 {
     g.fillAll (Colours::greenyellow);
-//    juce::Path buttonShapeControl = juce::Path(button.getShape());
-//    buttonShapeControl.applyTransform(AffineTransform::translation(100, 0));
-//    g.setColour(Colour(0xffaaff00));
-//    g.fillPath(buttonShapeControl);
-
-
 }
 
 
@@ -40,6 +34,6 @@ void MainComponent::resized()
     // If you add any child components, this is where you should
     // update their positions.
 
-    hoverzoomtestWindow.setBounds(getLocalBounds());
+    //hoverzoomtestWindow.setBounds(getLocalBounds());
     deck.setBounds(getLocalBounds());
 }
