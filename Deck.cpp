@@ -22,7 +22,7 @@ testButton ("megabottone",DrawableButton::ButtonStyle::ImageFitted){
         testSlider2.setSliderStyle (juce::Slider::RotaryVerticalDrag);
         testSlider2.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
         testSlider2.setRotaryParameters (componentAngle+componentSeparationAngle,
-                                         2 * componentAngle + componentSeparationAngle,true);
+                                         2 * componentAngle + componentSeparationAngle, true);
 
         auto shape = Drawable::createFromImageData (BinaryData::knob_svg,BinaryData::knob_svgSize);
         testSlider2.setImage (shape.get());//std::move(shape));
@@ -73,12 +73,12 @@ void Deck::resized()
     componentsContainer.setCentre (getBounds ().getCentre ());
     testSlider1.setBounds(componentsContainer);
     testSlider2.setBounds(componentsContainer);*/
-
+    auto minDim = jmin(getWidth (),getHeight());
     //deck is always square
     testSlider1.setBoundsInset (BorderSize((int)DECK_PADDING));
     testSlider2.setBoundsInset (BorderSize((int)DECK_PADDING));
 
-    auto diametroDaTogliere = (1-INNER_CIRCLE_TO_SLIDER_RATIO)* getWidth ()*0.5f;
+    auto diametroDaTogliere = (1-INNER_CIRCLE_TO_SLIDER_RATIO)* minDim*0.5f;
     diametroDaTogliere += SEPARATION_TO_COMPONENT_DIMENSION_RATIO*diametroDaTogliere + DECK_PADDING;
 
     testButton.setBoundsInset (BorderSize((int)diametroDaTogliere));
@@ -90,5 +90,15 @@ void Deck::resized()
     testSlider2.setTransform (AffineTransform::rotation (componentAngle+componentSeparationAngle,componentsContainer.getCentreX (),componentsContainer.getCentreY ()));
     */
 
+}
+
+void Deck::mouseEnter(const MouseEvent &event)
+{
+    if (onMouseEnter) onMouseEnter();
+}
+
+void Deck::mouseExit(const MouseEvent &event)
+{
+    if (onMouseExit) onMouseExit();
 }
 

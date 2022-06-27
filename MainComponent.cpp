@@ -3,8 +3,8 @@
 //==============================================================================
 MainComponent::MainComponent()
 {
-    //addAndMakeVisible(hoverzoomtestWindow);
-    addAndMakeVisible (deck);
+    addAndMakeVisible(hoverzoomtestWindow);
+    //addAndMakeVisible (deck);
     setSize (600, 400);
     setFramesPerSecond (60); // This sets the frequency of the update calls.
 }
@@ -38,5 +38,5 @@ void MainComponent::resized()
     deckContainerRect.setCentre (getBounds ().getCentre ());
     deck.setBounds(deckContainerRect/*.reduced (DECK_MARGIN)*/);
 
-    //hoverzoomtestWindow.setBounds(getLocalBounds());
+    hoverzoomtestWindow.setBounds(getLocalBounds());
 }

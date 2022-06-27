@@ -73,9 +73,10 @@ void SliderAdapted::resized()
     if (image != nullptr){
         auto localBounds = getLocalBounds ().toFloat ();
         auto rotParams = getRotaryParameters();
+        auto minDim = jmin(localBounds.getWidth (),localBounds.getHeight());
 
         //find center point
-        auto raggioEsterno = localBounds.getWidth ()*0.5f - SLIDER_PADDING;
+        auto raggioEsterno = minDim*0.5f - SLIDER_PADDING;
         auto raggioInterno = INNER_CIRCLE_TO_SLIDER_RATIO*raggioEsterno;
         auto raggio = raggioInterno + (raggioEsterno - raggioInterno)*0.5f;
 

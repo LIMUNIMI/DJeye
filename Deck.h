@@ -16,7 +16,19 @@ public:
     ~Deck();
 
     void paint (juce::Graphics&) override;
+
     void resized() override;
+
+    void mouseEnter(const MouseEvent &event) override;
+    void mouseExit(const MouseEvent &event) override;
+
+    /** You can assign a lambdas to this callback object to have it called when the component's focus changes. */
+    //NOTE: no enter o exuit is triggered if the mouse is down while entering
+    std::function<void()> onMouseEnter;
+    std::function<void()> onMouseExit;
+
+
+
 protected:
     SliderAdapted testSlider1;
     SliderAdaptedSnap testSlider2;
