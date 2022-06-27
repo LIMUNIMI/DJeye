@@ -60,7 +60,7 @@ target_sources(${TargetName}
         Deck.cpp
         MyLookAndFeel.h
         SliderAdapted.cpp
-        #DrawableButtonAdapted.cpp
+        DrawableButtonAdapted.cpp
         #Utils.cpp
         hoverzoomtest.cpp
         SliderAdaptedSnap.cpp

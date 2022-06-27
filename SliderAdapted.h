@@ -2,8 +2,8 @@
 #include <JuceHeader.h>
 #include "Parameters.h"
 /* A slider that hit-tests only in the pie shape of the slider's rotary parameters
- * volevo farlo in modo che ol bounding box fosse impostabile dall'esterno ma KISS
- * inoltre funziona sol con dehli bounds quadrati e non rettangolari
+ *
+ * inoltre funziona sol con dehli bounds quadrati e non rettangolari (?)
 */
 class SliderAdapted : public Slider
 {
@@ -30,33 +30,42 @@ public:
     void resized () override;
 
     void mouseUp(const MouseEvent &) override;
+    std::function<void()> onMouseUp;
+
+    /** You can assign a lambda to this callback object to have it called when the slider detects a mouseUp. */
 
     /**
-     * @brief getBoundingBox get the path used for hit-testing
+     * @brief getHitBox get the path used for hit-testing
      */
-    Path getBoundingBox() const;
+    Path getHitBox() const;
 
     /**
-     * @brief resizeBoundingBoxToFitRotaryParameters update the bounding box to match the pie-shape delimited by the rotary parameters
+     * @brief resizeHitBoxToFitRotaryParameters update the bounding box to match the pie-shape delimited by the rotary parameters
      */
-    void resizeBoundingBoxToFitRotaryParameters();
+    void resizeHitBoxToFitRotaryParameters();
 
-    //TODO: sbagliato usare un unique_ptr qui?
+    //TODO: usare gli smart pointers??
     void setImage (const Drawable* image);
 
+    //NOTA i path vengono copiati in modoprofondo, quindi basta prenderli per ref
+    /**
+     * @brief setHitBox set the new path for hit-testing
+     */
+    void setHitBox (const Path& newHitBox);
+
+    /**
+     * @brief setHitBox set the new path for hit-testing
+     */
+    void setHitBox (const Path&& newHitBox);
 
 
 protected:
-    /**
-     * @brief setBoundingBox set the new path for hit-testing
-     */
-    void setBoundingBox (const Path &newBoundingBox);
 
     /**
      * @brief MakeSliceWithPadding returns a path which is the slider slice, reduced by a padding
      * @param rectToFitIn rectangle where the pie shound be drawn. note this is the rectangle which whould be used for a full-circle pie
-     * @param paddingSides the padding to remove from the rotParams to amke the slice (note this is the TOTAl reduction in radious
-     * @param paddingTopBottom the padding to remove from the inner-most and from the outer-most part of the slide (nothe this is the TOTAL reduction in size, both from top and from bottom
+     * @param paddingSides the padding to remove from the rotParams to make the slice (note this is the reduction from each side)
+     * @param paddingTopBottom the padding to remove from the inner-most and from the outer-most part of the slide (nothe this is the reduction from each side)
      * @return path representing the slider reduced by a padding
      */
     Path MakeSlice(const Rectangle<float> &rectToFitIn,
@@ -65,16 +74,13 @@ protected:
 private:
     //
     /**
-     * @brief boundingBox the component's path used for hit-testing
+     * @brief HitBox the component's path used for hit-testing
      * utilizzo un drawablepath invece che un path perchè è un component
      * => può essere messo come figlio del deck
      * => si muove da solo insieme la parent
      */
-    DrawablePath boundingBox;
-
-    std::unique_ptr<Drawable> normalImage;
-    Drawable* currentImage = nullptr;
-    //int edgeIndent = 3;
+    DrawablePath HitBox;
+    std::unique_ptr<Drawable> image;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAdapted)
 };

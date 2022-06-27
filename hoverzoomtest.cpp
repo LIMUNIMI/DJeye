@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include <JuceHeader.h>
 #include "hoverzoomtest.h"
+#include "Deck.h"
 
 hoverZoomTest::hoverZoomTest():
 //    buttonSx("buttonSx"),
