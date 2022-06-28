@@ -63,7 +63,7 @@ target_sources(${TargetName}
         Components/SliderAdaptive.cpp
         Components/SliderAdaptiveSnap.cpp
         Components/DrawableButtonAdaptive.cpp
-        #Components/MiddleStrip.cpp
+        Components/MiddleStrip.cpp
         #Utils.cpp
     )
 
@@ -92,9 +92,7 @@ target_compile_definitions(${TargetName}
 # Conversion to binary-data will happen when your target is built.
 
 juce_add_binary_data(GuiAppData SOURCES
-#images/megabottone.png
-#images/circleButton.png
-#images/radiousButton.png
+images/menu.svg
 images/circleButton.svg
 images/knob.svg
 )

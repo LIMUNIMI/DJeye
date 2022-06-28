@@ -3,8 +3,8 @@
 DrawableButtonAdaptive::DrawableButtonAdaptive(const String &buttonName, ButtonStyle buttonStyle):
     DrawableButton::DrawableButton(buttonName,buttonStyle)
 {
-    //addChildComponent (HitBox);
-    addAndMakeVisible (HitBox);
+    addChildComponent (HitBox);
+    //addAndMakeVisible (HitBox);
 }
 
 bool DrawableButtonAdaptive::hitTest(int x, int y)
@@ -30,8 +30,7 @@ void DrawableButtonAdaptive::resized()
 
 }
 
-
-Path DrawableButtonAdaptive::getHitBox()
+Path DrawableButtonAdaptive::getHitBox() const noexcept
 {
     return HitBox.getPath ();
 }

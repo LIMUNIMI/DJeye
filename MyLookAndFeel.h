@@ -46,9 +46,43 @@ public:
         g.fillPath (section.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));
     }
 
-    //modificare drawDrawableButton? implementata in v2 oppure drawbuttonbackground?
-    //oppure drawButtonBackground? in teoria no perchè solo i drawable li metto nel radiale,
-    //che bordello, non so che fare se più bottoni devono avere forme diverse
-    //usare shapebutton? problema sono uno shape
+
+    void drawLinearSliderThumb (Graphics& g, int x, int y, int width, int height,
+                                    float sliderPos, float minSliderPos, float maxSliderPos,
+                                    const Slider::SliderStyle style, Slider& slider) override
+        {
+            auto sliderRadius = (float) getSliderThumbRadius (slider);
+
+            bool isDownOrDragging = slider.isEnabled() && (slider.isMouseOverOrDragging() || slider.isMouseButtonDown());
+
+            auto knobColour = slider.findColour (Slider::rotarySliderFillColourId)
+                                    .withMultipliedSaturation ((slider.hasKeyboardFocus (false) || isDownOrDragging) ? 1.3f : 0.9f)
+                                    .withMultipliedAlpha (slider.isEnabled() ? 1.0f : 0.7f);
+
+            g.setColour (knobColour);
+
+            if (style == Slider::LinearHorizontal || style == Slider::LinearVertical)
+            {
+                float kx, ky;
+
+                if (style == Slider::LinearVertical)
+                {
+                    kx = (float) x + (float) width * 0.5f;
+                    ky = sliderPos;
+                    g.fillRect (Rectangle<float> (kx - sliderRadius, ky - 2.5f, sliderRadius * 2.0f, 5.0f));
+                }
+                else
+                {
+                    kx = sliderPos;
+                    ky = (float) y + (float) height * 0.5f;
+                    g.fillRect (Rectangle<float> (kx - 2.5f, ky - sliderRadius, 5.0f, sliderRadius * 2.0f));
+                }
+            }
+            else
+            {
+                // Just call the base class for the demo
+                LookAndFeel_V4::drawLinearSliderThumb (g, x, y, width, height, sliderPos, minSliderPos, maxSliderPos, style, slider);
+            }
+        }
 
 };

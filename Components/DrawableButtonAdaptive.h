@@ -28,7 +28,7 @@ public:
     /**
      * @brief getHitBox get the path used for hit-testing
      */
-    Path getHitBox();
+    Path getHitBox() const noexcept;
     //NOTA i path vengono copiati in modoprofondo, quindi basta prenderli per ref
     /**
      * @brief setHitBox set the new path for hit-testing

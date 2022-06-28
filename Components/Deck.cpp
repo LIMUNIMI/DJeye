@@ -39,7 +39,7 @@ testButton ("megabottone",DrawableButton::ButtonStyle::ImageFitted)
 
     {
         auto shape = Drawable::createFromImageData (BinaryData::circleButton_svg,BinaryData::circleButton_svgSize);
-        //testButton.setImages (shape.get ());
+        testButton.setImages (shape.get ());
 
         Path p;
         p.addEllipse (Rectangle<float>(0,0,1,1));
@@ -75,7 +75,7 @@ void Deck::resized()
     componentsContainer.setCentre (getLocalBounds ().getCentre ());
 
     testSlider1.setBounds (componentsContainer.reduced (DECK_PADDING));
-    testSlider2.setBounds(componentsContainer.reduced (DECK_PADDING));
+    testSlider2.setBounds (componentsContainer.reduced (DECK_PADDING));
 
     auto diametroDaTogliere = (1-INNER_CIRCLE_TO_SLIDER_RATIO)* minDim*0.5f;
     diametroDaTogliere += SEPARATION_TO_COMPONENT_DIMENSION_RATIO*diametroDaTogliere + DECK_PADDING;
