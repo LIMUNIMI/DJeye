@@ -1,8 +1,8 @@
-#include "SliderAdaptedSnap.h"
+#include "SliderAdaptiveSnap.h"
 
-SliderAdaptedSnap::SliderAdaptedSnap() {}
+SliderAdaptiveSnap::SliderAdaptiveSnap() {}
 
-double SliderAdaptedSnap::snapValue(double attemptedValue, DragMode dragMode)
+double SliderAdaptiveSnap::snapValue(double attemptedValue, DragMode dragMode)
 {
     auto range = getRange ().getLength ();
 

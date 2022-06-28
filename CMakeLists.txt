@@ -37,7 +37,7 @@ juce_add_gui_app(${TargetName}
     # ICON_SMALL ...
     # DOCUMENT_EXTENSIONS ...           # Specify file extensions that should be associated with this app
     # COMPANY_NAME ...                  # Specify the name of the app's author
-    PRODUCT_NAME "Faccio dei test")     # The name of the final executable, which can differ from the target name
+    PRODUCT_NAME ${TargetName})     # The name of the final executable, which can differ from the target name
 
 # `juce_generate_juce_header` will create a JuceHeader.h for a given target, which will be generated
 # into your build tree. This should be included with `#include <JuceHeader.h>`. The include path for
@@ -57,15 +57,14 @@ target_sources(${TargetName}
         Main.cpp
         MainComponent.cpp
         Parameters.h
-        Deck.cpp
         MyLookAndFeel.h
-        SliderAdapted.cpp
-        DrawableButtonAdapted.cpp
+        Components/Controller.cpp
+        Components/Deck.cpp
+        Components/SliderAdaptive.cpp
+        Components/SliderAdaptiveSnap.cpp
+        Components/DrawableButtonAdaptive.cpp
+        #Components/MiddleStrip.cpp
         #Utils.cpp
-        hoverzoomtest.cpp
-        SliderAdaptedSnap.cpp
-        #shapebuttonadaptedv2.h
-        #ShapeButtonAdapted.h        
     )
 
 

@@ -1,12 +1,9 @@
 #include "Deck.h"
-#include "Utils.h"
 
 Deck::Deck():
-testButton ("megabottone",DrawableButton::ButtonStyle::ImageFitted){
-
-    setLookAndFeel (&laf);
-    //TODO: 1 Inserire i due deck nello zoom
-    //TODO: setMouseDragSensitivity
+testButton ("megabottone",DrawableButton::ButtonStyle::ImageFitted)
+{
+    //TODO: setMouseDragSensitivity, setVelocityModeParameters, setVelocitySensitivity
     {
         testSlider1.setSliderStyle (juce::Slider::RotaryVerticalDrag);
         testSlider1.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
@@ -15,6 +12,11 @@ testButton ("megabottone",DrawableButton::ButtonStyle::ImageFitted){
 
         auto shape = Drawable::createFromImageData (BinaryData::circleButton_svg,BinaryData::circleButton_svgSize);
         testSlider1.setImage (shape.get ());
+        //testSlider1.onValueChange = []{midiOut->sendMessageNow(juce::MidiMessage::noteOn (1, noteNumber, (juce::uint8) 100))};
+        testSlider1.onValueChange = []{DBG("slider1mosso");};
+        testSlider1.onMouseUp = []{DBG("slider1click");};
+        testSlider1.setRange (1.0,5.0,1);
+        testSlider1.setAutoFitToRotaryParameters (true);
         addAndMakeVisible (testSlider1);
     }
 
@@ -28,28 +30,28 @@ testButton ("megabottone",DrawableButton::ButtonStyle::ImageFitted){
         testSlider2.setImage (shape.get());//std::move(shape));
 
         testSlider2.setDoubleClickReturnValue (true, 0.5f*testSlider2.getRange ().getLength ());
-        testSlider2.onMouseUp = []{DBG("slider2");};
+        testSlider2.onValueChange = []{DBG("slider2mosso");};
+        testSlider2.onMouseUp = []{DBG("slider2click");};
+        testSlider2.setRange (0.0,127.0,1);
+        testSlider2.setAutoFitToRotaryParameters (true);
         addAndMakeVisible (testSlider2);
     }
 
     {
         auto shape = Drawable::createFromImageData (BinaryData::circleButton_svg,BinaryData::circleButton_svgSize);
-        testButton.setImages (shape.get ());
+        //testButton.setImages (shape.get ());
 
         Path p;
         p.addEllipse (Rectangle<float>(0,0,1,1));
-        //p.closeSubPath ();
         testButton.setHitBox (p);
 
-        testButton.onClick = []{DBG("bottone");};
+        testButton.onClick = []{DBG("bottoneClick");};
         addAndMakeVisible (testButton);
     }
 
 }
 
-Deck::~Deck(){
-    setLookAndFeel (nullptr);
-}
+Deck::~Deck(){}
 
 void Deck::paint (juce::Graphics& g) {
     g.fillAll (Colours::blueviolet);
@@ -68,22 +70,22 @@ void Deck::paint (juce::Graphics& g) {
 
 void Deck::resized()
 {
-    /*auto minDim = jmin(getWidth (),getHeight());
-    auto componentsContainer = Rectangle {minDim,minDim}.reduced (DECK_PADDING);
-    componentsContainer.setCentre (getBounds ().getCentre ());
-    testSlider1.setBounds(componentsContainer);
-    testSlider2.setBounds(componentsContainer);*/
     auto minDim = jmin(getWidth (),getHeight());
-    //deck is always square
-    testSlider1.setBoundsInset (BorderSize((int)DECK_PADDING));
-    testSlider2.setBoundsInset (BorderSize((int)DECK_PADDING));
+    auto componentsContainer = Rectangle {minDim,minDim};
+    componentsContainer.setCentre (getLocalBounds ().getCentre ());
+
+    testSlider1.setBounds (componentsContainer.reduced (DECK_PADDING));
+    testSlider2.setBounds(componentsContainer.reduced (DECK_PADDING));
 
     auto diametroDaTogliere = (1-INNER_CIRCLE_TO_SLIDER_RATIO)* minDim*0.5f;
     diametroDaTogliere += SEPARATION_TO_COMPONENT_DIMENSION_RATIO*diametroDaTogliere + DECK_PADDING;
 
-    testButton.setBoundsInset (BorderSize((int)diametroDaTogliere));
+    testButton.setBounds(componentsContainer.reduced (diametroDaTogliere));
 
-
+    /*if deck was always square
+    testSlider1.setBoundsInset (BorderSize((int)DECK_PADDING));
+    testSlider2.setBoundsInset (BorderSize((int)DECK_PADDING));
+    testButton.setBoundsInset (BorderSize((int)diametroDaTogliere));*/
     /*//https://it.wikipedia.org/wiki/Trasformazione_affine
     auto trasformVersoAlto = AffineTransform::translation (0,-COMPONENTS_SEPARATION);
     testSlider1.setTransform (trasformVersoAlto);

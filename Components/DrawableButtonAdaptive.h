@@ -1,8 +1,8 @@
 #pragma once
 #include <JuceHeader.h>
-#include "Parameters.h"
+#include "../Parameters.h"
 
-class DrawableButtonAdapted : public DrawableButton
+class DrawableButtonAdaptive : public DrawableButton
 {
 public:
     //DrawableButtonAdapted();
@@ -15,10 +15,10 @@ public:
 
         @see ButtonStyle, setButtonStyle, setImages
     */
-    DrawableButtonAdapted (const String& buttonName,
+    DrawableButtonAdaptive (const String& buttonName,
                     ButtonStyle buttonStyle);
 
-    ~DrawableButtonAdapted(){};
+    ~DrawableButtonAdaptive(){};
 
 
     bool hitTest(int x, int y) override;
@@ -51,7 +51,7 @@ private:
     DrawablePath HitBox;
 
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DrawableButtonAdapted)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DrawableButtonAdaptive)
 };
 
 

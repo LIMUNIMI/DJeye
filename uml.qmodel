@@ -49,7 +49,7 @@
                          </base-DElement>
                          <object>{d5279b5b-4f11-4820-8aad-ee9ac1bae4c7}</object>
                          <name>DrawableButtonAdaptive</name>
-                         <pos>x:180;y:260</pos>
+                         <pos>x:-155;y:255</pos>
                          <rect>x:-70;y:-55;w:140;h:110</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -70,7 +70,7 @@
                          </base-DElement>
                          <object>{85871767-0651-4545-8380-b7f5278001a0}</object>
                          <name>juce::DrawableButton</name>
-                         <pos>x:180;y:100</pos>
+                         <pos>x:-155;y:380</pos>
                          <rect>x:-65;y:-30;w:130;h:60</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -108,7 +108,7 @@
                          </base-DElement>
                          <object>{ae3e5c86-fce3-4369-98a6-8a514363a424}</object>
                          <name>Deck</name>
-                         <pos>x:430;y:265</pos>
+                         <pos>x:265;y:85</pos>
                          <rect>x:-105;y:-45;w:210;h:90</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -129,9 +129,9 @@
                           </DElement>
                          </base-DElement>
                          <object>{446603f4-85e4-4dab-a0a2-2b25e215814a}</object>
-                         <name>Main component</name>
-                         <pos>x:655;y:225</pos>
-                         <rect>x:-50;y:-55;w:100;h:110</rect>
+                         <name>Controller</name>
+                         <pos>x:625;y:85</pos>
+                         <rect>x:-45;y:-55;w:90;h:110</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -158,6 +158,7 @@
                        <a>
                         <DAssociationEnd>
                          <navigable>true</navigable>
+                         <kind>2</kind>
                         </DAssociationEnd>
                        </a>
                       </DAssociation>
@@ -181,8 +182,14 @@
                        <a>
                         <DAssociationEnd>
                          <navigable>true</navigable>
+                         <kind>2</kind>
                         </DAssociationEnd>
                        </a>
+                       <b>
+                        <DAssociationEnd>
+                         <cradinality>2</cradinality>
+                        </DAssociationEnd>
+                       </b>
                       </DAssociation>
                      </instance>
                     </item>
@@ -198,7 +205,7 @@
                          </base-DElement>
                          <object>{c04c70bd-02e4-407e-bf13-4cea8739236f}</object>
                          <name>SliderAdaptive</name>
-                         <pos>x:160;y:435</pos>
+                         <pos>x:115;y:250</pos>
                          <rect>x:-45;y:-35;w:90;h:70</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -225,6 +232,7 @@
                        <a>
                         <DAssociationEnd>
                          <navigable>true</navigable>
+                         <kind>2</kind>
                         </DAssociationEnd>
                        </a>
                       </DAssociation>
@@ -242,7 +250,7 @@
                          </base-DElement>
                          <object>{e5316d0c-ba96-41e2-92d1-8d0746c75089}</object>
                          <name>juce::Slider</name>
-                         <pos>x:45;y:380</pos>
+                         <pos>x:110;y:385</pos>
                          <rect>x:-40;y:-30;w:80;h:60</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -279,9 +287,9 @@
                           </DElement>
                          </base-DElement>
                          <object>{0be73344-f2ee-4090-8951-43edd09d1ecb}</object>
-                         <name>CustomLookandfeel</name>
-                         <pos>x:490;y:430</pos>
-                         <rect>x:-60;y:-30;w:120;h:60</rect>
+                         <name>MyLookandfeel</name>
+                         <pos>x:405;y:265</pos>
+                         <rect>x:-50;y:-30;w:100;h:60</rect>
                          <visual-role>0</visual-role>
                         </DObject>
                        </base-DObject>
@@ -318,7 +326,7 @@
                          </base-DElement>
                          <object>{8072603d-5e75-48e6-ae19-e4946a86253f}</object>
                          <name>Lookandfeel_V4</name>
-                         <pos>x:515;y:660</pos>
+                         <pos>x:405;y:370</pos>
                          <rect>x:-50;y:-30;w:100;h:60</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -344,10 +352,78 @@
                       </DInheritance>
                      </instance>
                     </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{365ae3bd-2a4b-4680-ad3d-ed940db043aa}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{6b2e669d-eabf-43f4-9342-af71925d5019}</object>
+                         <name>SliderAdaptiveSnap</name>
+                         <pos>x:260;y:250</pos>
+                         <rect>x:-60;y:-30;w:120;h:60</rect>
+                         <visual-role>0</visual-role>
+                         <visual-role2>5</visual-role2>
+                        </DObject>
+                       </base-DObject>
+                      </DClass>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DInheritance">
+                      <DInheritance>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{17ff94fc-5503-4d80-86aa-68c5bfc0573c}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{52afb303-5bcb-4d62-ae84-1c7b0f4882fc}</object>
+                         <a>{365ae3bd-2a4b-4680-ad3d-ed940db043aa}</a>
+                         <b>{d5b224a5-80a3-4021-83e8-604a448c8d45}</b>
+                        </DRelation>
+                       </base-DRelation>
+                      </DInheritance>
+                     </instance>
+                    </item>
+                    <item>
+                     <instance type="DAssociation">
+                      <DAssociation>
+                       <base-DRelation>
+                        <DRelation>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{3779b3b6-9301-474e-a09f-ec3d0e0845bd}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{5e43d703-9291-4eff-9671-dbac647cb717}</object>
+                         <a>{365ae3bd-2a4b-4680-ad3d-ed940db043aa}</a>
+                         <b>{36588f9c-b0cf-42a9-a21a-619b638e886b}</b>
+                        </DRelation>
+                       </base-DRelation>
+                       <a>
+                        <DAssociationEnd>
+                         <navigable>true</navigable>
+                         <kind>2</kind>
+                        </DAssociationEnd>
+                       </a>
+                       <b>
+                        <DAssociationEnd>
+                         <cradinality>1</cradinality>
+                        </DAssociationEnd>
+                       </b>
+                      </DAssociation>
+                     </instance>
+                    </item>
                    </qlist>
                   </elements>
-                  <last-modified>1653316416154</last-modified>
-                  <toolbarid>General</toolbarid>
+                  <last-modified>1656413326789</last-modified>
+                  <toolbarid>Classes</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
                </MCanvasDiagram>
@@ -437,6 +513,7 @@
                            <a>
                             <MAssociationEnd>
                              <navigable>true</navigable>
+                             <kind>2</kind>
                             </MAssociationEnd>
                            </a>
                           </MAssociation>
@@ -454,14 +531,14 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{01566af9-b704-4684-84a9-ed153fee50c3}</uid>
+                    <uid>{95bae9f5-f594-457f-bd35-763a83d1568e}</uid>
                     <type>1</type>
                     <declaration>~ hitBox</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{8d93bda8-9207-4beb-aeff-46b5759fa811}</uid>
+                    <uid>{56a759d1-efc0-4db1-b02d-cc103f39c06f}</uid>
                     <type>2</type>
                     <declaration>- ( 2x Drawable)</declaration>
                    </MClassMember>
@@ -554,8 +631,14 @@
                            <a>
                             <MAssociationEnd>
                              <navigable>true</navigable>
+                             <kind>2</kind>
                             </MAssociationEnd>
                            </a>
+                           <b>
+                            <MAssociationEnd>
+                             <cardinality>2</cardinality>
+                            </MAssociationEnd>
+                           </b>
                           </MAssociation>
                          </instance>
                         </target>
@@ -594,7 +677,7 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{0f4c97a9-ee76-45bf-9072-d6b4ddf3f49e}</uid>
+                    <uid>{34bfb12e-58c8-457b-bbd3-26e986f153da}</uid>
                     <type>2</type>
                     <declaration>- components (slider and buttons map)</declaration>
                    </MClassMember>
@@ -640,7 +723,7 @@
                     <uid>{446603f4-85e4-4dab-a0a2-2b25e215814a}</uid>
                    </MElement>
                   </base-MElement>
-                  <name>Main component</name>
+                  <name>Controller</name>
                  </MObject>
                 </base-MObject>
                 <namespace>djeye</namespace>
@@ -648,14 +731,14 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{c0f28cff-96c0-4c8e-b4ce-f3b0b41f58f3}</uid>
+                    <uid>{9d196603-4067-44d6-8425-134b7457a691}</uid>
                     <type>2</type>
                     <declaration>- decks (array)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{edf19600-77bf-4de5-835f-329af49785a7}</uid>
+                    <uid>{509838ec-01d7-42c1-9197-bce149c2cbb7}</uid>
                     <type>1</type>
                     <declaration>- mixer</declaration>
                    </MClassMember>
@@ -726,6 +809,7 @@
                            <a>
                             <MAssociationEnd>
                              <navigable>true</navigable>
+                             <kind>2</kind>
                             </MAssociationEnd>
                            </a>
                           </MAssociation>
@@ -765,9 +849,9 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{c48bb152-52dd-4df7-b927-fe8fdf64db14}</uid>
+                    <uid>{24d8abbf-904a-4729-94cf-386dadc62812}</uid>
                     <type>1</type>
-                    <declaration>~ Hitbox</declaration>
+                    <declaration>~ hitBox</declaration>
                    </MClassMember>
                   </item>
                  </qlist>
@@ -811,7 +895,7 @@
                     <uid>{0be73344-f2ee-4090-8951-43edd09d1ecb}</uid>
                    </MElement>
                   </base-MElement>
-                  <name>CustomLookandfeel</name>
+                  <name>MyLookandfeel</name>
                   <relations>
                    <handles>
                     <handles>
@@ -892,6 +976,90 @@
                    </MElement>
                   </base-MElement>
                   <name>Lookandfeel_V4</name>
+                 </MObject>
+                </base-MObject>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{6b2e669d-eabf-43f4-9342-af71925d5019}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{6b2e669d-eabf-43f4-9342-af71925d5019}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>SliderAdaptiveSnap</name>
+                  <relations>
+                   <handles>
+                    <handles>
+                     <qlist>
+                      <item>
+                       <handle>
+                        <uid>{52afb303-5bcb-4d62-ae84-1c7b0f4882fc}</uid>
+                        <target>
+                         <instance type="MInheritance">
+                          <MInheritance>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{52afb303-5bcb-4d62-ae84-1c7b0f4882fc}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{6b2e669d-eabf-43f4-9342-af71925d5019}</a>
+                             <b>{c04c70bd-02e4-407e-bf13-4cea8739236f}</b>
+                            </MRelation>
+                           </base-MRelation>
+                          </MInheritance>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                      <item>
+                       <handle>
+                        <uid>{5e43d703-9291-4eff-9671-dbac647cb717}</uid>
+                        <target>
+                         <instance type="MAssociation">
+                          <MAssociation>
+                           <base-MRelation>
+                            <MRelation>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{5e43d703-9291-4eff-9671-dbac647cb717}</uid>
+                              </MElement>
+                             </base-MElement>
+                             <a>{6b2e669d-eabf-43f4-9342-af71925d5019}</a>
+                             <b>{ae3e5c86-fce3-4369-98a6-8a514363a424}</b>
+                            </MRelation>
+                           </base-MRelation>
+                           <a>
+                            <MAssociationEnd>
+                             <navigable>true</navigable>
+                             <kind>2</kind>
+                            </MAssociationEnd>
+                           </a>
+                           <b>
+                            <MAssociationEnd>
+                             <cardinality>1</cardinality>
+                            </MAssociationEnd>
+                           </b>
+                          </MAssociation>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                     </qlist>
+                    </handles>
+                   </handles>
+                  </relations>
                  </MObject>
                 </base-MObject>
                </MClass>

@@ -1,12 +1,12 @@
 #pragma once
-#include "SliderAdapted.h"
+#include "SliderAdaptive.h"
 /**
- * @brief Simply a sliderAdapted with a custom snapping whoch snaps on th emiddle
+ * @brief Simply a sliderAdapted with a custom snapping which snaps on the middle
  */
-class SliderAdaptedSnap : public SliderAdapted
+class SliderAdaptiveSnap : public SliderAdaptive
 {
 public:
-    SliderAdaptedSnap();
+    SliderAdaptiveSnap();
 
 private:
     /**
@@ -15,7 +15,7 @@ private:
     double snapValue(double attemptedValue, DragMode dragMode) override;
 
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAdaptedSnap)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAdaptiveSnap)
 
 };
 

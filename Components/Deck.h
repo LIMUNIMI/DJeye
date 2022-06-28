@@ -1,14 +1,14 @@
 #pragma once
 #include <JuceHeader.h>
-#include "Parameters.h"
-#include "MyLookAndFeel.h"
-#include "SliderAdapted.h"
-#include "SliderAdaptedSnap.h"
-#include "DrawableButtonAdapted.h"
+#include "../MyLookAndFeel.h"
+#include "../Parameters.h"
+#include "SliderAdaptive.h"
+#include "SliderAdaptiveSnap.h"
+#include "DrawableButtonAdaptive.h"
 
 
-/*deck must be square*/
-class Deck : public juce::Component
+/*deck must be square (?)*/
+class Deck : public juce::Component/*, public juce::AudioProcessorValueTreeState::Listener*/
 {
 
 public:
@@ -30,13 +30,14 @@ public:
 
 
 protected:
-    SliderAdapted testSlider1;
-    SliderAdaptedSnap testSlider2;
-    DrawableButtonAdapted testButton;
-
-    MyLookAndFeel laf;
+    SliderAdaptive testSlider1;
+    SliderAdaptiveSnap testSlider2;
+    DrawableButtonAdaptive testButton;
 
 private:
+
+    //AudioProcessorValueTreeState controlValues;
+
     // TODO: meglio di un define in questo caso siccome c'è una divisione?
     static constexpr auto tau = MathConstants<float>::twoPi;
     static constexpr auto componentSeparationAngle = (tau / NUM_COMPONENTS) * SEPARATION_TO_COMPONENT_DIMENSION_RATIO;
