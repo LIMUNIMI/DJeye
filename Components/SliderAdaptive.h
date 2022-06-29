@@ -54,12 +54,12 @@ public:
     void setHitBox (const Path&& newHitBox);
 
 
-    bool getAutoFitToRotaryParameters() const;
+    bool getAutoFitHitBoxToRotaryParameters() const;
 
     /**
      * @brief setAutoFitToRotaryParameters set if the Hitbox should bound automatically to the slider's rotary parameter (pie shape)
      */
-    void setAutoFitToRotaryParameters(bool newAutoFitToRotaryParameters);
+    void setAutoFitHitBoxToRotaryParameters(bool newAutoFitToRotaryParameters);
 
     /**
      * @brief resizeHitBoxToFitRotaryParameters update the hit box to match the pie-shape delimited by the rotary parameters
@@ -101,8 +101,26 @@ private:
      */
     DrawablePath HitBox;
     std::unique_ptr<Drawable> image;
-    bool autoFitToRotaryParameters = false;
+    bool autoFitHitBoxToRotaryParameters = false;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAdaptive)
 };
 
+/**
+ * @brief Simply a sliderAdapted with a custom snapping which snaps on the middle
+ */
+class SliderAdaptiveSnap : public SliderAdaptive
+{
+public:
+    SliderAdaptiveSnap();
+
+private:
+    /**
+     * @brief snapValue note that it snaps only when using velocitydrag, otherwise (like scrolling with mousewheel) it wouldn't move after snapping
+     */
+    double snapValue(double attemptedValue, DragMode dragMode) override;
+
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAdaptiveSnap)
+
+};

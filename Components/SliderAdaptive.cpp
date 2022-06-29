@@ -25,14 +25,14 @@ Path SliderAdaptive::MakeSlice(const Rectangle<float>& rectToFitIn,
     return slice;
 }
 
-bool SliderAdaptive::getAutoFitToRotaryParameters() const
+bool SliderAdaptive::getAutoFitHitBoxToRotaryParameters() const
 {
-    return autoFitToRotaryParameters;
+    return autoFitHitBoxToRotaryParameters;
 }
 
-void SliderAdaptive::setAutoFitToRotaryParameters(bool newAutoFitToRotaryParameters)
+void SliderAdaptive::setAutoFitHitBoxToRotaryParameters(bool newAutoFitToRotaryParameters)
 {
-    autoFitToRotaryParameters = newAutoFitToRotaryParameters;
+    autoFitHitBoxToRotaryParameters = newAutoFitToRotaryParameters;
     updateHitBoxBounds();
 }
 
@@ -88,7 +88,7 @@ void SliderAdaptive::resizeHitBoxToFitBounds()
 void SliderAdaptive::updateHitBoxBounds()
 {
     //TODO: meglio usare getter oppure il parametro in sè?
-    getAutoFitToRotaryParameters ()? resizeHitBoxToFitRotaryParameters() : resizeHitBoxToFitBounds ();
+    getAutoFitHitBoxToRotaryParameters ()? resizeHitBoxToFitRotaryParameters() : resizeHitBoxToFitBounds ();
 }
 
 void SliderAdaptive::setRotaryParameters(RotaryParameters p) noexcept
@@ -163,3 +163,18 @@ void SliderAdaptive::mouseUp(const MouseEvent& me)
 //    repaint();
 //    resized();
 //}
+
+
+
+
+SliderAdaptiveSnap::SliderAdaptiveSnap() {}
+
+double SliderAdaptiveSnap::snapValue(double attemptedValue, DragMode dragMode)
+{
+    auto range = getRange ().getLength ();
+
+    return (0.45f * range < attemptedValue &&
+            attemptedValue < 0.55f * range &&
+            dragMode == DragMode::absoluteDrag) ?  range*0.5f : attemptedValue;
+
+}

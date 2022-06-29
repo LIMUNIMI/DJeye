@@ -61,7 +61,6 @@ target_sources(${TargetName}
         Components/Controller.cpp
         Components/Deck.cpp
         Components/SliderAdaptive.cpp
-        Components/SliderAdaptiveSnap.cpp
         Components/DrawableButtonAdaptive.cpp
         Components/MiddleStrip.cpp
         #Utils.cpp

@@ -2,7 +2,6 @@
 #include <JuceHeader.h>
 #include "../Parameters.h"
 #include "SliderAdaptive.h"
-#include "SliderAdaptiveSnap.h"
 #include "DrawableButtonAdaptive.h"
 
 

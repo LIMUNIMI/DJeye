@@ -5,7 +5,7 @@ testButton ("megabottone",DrawableButton::ButtonStyle::ImageFitted)
 {
     //TODO: setMouseDragSensitivity, setVelocityModeParameters, setVelocitySensitivity
     {
-        testSlider1.setSliderStyle (juce::Slider::RotaryVerticalDrag);
+        testSlider1.setSliderStyle  (juce::Slider::RotaryVerticalDrag);
         testSlider1.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
         //testSlider1.setRotaryParameters (-componentAngle/2,componentAngle/2,true);//l'angolo negativo lo fa arrabbiare
         testSlider1.setRotaryParameters (0,componentAngle,true);
@@ -16,12 +16,12 @@ testButton ("megabottone",DrawableButton::ButtonStyle::ImageFitted)
         testSlider1.onValueChange = []{DBG("slider1mosso");};
         testSlider1.onMouseUp = []{DBG("slider1click");};
         testSlider1.setRange (1.0,5.0,1);
-        testSlider1.setAutoFitToRotaryParameters (true);
+        testSlider1.setAutoFitHitBoxToRotaryParameters (true);
         addAndMakeVisible (testSlider1);
     }
 
     {
-        testSlider2.setSliderStyle (juce::Slider::RotaryVerticalDrag);
+        testSlider2.setSliderStyle  (juce::Slider::RotaryVerticalDrag);
         testSlider2.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
         testSlider2.setRotaryParameters (componentAngle+componentSeparationAngle,
                                          2 * componentAngle + componentSeparationAngle, true);
@@ -29,17 +29,17 @@ testButton ("megabottone",DrawableButton::ButtonStyle::ImageFitted)
         auto shape = Drawable::createFromImageData (BinaryData::knob_svg,BinaryData::knob_svgSize);
         testSlider2.setImage (shape.get());//std::move(shape));
 
-        testSlider2.setDoubleClickReturnValue (true, 0.5f*testSlider2.getRange ().getLength ());
         testSlider2.onValueChange = []{DBG("slider2mosso");};
         testSlider2.onMouseUp = []{DBG("slider2click");};
         testSlider2.setRange (0.0,127.0,1);
-        testSlider2.setAutoFitToRotaryParameters (true);
+        testSlider2.setDoubleClickReturnValue (true, 0.5f*testSlider2.getRange ().getLength ());
+        testSlider2.setAutoFitHitBoxToRotaryParameters (true);
         addAndMakeVisible (testSlider2);
     }
 
     {
-        auto shape = Drawable::createFromImageData (BinaryData::circleButton_svg,BinaryData::circleButton_svgSize);
-        testButton.setImages (shape.get ());
+        auto image = Drawable::createFromImageData (BinaryData::circleButton_svg,BinaryData::circleButton_svgSize);
+        testButton.setImages (image.get ());
 
         Path p;
         p.addEllipse (Rectangle<float>(0,0,1,1));
@@ -51,7 +51,7 @@ testButton ("megabottone",DrawableButton::ButtonStyle::ImageFitted)
 
 }
 
-Deck::~Deck(){}
+Deck::~Deck(){} //TODO: rimovibile?
 
 void Deck::paint (juce::Graphics& g) {
     g.fillAll (Colours::blueviolet);
@@ -94,12 +94,12 @@ void Deck::resized()
 
 }
 
-void Deck::mouseEnter(const MouseEvent &event)
+void Deck::mouseEnter(const MouseEvent &/*event*/)
 {
     if (onMouseEnter) onMouseEnter();
 }
 
-void Deck::mouseExit(const MouseEvent &event)
+void Deck::mouseExit(const MouseEvent &/*event*/)
 {
     if (onMouseExit) onMouseExit();
 }
