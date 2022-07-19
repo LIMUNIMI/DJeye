@@ -1,13 +1,25 @@
 ﻿#include "Controller.h"
 
-Controller::Controller()
+Controller::Controller():
+    //laf{NUM_COMPONENTS},
+    deckSx{new Deck::ComponentType[] {Deck::Play,
+                                      Deck::Seek,
+                                      Deck::Cue,
+                                      Deck::HPLPFilter,
+                                      Deck::Volume,
+                                      Deck::Loop}},
+    deckDx{new Deck::ComponentType[] {Deck::Play,
+                                      Deck::Seek,
+                                      Deck::Cue,
+                                      Deck::HPLPFilter,
+                                      Deck::Volume,
+                                      Deck::Loop}}
 {
 #if JUCE_LINUX || JUCE_BSD || JUCE_MAC || JUCE_IOS || DOXYGEN
     midiOut = juce::MidiOutput::createNewDevice("DJEYE");
 #else
     midiOut = juce::MidiOutput::openDevice("DJEYE"); //TODO: da testare
 #endif
-
     if (midiOut){
         //TODO: eccezione
     }
@@ -27,7 +39,7 @@ Controller::Controller()
     addAndMakeVisible(middleStrip);
 
     setLookAndFeel (&laf);
-    setSize (500, 500);
+    setSize (800, 800);
 }
 
 Controller::~Controller()

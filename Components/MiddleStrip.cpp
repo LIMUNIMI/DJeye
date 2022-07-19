@@ -3,19 +3,19 @@
 MiddleStrip::MiddleStrip():
     browserButton ("browserButton",DrawableButton::ButtonStyle::ImageStretched)//TODO: imageFitted
 {
-    Path rectHB;
+    Path rectHB; // hitbox for crossfader and browser is rectangular
     rectHB.addRectangle (Rectangle<float>(0,0,1,1));
 
     {//crossfader setup
         crossfader.setSliderStyle                (juce::Slider::LinearHorizontal);
         crossfader.setTextBoxStyle               (juce::Slider::NoTextBox, false, 0, 0);
         crossfader.setSliderSnapsToMousePosition (false);
-        crossfader.setRange                      (0,127,1);
+        crossfader.setRange                      (0.0f, 127.0f, 1.0f);
         crossfader.setDoubleClickReturnValue     (true, 0.5f*crossfader.getRange ().getLength ());
         crossfader.setHitBox                     (rectHB);
 
         crossfader.onValueChange = []{DBG("crossfaderMosso");};
-
+        crossfader.setSnapToMiddleValue (true);
         addAndMakeVisible (crossfader);
     }
 

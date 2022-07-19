@@ -7,8 +7,8 @@ SliderAdaptive::SliderAdaptive()/*:Slider::Slider()*/
 }
 
 Path SliderAdaptive::MakeSlice(const Rectangle<float>& rectToFitIn,
-                              const float paddingSides,
-                              const float paddingTopBottom) const
+                               const float paddingSides,
+                               const float paddingTopBottom) const
 {
     auto rotParams = getRotaryParameters();
 
@@ -36,6 +36,16 @@ void SliderAdaptive::setAutoFitHitBoxToRotaryParameters(bool newAutoFitToRotaryP
     updateHitBoxBounds();
 }
 
+bool SliderAdaptive::getSnapToMiddleValue() const
+{
+    return snapToMiddleValue;
+}
+
+void SliderAdaptive::setSnapToMiddleValue(bool newSnapsToMiddleValue)
+{
+    snapToMiddleValue = newSnapsToMiddleValue;
+}
+
 void SliderAdaptive::resizeHitBoxToFitRotaryParameters (){
     auto rotParams = getRotaryParameters();
 
@@ -48,7 +58,7 @@ void SliderAdaptive::resizeHitBoxToFitRotaryParameters (){
     //forse verrà spostato
     if (image != nullptr){
         auto localBounds = getLocalBounds ().toFloat ();
-        auto rotParams = getRotaryParameters();
+        //auto rotParams = getRotaryParameters();
         auto minDim = jmin(localBounds.getWidth (),localBounds.getHeight());
 
         //find center point
@@ -73,7 +83,7 @@ void SliderAdaptive::resizeHitBoxToFitRotaryParameters (){
 
 void SliderAdaptive::resizeHitBoxToFitBounds()
 {//TODO: test
-/* NOTE: quando si lavora con i drawables si dovrebbe solo modificare il transform e non i bounds
+    /* NOTE: quando si lavora con i drawables si dovrebbe solo modificare il transform e non i bounds
  * https://forum.juce.com/t/drawablecomposite-resets-coordinates-when-inserting-drawableimage/25851/4*/
 
     auto mindim = jmin(getLocalBounds ().getHeight (),getLocalBounds ().getWidth ());
@@ -100,7 +110,7 @@ void SliderAdaptive::setRotaryParameters(RotaryParameters p) noexcept
 void SliderAdaptive::setRotaryParameters(float startAngleRadians, float endAngleRadians, bool stopAtEnd) noexcept
 {
     Slider::setRotaryParameters (startAngleRadians,endAngleRadians,stopAtEnd);
-     updateHitBoxBounds ();
+    updateHitBoxBounds ();
 }
 
 bool SliderAdaptive::hitTest(int x, int y)
@@ -157,24 +167,15 @@ void SliderAdaptive::mouseUp(const MouseEvent& me)
     }
 }
 
-//void SliderAdapted::setEdgeIndent (const int numPixelsIndent)
-//{
-//    edgeIndent = numPixelsIndent;
-//    repaint();
-//    resized();
-//}
-
-
-
-
-SliderAdaptiveSnap::SliderAdaptiveSnap() {}
-
-double SliderAdaptiveSnap::snapValue(double attemptedValue, DragMode dragMode)
+double SliderAdaptive::snapValue(double attemptedValue, DragMode dragMode)
 {
-    auto range = getRange ().getLength ();
+    if (getSnapToMiddleValue()){
+        auto range = getRange ().getLength ();
 
-    return (0.45f * range < attemptedValue &&
-            attemptedValue < 0.55f * range &&
-            dragMode == DragMode::absoluteDrag) ?  range*0.5f : attemptedValue;
-
+        return (0.45f * range < attemptedValue &&
+                attemptedValue < 0.55f * range &&
+                dragMode == DragMode::absoluteDrag) ?  range*0.5f : attemptedValue;
+    }else return attemptedValue;
 }
+
+

@@ -1,5 +1,4 @@
 #pragma once
-
 #include <JuceHeader.h>
 #include "../MyLookAndFeel.h"
 #include "Deck.h"

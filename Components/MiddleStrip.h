@@ -13,7 +13,7 @@ public:
 
 private:
     DrawableButtonAdaptive browserButton;
-    SliderAdaptiveSnap crossfader;
+    SliderAdaptive crossfader;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MiddleStrip)
 };
