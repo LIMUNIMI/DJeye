@@ -5,7 +5,6 @@
 class DrawableButtonAdaptive : public DrawableButton
 {
 public:
-    //DrawableButtonAdapted();
     /** Creates a DrawableButtonAdapted.
 
         After creating one of these, use setImages() to specify the drawables to use.
@@ -29,13 +28,14 @@ public:
      * @brief getHitBox get the path used for hit-testing
      */
     Path getHitBox() const noexcept;
-    //NOTA i path vengono copiati in modoprofondo, quindi basta prenderli per ref
     /**
-     * @brief setHitBox set the new path for hit-testing
+     * @brief Set the new path for hit-testing
+     * note: paths are deep-copied
      */
     void setHitBox (const Path& newHitBox);
     /**
-     * @brief setHitBox set the new path for hit-testing
+     * @brief Set the new path for hit-testing
+     * note: paths are deep-copied
      */
     void setHitBox (const Path&& newHitBox);
 protected:

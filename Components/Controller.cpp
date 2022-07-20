@@ -2,18 +2,18 @@
 
 Controller::Controller():
     //laf{NUM_COMPONENTS},
-    deckSx{new Deck::ComponentType[] {Deck::Play,
-                                      Deck::Seek,
-                                      Deck::Cue,
-                                      Deck::HPLPFilter,
-                                      Deck::Volume,
-                                      Deck::Loop}},
-    deckDx{new Deck::ComponentType[] {Deck::Play,
-                                      Deck::Seek,
-                                      Deck::Cue,
-                                      Deck::HPLPFilter,
-                                      Deck::Volume,
-                                      Deck::Loop}}
+    deckSx{*new std::vector<Deck::ComponentType> {
+           Deck::Play,
+           Deck::Seek,
+           Deck::Cue,
+           Deck::HPLPFilter,
+           Deck::Volume,
+           Deck::Loop}},
+    deckDx{*new std::vector<Deck::ComponentType> {
+           Deck::Play,
+           Deck::HPLPFilter,
+           Deck::Volume
+           }}
 {
 #if JUCE_LINUX || JUCE_BSD || JUCE_MAC || JUCE_IOS || DOXYGEN
     midiOut = juce::MidiOutput::createNewDevice("DJEYE");
@@ -81,9 +81,9 @@ void Controller::toggleZoom(Deck* deckToZoom){
 
     boundsMiddle.reduce (0,DECK_MARGIN);
 
-    animator.animateComponent(deckToUnZoom,boundsSmall.reduced (DECK_MARGIN),1,300,false,2,1);
-    animator.animateComponent(deckToZoom,boundsBig.reduced (DECK_MARGIN),1,300,false,2,1);
-    animator.animateComponent(&middleStrip,boundsMiddle,1,300,false,2,1);
+    animator.animateComponent(deckToUnZoom,boundsSmall.reduced (DECK_MARGIN),1,111,false,0,1);
+    animator.animateComponent(deckToZoom,boundsBig.reduced (DECK_MARGIN),1,111,false,0,1);
+    animator.animateComponent(&middleStrip,boundsMiddle,1,111,false,0,1);
 
 }
 

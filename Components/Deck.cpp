@@ -1,148 +1,133 @@
 #include "Deck.h"
 
-Deck::Deck(const Deck::ComponentType* ComponentList):
-    testButton ("megabottone",DrawableButton::ButtonStyle::ImageFitted)
+Deck::Deck(const std::vector<Deck::ComponentType> ComponentList)
 {
-    if (ComponentList){
-        numComponents = sizeof(ComponentList);
-        int numRadialComponents = 0;
+    numComponents = std::size(ComponentList);
+    if (numComponents){
+        int numGeneratedRadialComponents =  0;
 
-        // Component inizialization
-        for(int i = 0 ; i < numComponents ; ++i){ //filling map
+        // COMPONENT INITITALIZATION
+        for(uint i = 0 ; i < numComponents ; i++){ // filling map
 
             switch(ComponentList[i]){
             case Deck::Play:
-                components[i] = new DrawableButtonAdaptive ("playBtn",DrawableButton::ButtonStyle::ImageFitted); break;
-            case Deck::Crossfader:
-                break;
-            case Deck::Browser:
-                break;
-            case Deck::HeadphoneOut:
-                break;
-            case Deck::Sync:
-                break;
-            case Deck::SyncMaster:
-                break;
-            case Deck::MasterVolume:
-                break;
-            case Deck::HeadphoneVolume:
-                break;
+                components[ComponentList[i]] = new DrawableButtonAdaptive {"playBtn",DrawableButton::ButtonStyle::ImageFitted}; break;
+            case Deck::Crossfader:      break;
+            case Deck::Browser:         break;
+            case Deck::HeadphoneOut:    break;
+            case Deck::Sync:            break;
+            case Deck::SyncMaster:      break;
+            case Deck::MasterVolume:    break;
+            case Deck::HeadphoneVolume: break;
             case Deck::Seek:
             case Deck::Cue:
             case Deck::HPLPFilter:
             case Deck::Volume:
             case Deck::Loop:
-                components[i] = new SliderAdaptive (); break;
-            default:
-                break;
-
+                components[ComponentList[i]] = new SliderAdaptive {}; break;
+            default:                    break;
             }
         }
 
         for(auto& [tipo, comp] : components){ // common properties
+            addAndMakeVisible (comp);
 
             switch(tipo){
             case Deck::Play:
-            {//TODO usare smartpointers
+            { // TODO usare smartpointers
                 auto button = dynamic_cast<DrawableButtonAdaptive*>(comp);
                 //auto button = static_cast<DrawableButtonAdaptive*>(comp);
-                auto image = Drawable::createFromImageData (BinaryData::circleButton_svg,BinaryData::circleButton_svgSize);
-                button->setImages (image.get ()); //TODO: spostare fuori
 
                 Path p;
                 p.addEllipse (Rectangle<float>(0,0,1,1));
                 button->setHitBox (p);
 
-                button->onClick = []{DBG("bottoneClick");};
+                //button->onClick = = componentsActions[tipo];
                 break;
             }
-                //case Deck::HeadphoneOut:
-                //case Deck::Sync:
-                //case Deck::SyncMaster:
-                //case Deck::HeadphoneVolume:
+            case Deck::Crossfader:      break;
+            case Deck::Browser:         break;
+            case Deck::HeadphoneOut:    break;
+            case Deck::Sync:            break;
+            case Deck::SyncMaster:      break;
+            case Deck::MasterVolume:    break;
+            case Deck::HeadphoneVolume: break;
             case Deck::Seek:
             case Deck::Cue:
             case Deck::HPLPFilter:
             case Deck::Volume:
             case Deck::Loop:
-            {
+            { // TODO: setMouseDragSensitivity, setVelocityModeParameters, setVelocitySensitivity
                 auto slider = dynamic_cast<SliderAdaptive*>(comp);
                 slider->setSliderStyle  (juce::Slider::RotaryVerticalDrag);
                 slider->setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
+                slider->setRange        (0,127,1);
 
-                auto startAngle = numRadialComponents*(getComponentAngle() + getComponentSeparationAngle());
+                auto startAngle = numGeneratedRadialComponents*(getComponentAngle() + getComponentSeparationAngle());
                 slider->setRotaryParameters (startAngle, startAngle + getComponentAngle(),true);
-                //slider.onValueChange =  componentsActions[i];
-                //slider.onMouseUp = componentsActions.at(i);
-                slider->setRange (0,127,1);
                 slider->setAutoFitHitBoxToRotaryParameters (true);
+                //slider->onValueChange = componentsActions[tipo];
+                //slider->onMouseUp     = componentsActions.at(tipo);
 
-                numRadialComponents++;
+                numGeneratedRadialComponents++;
                 break;
             }
             default: break;
             }
-
-            addAndMakeVisible (comp);
-
         }
 
-        // Specific settings
-        auto HPFilter = (SliderAdaptive*)components[Deck::HPLPFilter];// TODO: test, da ettore se non inizializzato?
-        if (HPFilter) {HPFilter->setSnapToMiddleValue(true);}
+        for(auto& [tipo, comp] : components){ // Specific settings
+            switch(tipo){
+            case Deck::Play:{
+                auto button = dynamic_cast<DrawableButtonAdaptive*>(comp);
+                auto image = Drawable::createFromImageData (BinaryData::circleButton_svg,BinaryData::circleButton_svgSize);
+                button->setImages (image.get ());
+            }break;
+            case Deck::Crossfader:      break;
+            case Deck::Browser:         break;
+            case Deck::HeadphoneOut:    break;
+            case Deck::Sync:            break;
+            case Deck::SyncMaster:      break;
+            case Deck::MasterVolume:    break;
+            case Deck::HeadphoneVolume: break;
+            case Deck::Seek:            break;
+            case Deck::Cue:             break;
+            case Deck::HPLPFilter:{
+                auto HPFilter = dynamic_cast<SliderAdaptive*>(comp);
+                auto image = Drawable::createFromImageData (BinaryData::knob_svg,BinaryData::knob_svgSize);
+                HPFilter->setImage (image.get());//std::move(shape));
 
-        /*{//itera nella mappa
-            switch(){
-             case Loop
-             set image
+                HPFilter->setSnapToMiddleValue(true);
+                HPFilter->setDoubleClickReturnValue (true, 0.5f*HPFilter->getRange ().getLength ());
+                break;
             }
-        }*/
-
-
-        //TODO: setMouseDragSensitivity, setVelocityModeParameters, setVelocitySensitivity
-
-        {
-            testSlider1.setSliderStyle  (juce::Slider::RotaryVerticalDrag);
-            testSlider1.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
-            //testSlider1.setRotaryParameters (0,getComponentAngle(),true);
-
-            auto shape = Drawable::createFromImageData (BinaryData::circleButton_svg,BinaryData::circleButton_svgSize);
-            testSlider1.setImage (shape.get ());
-            //testSlider1.onValueChange = []{midiOut->sendMessageNow(juce::MidiMessage::noteOn (1, noteNumber, (juce::uint8) 100))};
-            testSlider1.onValueChange = []{DBG("slider1mosso");};
-            testSlider1.onMouseUp = []{DBG("slider1click");};
-            testSlider1.setRange (1.0,5.0,1);
-            testSlider1.setAutoFitHitBoxToRotaryParameters (true);
-            //addAndMakeVisible (testSlider1);
+            case Deck::Volume:          break;
+            case Deck::Loop:            break;
+            default:                    break;
+            }
         }
 
-        {
-            testSlider2.setSliderStyle  (juce::Slider::RotaryVerticalDrag);
+        //        auto HPFilter = components.count (Deck::HPLPFilter) ? (SliderAdaptive*)components[Deck::HPLPFilter] : nullptr;
+        //        if (HPFilter) {HPFilter->setSnapToMiddleValue(true);}
+
+
+       {
+            /*testSlider2.setSliderStyle  (juce::Slider::RotaryVerticalDrag);
             testSlider2.setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
 
             auto shape = Drawable::createFromImageData (BinaryData::knob_svg,BinaryData::knob_svgSize);
             testSlider2.setImage (shape.get());//std::move(shape));
 
+            //testSlider1.onValueChange = []{midiOut->sendMessageNow(juce::MidiMessage::noteOn (1, noteNumber, (juce::uint8) 100))};
             testSlider2.onValueChange = []{DBG("slider2mosso");};
             testSlider2.onMouseUp = []{DBG("slider2click");};
             testSlider2.setRange (0.0,127.0,1);
-            testSlider2.setDoubleClickReturnValue (true, 0.5f*testSlider2.getRange ().getLength ());
             testSlider2.setAutoFitHitBoxToRotaryParameters (true);
+            testSlider2.setDoubleClickReturnValue (true, 0.5f*testSlider2.getRange ().getLength ());
             testSlider2.setSnapToMiddleValue (true);
-            //addAndMakeVisible (testSlider2);
+            //addAndMakeVisible (testSlider2);*/
         }
 
-        {
-            auto image = Drawable::createFromImageData (BinaryData::circleButton_svg,BinaryData::circleButton_svgSize);
-            testButton.setImages (image.get ());
-
-            Path p;
-            p.addEllipse (Rectangle<float>(0,0,1,1));
-            testButton.setHitBox (p);
-
-            testButton.onClick = []{DBG("bottoneClick");};
-            //addAndMakeVisible (testButton);
-        }
     }
 
 }
@@ -155,13 +140,6 @@ void Deck::paint (juce::Graphics& g) {
     auto minDim = jmin(getWidth (),getHeight());
     auto componentsContainer = Rectangle {minDim,minDim}.reduced (DECK_PADDING);
     componentsContainer.setCentre (getBounds ().getCentre ());
-
-    g.setColour (Colours::blue);
-    //g.fillPath (testButton.getHitBox ());
-    //g.drawRect (testSlider1.getBounds ());
-    //g.drawRect (testSlider2.getBounds ());
-    //g.fillPath (testSlider2.getBoundingBox ());
-
 }
 
 void Deck::resized()
@@ -170,30 +148,28 @@ void Deck::resized()
     auto componentsContainer = Rectangle {minDim,minDim};
     componentsContainer.setCentre (getLocalBounds ().getCentre ());
 
-    //    for(int i = 0 ; i < numComponents  && components[i] != nullptr; ++i){
-    //        Component* comp = components[i];
-
     for (auto& [tipo, comp] : components) {//const?
 
         //common
         switch(tipo){
         case Deck::Play:{
-
             auto diametroDaTogliere = (1-INNER_CIRCLE_TO_SLIDER_RATIO) * minDim*0.5f;
             diametroDaTogliere += SEPARATION_TO_COMPONENT_DIMENSION_RATIO * diametroDaTogliere + DECK_PADDING;
             comp->setBounds(componentsContainer.reduced (diametroDaTogliere));
             break;
         }
-            //case Deck::HeadphoneOut:
-            //case Deck::Sync:
-            //case Deck::SyncMaster:
-        //case Deck::HeadphoneVolume:
+        case Deck::Crossfader:      break;
+        case Deck::Browser:         break;
+        case Deck::HeadphoneOut:    break;
+        case Deck::Sync:            break;
+        case Deck::SyncMaster:      break;
+        case Deck::MasterVolume:    break;
+        case Deck::HeadphoneVolume: break;
         case Deck::Seek:
         case Deck::Cue:
         case Deck::HPLPFilter:
         case Deck::Volume:
-        case Deck::Loop:
-        {
+        case Deck::Loop:{
             comp->setBounds (componentsContainer.reduced (DECK_PADDING));
             break;
         }
@@ -230,7 +206,6 @@ int Deck::getNumRadialComponents() const
             + components.count(Deck::ComponentType::HPLPFilter)
             + components.count(Deck::ComponentType::Volume)
             + components.count(Deck::ComponentType::Loop);
-
 }
 
 

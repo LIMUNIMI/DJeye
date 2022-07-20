@@ -60,8 +60,8 @@ public:
     }
 
     void drawLinearSlider (Graphics& g, int x, int y, int width, int height,
-                                    float sliderPos, float minSliderPos, float maxSliderPos,
-                                    const Slider::SliderStyle style, Slider& slider) override
+                           float sliderPos, float minSliderPos, float maxSliderPos,
+                           const Slider::SliderStyle style, Slider& slider) override
     {
 
         g.fillAll (slider.findColour (Slider::backgroundColourId));
@@ -88,11 +88,14 @@ public:
     {
         if (style == Slider::LinearHorizontal)
         {
-            auto track = Rectangle<float>(width*0.9f,height/4);
-            track.setCentre (slider.getLocalBounds ().getCentre() .toFloat ());
+            const float sliderRadius = (float) slider.getHeight() / 3;
+            auto track = Rectangle<float>(width, sliderRadius / 2);
+            track.setCentre (slider.getLocalBounds ().getCentre().toFloat ());
+            Path indent;
+            indent.addRoundedRectangle (track, 5.0f);
 
             g.setColour (slider.findColour (Slider::trackColourId));
-            g.fillRect (track);
+            g.fillPath (indent);
 
         }
         else{
@@ -101,40 +104,33 @@ public:
     }
 
     void drawLinearSliderThumb (Graphics& g, int x, int y, int width, int height,
-                                     float sliderPos,
-                                     float minSliderPos,
-                                     float maxSliderPos,
-                                     const Slider::SliderStyle style, Slider& slider) override
+                                float sliderPos,
+                                float minSliderPos,
+                                float maxSliderPos,
+                                const Slider::SliderStyle style, Slider& slider) override
     {
 
         if (style == Slider::LinearHorizontal)
         {
-            //TODO: contolla cosa è valueToProportionOfLength
-            //TODO usare lo slider thumb radious per l'altezza
+            const float sliderRadius = (float) slider.getHeight() / 3;
 
-            {
-                auto thumb = Rectangle<float>(width/12,height/3);
-                thumb.setCentre (sliderPos + (float) x, slider.getLocalBounds ().getCentreY());
+            auto thumb = Rectangle<float>(sliderRadius/3.0f,sliderRadius);
+            thumb.setCentre (sliderPos, slider.getLocalBounds ().getCentreY());
 
-                auto baseColour = slider.findColour (Slider::thumbColourId)
-                        .withMultipliedSaturation (slider.isEnabled() ? 1.0f : 0.5f)
-                        .withMultipliedAlpha (0.8f);
+            auto baseColour = slider.findColour (Slider::thumbColourId)
+                    .withMultipliedSaturation (slider.isEnabled() ? 1.0f : 0.5f)
+                    .withMultipliedAlpha (0.8f);
+            g.setColour (baseColour);
+            g.fillRect (thumb);
 
-                g.setColour (baseColour);
-                g.fillRect (thumb);
-            }
-
-            {
-                auto thumbLine = Rectangle<float>(width/35,height/3);
-                thumbLine.setCentre (sliderPos + (float) x, slider.getLocalBounds ().getCentreY());
-
-                auto baseColour = Colours::whitesmoke
-                        .withMultipliedSaturation (slider.isEnabled() ? 1.0f : 0.5f)
-                        .withMultipliedAlpha (0.8f);
-
-                g.setColour (baseColour);
-                g.fillRect (thumbLine);
-            }
+            auto thumbLine = thumb;
+            thumbLine.removeFromRight (thumb.getWidth ()/3.0f);
+            thumbLine.removeFromLeft (thumb.getWidth ()/3.0f);
+            auto baseColourLine = Colours::whitesmoke
+                    .withMultipliedSaturation (slider.isEnabled() ? 1.0f : 0.5f)
+                    .withMultipliedAlpha (0.8f);
+            g.setColour (baseColourLine);
+            g.fillRect (thumbLine);
 
         }
         else
@@ -143,9 +139,15 @@ public:
         }
     }
 
-//    int getNumComponents() const{
-//        return numComponents;
+//    int getSliderThumbRadius (Slider& slider) override
+//    {
+//        return  slider.isHorizontal() ? static_cast<int> ((float) slider.getHeight() / 3)
+//                                      : static_cast<int> ((float) slider.getWidth()  / 3);
 //    }
+
+    //    int getNumComponents() const{
+    //        return numComponents;
+    //    }
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MyLookAndFeel)
 

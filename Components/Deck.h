@@ -30,7 +30,8 @@ public:
         Loop            // Controls loops parameters (size,etc)
     };
 
-    Deck(const Deck::ComponentType* ComponentList);
+    Deck(const std::vector<Deck::ComponentType> ComponentList);
+    //Deck(const Deck::ComponentType* ComponentList);
     //Deck(std::unique_ptr<int>... ComponentList);
     ~Deck();
     //juce::AudioProcessorValueTreeState j;
@@ -56,22 +57,20 @@ public:
 
 protected:
 
-    SliderAdaptive testSlider1;
     SliderAdaptive testSlider2;
-    DrawableButtonAdaptive testButton;
 
     //std::map<const ComponentType, Component> components;
-    std::map<const int, Component*> components;
-    std::map<const ComponentType, std::function<void(int)>&> componentsActions; // pensare a come gestire componenti che hanno più funzionalità
+    std::map<const uint, Component*> components;
+    std::map<const ComponentType, std::function<void(uint)>&> componentsActions; // pensare a come gestire componenti che hanno più funzionalità
 
     // Usando queste misure, si ritrova un non parallelismo tra i lati degli slider, mentre con un metodo tau/NUM_COMP e poi spingendo i componenti verso l'esterno, si ottiene una sezione "centrale" non perfettamente circolare.
     float getComponentSeparationAngle() { return (MathConstants<float>::twoPi / getNumRadialComponents()) * SEPARATION_TO_COMPONENT_DIMENSION_RATIO; }
-    float getComponentAngle()           { return (MathConstants<float>::twoPi - (getComponentSeparationAngle ()*(getNumRadialComponents()-1)))/getNumRadialComponents() ;}
+    float getComponentAngle()           { return (MathConstants<float>::twoPi - (getComponentSeparationAngle () * getNumRadialComponents()))
+                / getNumRadialComponents() ;}
 
 private:
-int numComponents = 0;
+uint numComponents = 0;
 
-// TODO: meglio di un define in questo caso siccome c'è una divisione?
 // static constexpr auto tau = MathConstants<float>::twoPi;
 // static constexpr auto componentSeparationAngle = (tau / NUM_COMPONENTS) * SEPARATION_TO_COMPONENT_DIMENSION_RATIO;
 // static constexpr auto componentAngle = (tau - (componentSeparationAngle*(NUM_COMPONENTS-1)))/NUM_COMPONENTS

@@ -2,7 +2,7 @@
 
 MiddleStrip::MiddleStrip():
     browserButton ("browserButton",DrawableButton::ButtonStyle::ImageStretched)//TODO: imageFitted
-{
+{//TODO: organizzazione come il deck con una lista di cose in ingresso, poi dividi lo spazio verticale in modo equo
     Path rectHB; // hitbox for crossfader and browser is rectangular
     rectHB.addRectangle (Rectangle<float>(0,0,1,1));
 
@@ -13,9 +13,9 @@ MiddleStrip::MiddleStrip():
         crossfader.setRange                      (0.0f, 127.0f, 1.0f);
         crossfader.setDoubleClickReturnValue     (true, 0.5f*crossfader.getRange ().getLength ());
         crossfader.setHitBox                     (rectHB);
+        crossfader.setSnapToMiddleValue (true);
 
         crossfader.onValueChange = []{DBG("crossfaderMosso");};
-        crossfader.setSnapToMiddleValue (true);
         addAndMakeVisible (crossfader);
     }
 
@@ -44,4 +44,6 @@ void MiddleStrip::resized()
 void MiddleStrip::paint(Graphics &g)
 {
     g.fillAll (Colours::aliceblue);
+//    g.setColour (Colours::red);
+//    g.drawRect (crossfader.getBounds());
 }
