@@ -60,7 +60,7 @@ protected:
     SliderAdaptive testSlider2;
 
     //std::map<const ComponentType, Component> components;
-    std::map<const uint, Component*> components;
+    std::map<const uint, std::unique_ptr<Component>> components;
     std::map<const ComponentType, std::function<void(uint)>&> componentsActions; // pensare a come gestire componenti che hanno più funzionalità
 
     // Usando queste misure, si ritrova un non parallelismo tra i lati degli slider, mentre con un metodo tau/NUM_COMP e poi spingendo i componenti verso l'esterno, si ottiene una sezione "centrale" non perfettamente circolare.

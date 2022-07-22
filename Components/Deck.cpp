@@ -11,7 +11,8 @@ Deck::Deck(const std::vector<Deck::ComponentType> ComponentList)
 
             switch(ComponentList[i]){
             case Deck::Play:
-                components[ComponentList[i]] = new DrawableButtonAdaptive {"playBtn",DrawableButton::ButtonStyle::ImageFitted}; break;
+                //components[ComponentList[i]] = new DrawableButtonAdaptive {"playBtn",DrawableButton::ButtonStyle::ImageFitted}; break;
+                components[ComponentList[i]] = std::make_unique<DrawableButtonAdaptive>("playBtn",DrawableButton::ButtonStyle::ImageFitted); break;
             case Deck::Crossfader:      break;
             case Deck::Browser:         break;
             case Deck::HeadphoneOut:    break;
@@ -24,18 +25,20 @@ Deck::Deck(const std::vector<Deck::ComponentType> ComponentList)
             case Deck::HPLPFilter:
             case Deck::Volume:
             case Deck::Loop:
-                components[ComponentList[i]] = new SliderAdaptive {}; break;
+                components[ComponentList[i]] = std::make_unique<SliderAdaptive>(); break;
             default:                    break;
             }
         }
 
         for(auto& [tipo, comp] : components){ // common properties
-            addAndMakeVisible (comp);
+            addAndMakeVisible (comp.get ());
 
             switch(tipo){
             case Deck::Play:
-            { // TODO usare smartpointers
-                auto button = dynamic_cast<DrawableButtonAdaptive*>(comp);
+            {
+                DrawableButtonAdaptive *button = static_cast<DrawableButtonAdaptive*>(comp.get());
+                //auto button = std::make_unique<DrawableButtonAdaptive>(comp);
+                //auto button = std::make_unique<DrawableButtonAdaptive>(std::move(comp));
                 //auto button = static_cast<DrawableButtonAdaptive*>(comp);
 
                 Path p;
@@ -58,7 +61,9 @@ Deck::Deck(const std::vector<Deck::ComponentType> ComponentList)
             case Deck::Volume:
             case Deck::Loop:
             { // TODO: setMouseDragSensitivity, setVelocityModeParameters, setVelocitySensitivity
-                auto slider = dynamic_cast<SliderAdaptive*>(comp);
+                SliderAdaptive *slider = static_cast<SliderAdaptive*>(comp.get());
+                //auto slider = std::make_unique<SliderAdaptive>(comp);
+                //auto slider = dynamic_cast<SliderAdaptive*>(comp);
                 slider->setSliderStyle  (juce::Slider::RotaryVerticalDrag);
                 slider->setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
                 slider->setRange        (0,127,1);
@@ -79,7 +84,7 @@ Deck::Deck(const std::vector<Deck::ComponentType> ComponentList)
         for(auto& [tipo, comp] : components){ // Specific settings
             switch(tipo){
             case Deck::Play:{
-                auto button = dynamic_cast<DrawableButtonAdaptive*>(comp);
+                DrawableButtonAdaptive *button = static_cast<DrawableButtonAdaptive*>(comp.get());
                 auto image = Drawable::createFromImageData (BinaryData::circleButton_svg,BinaryData::circleButton_svgSize);
                 button->setImages (image.get ());
             }break;
@@ -93,7 +98,8 @@ Deck::Deck(const std::vector<Deck::ComponentType> ComponentList)
             case Deck::Seek:            break;
             case Deck::Cue:             break;
             case Deck::HPLPFilter:{
-                auto HPFilter = dynamic_cast<SliderAdaptive*>(comp);
+                SliderAdaptive *HPFilter = static_cast<SliderAdaptive*>(comp.get());
+                //auto slider = dynamic_cast<SliderAdaptive*>(comp);
                 auto image = Drawable::createFromImageData (BinaryData::knob_svg,BinaryData::knob_svgSize);
                 HPFilter->setImage (image.get());//std::move(shape));
 
@@ -136,10 +142,6 @@ Deck::~Deck(){} //TODO: rimovibile?
 
 void Deck::paint (juce::Graphics& g) {
     g.fillAll (Colours::blueviolet);
-
-    auto minDim = jmin(getWidth (),getHeight());
-    auto componentsContainer = Rectangle {minDim,minDim}.reduced (DECK_PADDING);
-    componentsContainer.setCentre (getBounds ().getCentre ());
 }
 
 void Deck::resized()

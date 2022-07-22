@@ -24,12 +24,7 @@ Controller::Controller():
         //TODO: eccezione
     }
 
-    /*animator = Desktop::getInstance().getAnimator ();
-
-//    auto image = ImageCache::getFromMemory (BinaryData::circleButton_png, BinaryData::circleButton_pngSize);
-//    auto transp = Colours::transparentWhite;
-//    buttonSx.setImages (false,true,true,image,1.0f,transp,nullptr,0.5f,transp,nullptr,1.0f,transp,0.8f);
-//    buttonDx.setImages (false,true,true,image,1.0f,transp,nullptr,0.5f,transp,nullptr,1.0f,transp,0.8f);*/
+    //animator = Desktop::getInstance().getAnimator ();
 
     deckSx.onMouseEnter = [&] {toggleZoom (&deckSx);};
     deckDx.onMouseEnter = [&] {toggleZoom (&deckDx);};
