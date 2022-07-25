@@ -66,7 +66,7 @@ public:
      */
     void resizeHitBoxToFitRotaryParameters();
     bool getSnapToMiddleValue() const;
-    void setSnapToMiddleValue(bool newSnapsToMiddleValue);
+    void setSnapToMiddleValue(bool newSnapToMiddleValue);
 
     float getAccuracyPaddingRatio() const;
     void setAccuracyPaddingRatio(float newAccuracyPaddingRatio);

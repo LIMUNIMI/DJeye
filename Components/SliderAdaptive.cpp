@@ -41,9 +41,9 @@ bool SliderAdaptive::getSnapToMiddleValue() const
     return snapToMiddleValue;
 }
 
-void SliderAdaptive::setSnapToMiddleValue(bool newSnapsToMiddleValue)
+void SliderAdaptive::setSnapToMiddleValue(bool newSnapToMiddleValue)
 {
-    snapToMiddleValue = newSnapsToMiddleValue;
+    snapToMiddleValue = newSnapToMiddleValue;
 }
 
 void SliderAdaptive::resizeHitBoxToFitRotaryParameters (){
