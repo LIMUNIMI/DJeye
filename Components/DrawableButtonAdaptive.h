@@ -38,7 +38,16 @@ public:
      * note: paths are deep-copied
      */
     void setHitBox (const Path&& newHitBox);
+    float getAccuracyPaddingRatio() const;
+    void setAccuracyPaddingRatio(float newAccuracyPaddingRatio);
+
 protected:
+    /**
+    * @brief Updates the hitbox bounds taking into consideration the accuracyPaddingRatio.
+    * It gets automatically called when updating the hitbox, the accuracyPaddingRatio or the window is resized
+    */
+    void updateHitBoxBounds();
+
 
 private:
     //
@@ -49,6 +58,7 @@ private:
      * => si muove da solo insieme la parent
      */
     DrawablePath HitBox;
+    float accuracyPaddingRatio = 0;
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DrawableButtonAdaptive)

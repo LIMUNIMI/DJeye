@@ -9,11 +9,11 @@ public:
     MyLookAndFeel(/*int NumComponents*/) {
 
         //numComponents = NumComponents;
-        auto accentColour = Colours::white;
+        auto accentColour = Colours::black;
         setColour (Slider::backgroundColourId,          Colours::grey.withAlpha (0.5f));
         setColour (Slider::thumbColourId,               Colours::black);
         setColour (Slider::trackColourId,               Colours::grey);
-        setColour (Slider::rotarySliderFillColourId,    Colours::blue);
+        setColour (Slider::rotarySliderFillColourId,    Colours::blue.withAlpha (0.5f));
         setColour (Slider::rotarySliderOutlineColourId, accentColour);
 
         setColour (TextButton::buttonColourId,  Colours::white);
@@ -42,11 +42,6 @@ public:
         const auto lineThickness = SLIDER_PADDING*2;
         outline.addPieSegment (bounds.reduced(SLIDER_PADDING),rotaryStartAngle,rotaryEndAngle,INNER_CIRCLE_TO_SLIDER_RATIO);
 
-        /*outline.closeSubPath ();
-        g.setColour (Colours::red);
-        g.drawRect (bounds);
-        g.drawRect (bounds.reduced (SLIDER_MARGIN));
-*/
         g.setColour (slider.findColour (Slider::rotarySliderOutlineColourId));
         g.strokePath (outline.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING),PathStrokeType (lineThickness));//TODO: aggiustare magic numbers
 

@@ -12,6 +12,7 @@ MiddleStrip::MiddleStrip():
         crossfader.setSliderSnapsToMousePosition (false);
         crossfader.setRange                      (0.0f, 127.0f, 1.0f);
         crossfader.setDoubleClickReturnValue     (true, 0.5f*crossfader.getRange ().getLength ());
+        //browserButton.setAccuracyPaddingRatio    (ComponentActualAccuracyPaggingRatio);
         crossfader.setHitBox                     (rectHB);
         crossfader.setSnapToMiddleValue (true);
 
@@ -21,8 +22,9 @@ MiddleStrip::MiddleStrip():
 
     {//browserButton setup
         auto image = Drawable::createFromImageData (BinaryData::menu_svg,BinaryData::menu_svgSize);
-        browserButton.setImages (image.get ());
-        browserButton.setHitBox (rectHB);
+        browserButton.setImages               (image.get ());
+        //browserButton.setAccuracyPaddingRatio (ComponentActualAccuracyPaggingRatio);
+        browserButton.setHitBox               (rectHB);
 
         browserButton.onClick = []{DBG("browserButtonClick");};
 

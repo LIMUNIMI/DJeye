@@ -49,7 +49,7 @@ void SliderAdaptive::setSnapToMiddleValue(bool newSnapsToMiddleValue)
 void SliderAdaptive::resizeHitBoxToFitRotaryParameters (){
     auto rotParams = getRotaryParameters();
 
-    auto padding = std::abs(rotParams.startAngleRadians - rotParams.endAngleRadians)*ComponentActualAccuracyPaggingRatio;
+    auto padding = std::abs(rotParams.startAngleRadians - rotParams.endAngleRadians)*accuracyPaddingRatio;
     auto slice = MakeSlice(getLocalBounds ().toFloat ().reduced(SLIDER_PADDING),padding,padding*0.5f);
     //NB: questo approccio riduce tutti i margini eccetto quello del cerchio più esterno
     //inoltre non è accurato aggiungere al cerchio interno un padding relativo al raggio
@@ -88,7 +88,7 @@ void SliderAdaptive::resizeHitBoxToFitBounds()
 
     auto mindim = jmin(getLocalBounds ().getHeight (),getLocalBounds ().getWidth ());
 
-    HitBox.setTransformToFit (getLocalBounds().toFloat ().reduced (mindim*ComponentActualAccuracyPaggingRatio),juce::RectanglePlacement::centred);
+    HitBox.setTransformToFit (getLocalBounds().toFloat ().reduced (mindim*accuracyPaddingRatio),juce::RectanglePlacement::centred);
 
     Path p = HitBox.getPath ();
     p.applyTransform (HitBox.getTransform ());
@@ -146,6 +146,7 @@ void SliderAdaptive::setHitBox(const Path& newHitBox)
 void SliderAdaptive::setHitBox(const Path&& newHitBox)
 {
     HitBox.setPath (std::move(newHitBox));
+    updateHitBoxBounds();
 }
 
 Path SliderAdaptive::getHitBox() const {
@@ -162,9 +163,7 @@ void SliderAdaptive::setImage (const Drawable* newImage)
 
 void SliderAdaptive::mouseUp(const MouseEvent& me)
 {
-    if (me.mouseWasClicked () && onMouseUp !=nullptr){
-        onMouseUp();
-    }
+    if (me.mouseWasClicked () && onMouseUp !=nullptr) onMouseUp();
 }
 
 double SliderAdaptive::snapValue(double attemptedValue, DragMode dragMode)
@@ -176,6 +175,17 @@ double SliderAdaptive::snapValue(double attemptedValue, DragMode dragMode)
                 attemptedValue < 0.55f * range &&
                 dragMode == DragMode::absoluteDrag) ?  range*0.5f : attemptedValue;
     }else return attemptedValue;
+}
+
+float SliderAdaptive::getAccuracyPaddingRatio() const
+{
+    return accuracyPaddingRatio;
+}
+
+void SliderAdaptive::setAccuracyPaddingRatio(float newAccuracyPaddingRatio)
+{
+    accuracyPaddingRatio = newAccuracyPaddingRatio;
+    updateHitBoxBounds();
 }
 
 

@@ -1,7 +1,6 @@
 ﻿#include "Controller.h"
 
 Controller::Controller():
-    //laf{NUM_COMPONENTS},
     deckSx{*new std::vector<Deck::ComponentType> {
            Deck::Play,
            Deck::Seek,
@@ -12,7 +11,7 @@ Controller::Controller():
     deckDx{*new std::vector<Deck::ComponentType> {
            Deck::Play,
            Deck::HPLPFilter,
-           Deck::Volume
+           Deck::Seek,
            }}
 {
 #if JUCE_LINUX || JUCE_BSD || JUCE_MAC || JUCE_IOS || DOXYGEN
@@ -24,10 +23,74 @@ Controller::Controller():
         //TODO: eccezione
     }
 
+
     //animator = Desktop::getInstance().getAnimator ();
 
-    deckSx.onMouseEnter = [&] {toggleZoom (&deckSx);};
     deckDx.onMouseEnter = [&] {toggleZoom (&deckDx);};
+    deckSx.onMouseEnter = [&] {toggleZoom (&deckSx);};
+
+    {// setup lambdas for deckSx
+        int ch = 1;
+        //TODO: quando azz note-off?
+        deckSx.setComponentOnClick (Deck::ComponentType::Play, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127)); });
+
+        deckSx.setComponentOnValueChange (Deck::ComponentType::Seek, [&,ch](const int val){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, val )); });
+        deckSx.setComponentOnClick       (Deck::ComponentType::Seek, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 2, (juce::uint8) 127)); });
+
+        deckSx.setComponentOnValueChange (Deck::ComponentType::Cue, [&,ch](const int val){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 21, val)); });
+        deckSx.setComponentOnClick       (Deck::ComponentType::Cue, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 3, (juce::uint8) 127)); });
+
+        deckSx.setComponentOnValueChange (Deck::ComponentType::HPLPFilter, [&,ch](const int val){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 22, val)); });
+        deckSx.setComponentOnClick       (Deck::ComponentType::HPLPFilter, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 4, (juce::uint8) 127)); });
+
+        deckSx.setComponentOnValueChange (Deck::ComponentType::Volume, [&,ch](const int val){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 23, val)); });
+        deckSx.setComponentOnClick       (Deck::ComponentType::Volume, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 5, (juce::uint8) 127)); });
+
+        deckSx.setComponentOnValueChange (Deck::ComponentType::Loop, [&,ch](const int val){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 24, val)); });
+        deckSx.setComponentOnClick       (Deck::ComponentType::Loop, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127)); });
+    }
+    {// setup lambdas for deckDx
+        auto ch = 2;
+        //TODO: quando azz note-off?
+        deckDx.setComponentOnClick (Deck::ComponentType::Play, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127)); });
+
+        deckDx.setComponentOnValueChange (Deck::ComponentType::Seek, [&,ch](const int val){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, val )); });
+        deckDx.setComponentOnClick       (Deck::ComponentType::Seek, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 2, (juce::uint8) 127)); });
+
+        deckDx.setComponentOnValueChange (Deck::ComponentType::Cue, [&,ch](const int val){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 21, val)); });
+        deckDx.setComponentOnClick       (Deck::ComponentType::Cue, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 3, (juce::uint8) 127)); });
+
+        deckDx.setComponentOnValueChange (Deck::ComponentType::HPLPFilter, [&,ch](const int val){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 22, val)); });
+        deckDx.setComponentOnClick       (Deck::ComponentType::HPLPFilter, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 4, (juce::uint8) 127)); });
+
+        deckDx.setComponentOnValueChange (Deck::ComponentType::Volume, [&,ch](const int val){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 23, val)); });
+        deckDx.setComponentOnClick       (Deck::ComponentType::Volume, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 5, (juce::uint8) 127)); });
+
+        deckDx.setComponentOnValueChange (Deck::ComponentType::Loop, [&,ch](const int val){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 24, val)); });
+        deckDx.setComponentOnClick       (Deck::ComponentType::Loop, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127)); });
+    }//NOTE: these lambda initialization are separated to guarantee the flexibility of the components which can or cannot be included in the deck
 
     addAndMakeVisible(deckSx);
     addAndMakeVisible(deckDx);
@@ -42,7 +105,9 @@ Controller::~Controller()
     setLookAndFeel (nullptr);
 }
 
-void Controller::paint (juce::Graphics& /*g*/) {}
+void Controller::paint (juce::Graphics& g) {
+    g.fillAll (Colours::aliceblue);
+}
 
 void Controller::resized()
 {
@@ -55,10 +120,6 @@ void Controller::resized()
     toggleZoom(selectedDeck);
 }
 
-void Controller::sendMidi(const int noteNumber)
-{
-    midiOut->sendMessageNow(juce::MidiMessage::noteOn (1, noteNumber, (juce::uint8) 100));
-}
 
 void Controller::toggleZoom(Deck* deckToZoom){
 
@@ -82,12 +143,11 @@ void Controller::toggleZoom(Deck* deckToZoom){
 
 }
 
+
 /*
- * monitorare midi dal terminale
- * visualizzare lista porte:
- * aconnect -i -o -l
- * dump porta:
- * aseqdump -p [numeroporta]
+ * monitorare midi da terminale
+ * ~aconnect -i -o -l      // visualizzare lista porte
+ * ~aseqdump -p [#porta]   //dump porta
 */
 
 
