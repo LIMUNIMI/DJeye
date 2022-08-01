@@ -92,7 +92,8 @@ target_compile_definitions(${TargetName}
 
 juce_add_binary_data(GuiAppData SOURCES
 images/menu.svg
-images/circleButton.svg
+images/playBtnPause.svg
+images/playBtnPlay.svg
 images/knob.svg
 images/volume.svg
 )

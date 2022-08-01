@@ -6,7 +6,7 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
 {
 
     // COMPONENT INITITALIZATION
-    for(auto type : ComponentList){ // filling "component" map
+    for(auto type : ComponentList){ // filling component map
 
         switch(type){
         case ConfigurableContainer::Play:{
@@ -15,6 +15,8 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             Path p;
             p.addEllipse (Rectangle<float>(0,0,1,1));
             playBtn->setAccuracyPaddingRatio (ComponentActualAccuracyPaddingRatio);
+            playBtn->setToggleable (true);
+            playBtn->setClickingTogglesState (true);
             playBtn->setHitBox (p);
             components[type] = std::move(playBtn);
 
@@ -84,8 +86,9 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
         case ConfigurableContainer::Play:{
 
             DrawableButtonAdaptive *button = static_cast<DrawableButtonAdaptive*>(comp.get());
-            auto image = Drawable::createFromImageData (BinaryData::circleButton_svg,BinaryData::circleButton_svgSize);
-            button->setImages (image.get ());
+            auto imageOff  = Drawable::createFromImageData (BinaryData::playBtnPlay_svg ,BinaryData::playBtnPlay_svgSize );
+            auto imageOn   = Drawable::createFromImageData (BinaryData::playBtnPause_svg,BinaryData::playBtnPause_svgSize);
+            button->setImages (imageOff.get (),nullptr,nullptr,nullptr,imageOn.get (),nullptr,nullptr,nullptr);
 
         }break;
         case ConfigurableContainer::Crossfader:      break;
@@ -108,6 +111,7 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             SliderAdaptive *hplpfilter = static_cast<SliderAdaptive*>(comp.get());
             //auto slider = dynamic_cast<SliderAdaptive*>(comp);
             auto image = Drawable::createFromImageData (BinaryData::knob_svg,BinaryData::knob_svgSize);
+            //auto image = Drawable::createFromImageData (BinaryData::knob_eps,BinaryData::knob_epsSize);
             hplpfilter->setImage (image.get());//std::move(shape));
 
             hplpfilter->setSnapToMiddleValue(true);
