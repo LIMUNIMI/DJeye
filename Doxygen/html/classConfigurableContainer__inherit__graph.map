@@ -1,0 +1,6 @@
+<map id="ConfigurableContainer" name="ConfigurableContainer">
+<area shape="rect" id="node1" title="The ConfigurableContainer class contains sliders and buttons." alt="" coords="66,131,317,443"/>
+<area shape="rect" id="node3" href="$classDeck.html" title="Deck contains some ConfigurableContainer::ComponentType components it arranges the radial components ..." alt="" coords="5,498,180,634"/>
+<area shape="rect" id="node4" href="$classVerticalStrip.html" title="The VerticalStrip class is a component container which arranges components vertically...." alt="" coords="204,491,379,641"/>
+<area shape="rect" id="node2" title=" " alt="" coords="125,5,257,83"/>
+</map>

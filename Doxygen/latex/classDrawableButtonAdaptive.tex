@@ -1,0 +1,71 @@
+\hypertarget{classDrawableButtonAdaptive}{}\doxysection{Drawable\+Button\+Adaptive Class Reference}
+\label{classDrawableButtonAdaptive}\index{DrawableButtonAdaptive@{DrawableButtonAdaptive}}
+
+
+Inheritance diagram for Drawable\+Button\+Adaptive\+:
+% FIG 0
+
+
+Collaboration diagram for Drawable\+Button\+Adaptive\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDrawableButtonAdaptive_a826c09ddc20e74719908919dea62dde4}{Drawable\+Button\+Adaptive}} (const String \&button\+Name, Button\+Style button\+Style)
+\item 
+\mbox{\Hypertarget{classDrawableButtonAdaptive_ade933326b8b96f8a47acb895c5798ca6}\label{classDrawableButtonAdaptive_ade933326b8b96f8a47acb895c5798ca6}} 
+bool {\bfseries hit\+Test} (int x, int y) override
+\item 
+\mbox{\Hypertarget{classDrawableButtonAdaptive_a7155d2ca1fe09a85a196441aad3f8804}\label{classDrawableButtonAdaptive_a7155d2ca1fe09a85a196441aad3f8804}} 
+void {\bfseries resized} () override
+\item 
+\mbox{\Hypertarget{classDrawableButtonAdaptive_ae201c0fcbbe12ac6dc69a67ca649fc7e}\label{classDrawableButtonAdaptive_ae201c0fcbbe12ac6dc69a67ca649fc7e}} 
+Path \mbox{\hyperlink{classDrawableButtonAdaptive_ae201c0fcbbe12ac6dc69a67ca649fc7e}{get\+Hit\+Box}} () const noexcept
+\begin{DoxyCompactList}\small\item\em get\+Hit\+Box get the path used for hit-\/testing \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDrawableButtonAdaptive_a9d05b32d374b642bfbf70eeb30c71405}\label{classDrawableButtonAdaptive_a9d05b32d374b642bfbf70eeb30c71405}} 
+void \mbox{\hyperlink{classDrawableButtonAdaptive_a9d05b32d374b642bfbf70eeb30c71405}{set\+Hit\+Box}} (const Path \&new\+Hit\+Box)
+\begin{DoxyCompactList}\small\item\em Set the new path for hit-\/testing note\+: paths are deep-\/copied. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDrawableButtonAdaptive_ab4fb2e914d8809d8b9b3ed046c605207}\label{classDrawableButtonAdaptive_ab4fb2e914d8809d8b9b3ed046c605207}} 
+void \mbox{\hyperlink{classDrawableButtonAdaptive_ab4fb2e914d8809d8b9b3ed046c605207}{set\+Hit\+Box}} (const Path \&\&new\+Hit\+Box)
+\begin{DoxyCompactList}\small\item\em Set the new path for hit-\/testing note\+: paths are deep-\/copied. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDrawableButtonAdaptive_aeb70dacb74483690e9727882d2bee501}\label{classDrawableButtonAdaptive_aeb70dacb74483690e9727882d2bee501}} 
+float {\bfseries get\+Accuracy\+Padding\+Ratio} () const
+\item 
+\mbox{\Hypertarget{classDrawableButtonAdaptive_a6d5a303c07b80e1a29e110943a921992}\label{classDrawableButtonAdaptive_a6d5a303c07b80e1a29e110943a921992}} 
+void {\bfseries set\+Accuracy\+Padding\+Ratio} (float new\+Accuracy\+Padding\+Ratio)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDrawableButtonAdaptive_a3f8cf9f4956da61f80aacd6c1d1a0793}\label{classDrawableButtonAdaptive_a3f8cf9f4956da61f80aacd6c1d1a0793}} 
+void \mbox{\hyperlink{classDrawableButtonAdaptive_a3f8cf9f4956da61f80aacd6c1d1a0793}{update\+Hit\+Box\+Bounds}} ()
+\begin{DoxyCompactList}\small\item\em Updates the hitbox bounds taking into consideration the accuracy\+Padding\+Ratio. It gets automatically called when updating the hitbox, the accuracy\+Padding\+Ratio or the window is resized. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDrawableButtonAdaptive_a826c09ddc20e74719908919dea62dde4}\label{classDrawableButtonAdaptive_a826c09ddc20e74719908919dea62dde4}} 
+\index{DrawableButtonAdaptive@{DrawableButtonAdaptive}!DrawableButtonAdaptive@{DrawableButtonAdaptive}}
+\index{DrawableButtonAdaptive@{DrawableButtonAdaptive}!DrawableButtonAdaptive@{DrawableButtonAdaptive}}
+\doxysubsubsection{\texorpdfstring{DrawableButtonAdaptive()}{DrawableButtonAdaptive()}}
+{\footnotesize\ttfamily Drawable\+Button\+Adaptive\+::\+Drawable\+Button\+Adaptive (\begin{DoxyParamCaption}\item[{const String \&}]{button\+Name,  }\item[{Button\+Style}]{button\+Style }\end{DoxyParamCaption})}
+
+Creates a Drawable\+Button\+Adapted.
+
+After creating one of these, use set\+Images() to specify the drawables to use.
+
+
+\begin{DoxyParams}{Parameters}
+{\em button\+Name} & the name to give the component \\
+\hline
+{\em button\+Style} & the layout to use\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Button\+Style, set\+Button\+Style, set\+Images 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Components/Drawable\+Button\+Adaptive.\+h\item 
+Components/Drawable\+Button\+Adaptive.\+cpp\end{DoxyCompactItemize}

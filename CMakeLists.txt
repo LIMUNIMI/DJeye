@@ -7,7 +7,7 @@
 # CMake's behaviour is compatible with the named version. This is a standard CMake command, so more
 # information can be found in the CMake docs.
 
-set (TargetName "DJeye") # imposta nome progetto
+set (TargetName "Djeye") # imposta nome progetto
 
 cmake_minimum_required(VERSION 3.15)
 

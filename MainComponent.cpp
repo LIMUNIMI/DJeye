@@ -1,5 +1,9 @@
 #include "MainComponent.h"
 
+//TODO: aggiunge popup al right click che visualizza una barra di scorriemnnto (?)
+//TODO: controlla se c'è qualcosa riguardo al rotary sensitivity della rotella
+//TODO: cambia colore slider on hover
+
 //==============================================================================
 MainComponent::MainComponent()
 {

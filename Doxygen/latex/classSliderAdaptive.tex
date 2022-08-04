@@ -1,0 +1,121 @@
+\hypertarget{classSliderAdaptive}{}\doxysection{Slider\+Adaptive Class Reference}
+\label{classSliderAdaptive}\index{SliderAdaptive@{SliderAdaptive}}
+
+
+Inheritance diagram for Slider\+Adaptive\+:
+% FIG 0
+
+
+Collaboration diagram for Slider\+Adaptive\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSliderAdaptive_a6c28f00555a447bee516bc7be1e9bb07}\label{classSliderAdaptive_a6c28f00555a447bee516bc7be1e9bb07}} 
+void {\bfseries set\+Rotary\+Parameters} (Rotary\+Parameters p) noexcept
+\item 
+\mbox{\Hypertarget{classSliderAdaptive_aa0ba27a407ec1e484e20e92850328513}\label{classSliderAdaptive_aa0ba27a407ec1e484e20e92850328513}} 
+void {\bfseries set\+Rotary\+Parameters} (float start\+Angle\+Radians, float end\+Angle\+Radians, bool stop\+At\+End) noexcept
+\item 
+\mbox{\Hypertarget{classSliderAdaptive_a4c294d79e6b9d6041bb6ae08db134d5b}\label{classSliderAdaptive_a4c294d79e6b9d6041bb6ae08db134d5b}} 
+bool {\bfseries hit\+Test} (int x, int y) override
+\item 
+\mbox{\Hypertarget{classSliderAdaptive_a5aef724a609bccbbf098a54822f06d94}\label{classSliderAdaptive_a5aef724a609bccbbf098a54822f06d94}} 
+void {\bfseries paint} (Graphics \&g) override
+\item 
+\mbox{\Hypertarget{classSliderAdaptive_ab9e5b10d1356f6f29185fc9a865ef62c}\label{classSliderAdaptive_ab9e5b10d1356f6f29185fc9a865ef62c}} 
+void {\bfseries resized} () override
+\item 
+\mbox{\Hypertarget{classSliderAdaptive_af946db60836f3b64aabf6bca6ea62c0a}\label{classSliderAdaptive_af946db60836f3b64aabf6bca6ea62c0a}} 
+void {\bfseries mouse\+Up} (const Mouse\+Event \&) override
+\item 
+Path \mbox{\hyperlink{classSliderAdaptive_acf3621b2b3f7dff0ec50de2d2e5da33f}{get\+Hit\+Box}} () const
+\begin{DoxyCompactList}\small\item\em get\+Hit\+Box get the path used for hit-\/testing \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSliderAdaptive_ab186faacb53a91eecbbc7de1b9fcf29f}\label{classSliderAdaptive_ab186faacb53a91eecbbc7de1b9fcf29f}} 
+void {\bfseries set\+Image} (const Drawable $\ast$image)
+\item 
+\mbox{\Hypertarget{classSliderAdaptive_aeebfaf1a4331341d92f1762bcdb05176}\label{classSliderAdaptive_aeebfaf1a4331341d92f1762bcdb05176}} 
+void \mbox{\hyperlink{classSliderAdaptive_aeebfaf1a4331341d92f1762bcdb05176}{set\+Hit\+Box}} (const Path \&new\+Hit\+Box)
+\begin{DoxyCompactList}\small\item\em set\+Hit\+Box set the new path for hit-\/testing \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSliderAdaptive_a0f6c6c314c268f4d8db32f5334d87ce6}\label{classSliderAdaptive_a0f6c6c314c268f4d8db32f5334d87ce6}} 
+void \mbox{\hyperlink{classSliderAdaptive_a0f6c6c314c268f4d8db32f5334d87ce6}{set\+Hit\+Box}} (const Path \&\&new\+Hit\+Box)
+\begin{DoxyCompactList}\small\item\em set\+Hit\+Box set the new path for hit-\/testing \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSliderAdaptive_a62865d53f16a80bc0ffd925fad26bd04}\label{classSliderAdaptive_a62865d53f16a80bc0ffd925fad26bd04}} 
+bool {\bfseries get\+Auto\+Fit\+Hit\+Box\+To\+Rotary\+Parameters} () const
+\item 
+\mbox{\Hypertarget{classSliderAdaptive_ad49e14e1f4f38cf77b9f3ef48efd1280}\label{classSliderAdaptive_ad49e14e1f4f38cf77b9f3ef48efd1280}} 
+void \mbox{\hyperlink{classSliderAdaptive_ad49e14e1f4f38cf77b9f3ef48efd1280}{set\+Auto\+Fit\+Hit\+Box\+To\+Rotary\+Parameters}} (bool new\+Auto\+Fit\+To\+Rotary\+Parameters)
+\begin{DoxyCompactList}\small\item\em set\+Auto\+Fit\+To\+Rotary\+Parameters set if the Hitbox should bound automatically to the slider\textquotesingle{}s rotary parameter (pie shape) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSliderAdaptive_ac1bbe646559f7bace545e22b1fb3f341}\label{classSliderAdaptive_ac1bbe646559f7bace545e22b1fb3f341}} 
+void \mbox{\hyperlink{classSliderAdaptive_ac1bbe646559f7bace545e22b1fb3f341}{resize\+Hit\+Box\+To\+Fit\+Rotary\+Parameters}} ()
+\begin{DoxyCompactList}\small\item\em resize\+Hit\+Box\+To\+Fit\+Rotary\+Parameters update the hit box to match the pie-\/shape delimited by the rotary parameters \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSliderAdaptive_ad9e3bc2d35227e9d49d190913f7ce689}\label{classSliderAdaptive_ad9e3bc2d35227e9d49d190913f7ce689}} 
+bool {\bfseries get\+Snap\+To\+Middle\+Value} () const
+\item 
+\mbox{\Hypertarget{classSliderAdaptive_a6e32533cad15d10097e1cde538566dbb}\label{classSliderAdaptive_a6e32533cad15d10097e1cde538566dbb}} 
+void {\bfseries set\+Snap\+To\+Middle\+Value} (bool new\+Snap\+To\+Middle\+Value)
+\item 
+\mbox{\Hypertarget{classSliderAdaptive_a73d22070a3bc9e101de5f84a58d6401c}\label{classSliderAdaptive_a73d22070a3bc9e101de5f84a58d6401c}} 
+float {\bfseries get\+Accuracy\+Padding\+Ratio} () const
+\item 
+\mbox{\Hypertarget{classSliderAdaptive_a5ad57a9e87966b9780812bde0917c81a}\label{classSliderAdaptive_a5ad57a9e87966b9780812bde0917c81a}} 
+void {\bfseries set\+Accuracy\+Padding\+Ratio} (float new\+Accuracy\+Padding\+Ratio)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classSliderAdaptive_a34b48a9f7317c0c308a930f0ff1836aa}\label{classSliderAdaptive_a34b48a9f7317c0c308a930f0ff1836aa}} 
+std\+::function$<$ void()$>$ {\bfseries on\+Mouse\+Up}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Path \mbox{\hyperlink{classSliderAdaptive_a35c84f1dfdbb30ad0d80cdb9432fb110}{Make\+Slice}} (const Rectangle$<$ float $>$ \&rect\+To\+Fit\+In, const float padding\+Sides=0, const float padding\+Top\+Bottom=0) const
+\begin{DoxyCompactList}\small\item\em Make\+Slice\+With\+Padding returns a path which is the slider slice, reduced by a padding. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSliderAdaptive_a40a30f20aa5cf773a37a67f46c73cfeb}\label{classSliderAdaptive_a40a30f20aa5cf773a37a67f46c73cfeb}} 
+void \mbox{\hyperlink{classSliderAdaptive_a40a30f20aa5cf773a37a67f46c73cfeb}{resize\+Hit\+Box\+To\+Fit\+Bounds}} ()
+\begin{DoxyCompactList}\small\item\em resize\+Hit\+Box\+To\+Fit\+Bounds update the hit box size to the bounds of this component note that Auto\+Fit\+To\+Rotary\+Parameters should be set to false for this to work \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSliderAdaptive_a0ad643aabec208f8754017f4eb2ba7d1}\label{classSliderAdaptive_a0ad643aabec208f8754017f4eb2ba7d1}} 
+void \mbox{\hyperlink{classSliderAdaptive_a0ad643aabec208f8754017f4eb2ba7d1}{update\+Hit\+Box\+Bounds}} ()
+\begin{DoxyCompactList}\small\item\em update\+Hit\+Box\+Bounds calls \mbox{\hyperlink{classSliderAdaptive_a40a30f20aa5cf773a37a67f46c73cfeb}{resize\+Hit\+Box\+To\+Fit\+Bounds()}} or \mbox{\hyperlink{classSliderAdaptive_ac1bbe646559f7bace545e22b1fb3f341}{resize\+Hit\+Box\+To\+Fit\+Rotary\+Parameters()}} depending on the vaue of auto\+Fit\+To\+Rotary\+Parameters \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSliderAdaptive_acf3621b2b3f7dff0ec50de2d2e5da33f}\label{classSliderAdaptive_acf3621b2b3f7dff0ec50de2d2e5da33f}} 
+\index{SliderAdaptive@{SliderAdaptive}!getHitBox@{getHitBox}}
+\index{getHitBox@{getHitBox}!SliderAdaptive@{SliderAdaptive}}
+\doxysubsubsection{\texorpdfstring{getHitBox()}{getHitBox()}}
+{\footnotesize\ttfamily Path Slider\+Adaptive\+::get\+Hit\+Box (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+get\+Hit\+Box get the path used for hit-\/testing 
+
+You can assign a lambda to this callback object to have it called when the slider detects a mouse\+Up. \mbox{\Hypertarget{classSliderAdaptive_a35c84f1dfdbb30ad0d80cdb9432fb110}\label{classSliderAdaptive_a35c84f1dfdbb30ad0d80cdb9432fb110}} 
+\index{SliderAdaptive@{SliderAdaptive}!MakeSlice@{MakeSlice}}
+\index{MakeSlice@{MakeSlice}!SliderAdaptive@{SliderAdaptive}}
+\doxysubsubsection{\texorpdfstring{MakeSlice()}{MakeSlice()}}
+{\footnotesize\ttfamily Path Slider\+Adaptive\+::\+Make\+Slice (\begin{DoxyParamCaption}\item[{const Rectangle$<$ float $>$ \&}]{rect\+To\+Fit\+In,  }\item[{const float}]{padding\+Sides = {\ttfamily 0},  }\item[{const float}]{padding\+Top\+Bottom = {\ttfamily 0} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Make\+Slice\+With\+Padding returns a path which is the slider slice, reduced by a padding. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em rect\+To\+Fit\+In} & rectangle where the pie shound be drawn. note this is the rectangle which whould be used for a full-\/circle pie \\
+\hline
+{\em padding\+Sides} & the padding to remove from the rot\+Params to make the slice (note this is the reduction from each side) \\
+\hline
+{\em padding\+Top\+Bottom} & the padding to remove from the inner-\/most and from the outer-\/most part of the slide (nothe this is the reduction from each side) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+path representing the slider reduced by a padding 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Components/Slider\+Adaptive.\+h\item 
+Components/Slider\+Adaptive.\+cpp\end{DoxyCompactItemize}

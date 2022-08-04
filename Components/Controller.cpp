@@ -174,20 +174,3 @@ void Controller::toggleZoom(Deck* deckToZoom){
  * ~aconnect -i -o -l      // visualizzare lista porte
  * ~aseqdump -p [#porta]   // dump messaggi sulla porta
 */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
