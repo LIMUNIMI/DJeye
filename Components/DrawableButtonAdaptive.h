@@ -2,7 +2,7 @@
 #include <JuceHeader.h>
 #include "../Parameters.h"
 
-class DrawableButtonAdaptive : public DrawableButton
+class DrawableButtonAdaptive : public juce::DrawableButton
 {
 public:
     /** Creates a DrawableButtonAdapted.

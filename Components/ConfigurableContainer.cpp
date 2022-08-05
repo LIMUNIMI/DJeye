@@ -51,6 +51,7 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             crossfader->setRange                      (0.0f, 127.0f, 1.0f);
             crossfader->setDoubleClickReturnValue     (true, 0.5f*crossfader->getRange ().getLength ());
             crossfader->setSnapToMiddleValue          (true);
+            crossfader->setValue (0.5f*crossfader->getRange ().getLength ());
             //browserButton.setAccuracyPaddingRatio    (ComponentActualAccuracyPaggingRatio);
             components[type] = std::move(crossfader);
 

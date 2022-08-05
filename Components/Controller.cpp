@@ -40,12 +40,9 @@ Controller::Controller():
 
     {// setup lambdas for deckSx
         int ch = 1;
-        //TODO: quando azz note-off?
-//        deckSx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
-
-//            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));
-
-//        });
+        //TODO: quando azz note-off? mai heheheh
+        deckSx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));});
 
         deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Seek, [&,ch](const int value){
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, value )); });
@@ -153,11 +150,11 @@ void Controller::toggleZoom(Deck* deckToZoom){
 
     auto area = getLocalBounds ();
     auto deckToUnZoom = deckToZoom == &deckDx ? &deckSx : &deckDx;
-    auto boundsBig    = deckToZoom == &deckSx ? area.removeFromLeft (getWidth()*4/7)://2/3
-                                                area.removeFromRight(getWidth()*4/7);
-    auto boundsVertical = deckToZoom == &deckSx ? area.removeFromLeft (getWidth()*1/7)://2/3
+    auto boundsBig    = deckToZoom == &deckSx ? area.removeFromLeft (getWidth()*4/7):
+                                                 area.removeFromRight(getWidth()*4/7);
+    auto boundsVertical = deckToZoom == &deckSx ? area.removeFromLeft (getWidth()*1/7):
                                                   area.removeFromRight(getWidth()*1/7);
-    auto boundsSmall  = deckToZoom == &deckSx ? area.removeFromLeft (getWidth()*3/7)://1/3
+    auto boundsSmall  = deckToZoom == &deckSx ? area.removeFromLeft (getWidth()*3/7):
                                                 area.removeFromRight(getWidth()*3/7);
 
     boundsVertical.reduce (0,DECK_MARGIN);

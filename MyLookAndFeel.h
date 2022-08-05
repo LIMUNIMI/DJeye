@@ -52,7 +52,7 @@ public:
             p.addPieSegment (bounds.reduced(SLIDER_PADDING),rotaryStartAngle,rotaryEndAngle,INNER_CIRCLE_TO_SLIDER_RATIO);
 
             auto colour = slider.findColour (Slider::rotarySliderOutlineColourId)
-                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
 
             g.setColour (colour);
             g.fillPath (p.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));
@@ -73,7 +73,7 @@ public:
                              INNER_CIRCLE_TO_SLIDER_RATIO);
 
             auto colour = slider.findColour (Slider::rotarySliderFillColourId)
-                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
 
             g.setColour (colour);
             g.fillPath (p.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));

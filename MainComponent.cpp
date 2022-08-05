@@ -1,8 +1,10 @@
 #include "MainComponent.h"
 
 //TODO: aggiunge popup al right click che visualizza una barra di scorriemnnto (?)
-//TODO: controlla se c'è qualcosa riguardo al rotary sensitivity della rotella
-//TODO: cambia colore slider on hover
+//TODO: controlla se c'è qualcosa riguardo al rotary sensitivity della rotella -> non c'è
+//TODO: finire mapping
+//TODO: aggiungere f11 schermo intero (opppure avvia schermo intero di default?)
+//TODO: aggiungere ctr+q e ctrl+w
 
 //==============================================================================
 MainComponent::MainComponent()

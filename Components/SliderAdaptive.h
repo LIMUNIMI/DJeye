@@ -5,7 +5,7 @@
  *
  * inoltre funziona sol con dehli bounds quadrati e non rettangolari (?)
 */
-class SliderAdaptive : public Slider
+class SliderAdaptive : public juce::Slider
 {
 public:
     SliderAdaptive();
