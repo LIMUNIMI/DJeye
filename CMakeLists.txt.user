@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by QtCreator 7.0.2, 2022-08-05T11:19:38. -->
+=======
+<!-- Written by QtCreator 7.0.2, 2022-08-05T12:32:51. -->
+>>>>>>> 165bf62 (minor changes)
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -294,12 +298,20 @@
     <valuelist type="QVariantList" key="CustomOutputParsers"/>
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
+<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">ProjectExplorer.CustomExecutableRunConfiguration</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey"></value>
+=======
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">djeye-controller</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">CMakeProjectManager.CMakeRunConfiguration.djeye-controller</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">djeye-controller</value>
+>>>>>>> 165bf62 (minor changes)
     <value type="bool" key="RunConfiguration.UseCppDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
+    <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebugger">false</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>
+    <value type="QString" key="RunConfiguration.WorkingDirectory.default">/home/fabio/Documents/UNI/Tesi/djeye/djeye-controller/build-Debug/djeye-controller_artefacts/Debug</value>
    </valuemap>
    <value type="int" key="ProjectExplorer.Target.RunConfigurationCount">1</value>
   </valuemap>
