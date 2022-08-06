@@ -29,7 +29,7 @@ void VerticalStrip::resized()
     }
 }
 
-void VerticalStrip::paint(Graphics &g)
+void VerticalStrip::paint(Graphics &/*g*/)
 {
     //g.fillAll (Colours::aliceblue);
 }

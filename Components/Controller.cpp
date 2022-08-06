@@ -12,7 +12,7 @@ Controller::Controller():
     deckDx{*new std::vector<ConfigurableContainer::ComponentType> {
            ConfigurableContainer::Play,
            ConfigurableContainer::HPLPFilter,
-           ConfigurableContainer::Seek}},
+           ConfigurableContainer::Volume}},
 
     middleStrip{*new std::vector<ConfigurableContainer::ComponentType> {
                 ConfigurableContainer::Spacer,
@@ -71,7 +71,6 @@ Controller::Controller():
     }
     {// setup lambdas for deckDx
         auto ch = 2;
-        //TODO: quando azz note-off?
         deckDx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127)); });
 
@@ -101,22 +100,23 @@ Controller::Controller():
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127)); });
     }
     {// setup lambdas for middleStrip
-        auto ch = 2;
-        //TODO: quando azz note-off?
-        deckDx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
+        auto ch = 3;
+        middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::Browser, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127)); });
 
-        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Seek, [&,ch](const int value){
+        middleStrip.setComponentOnValueChange (ConfigurableContainer::ComponentType::Crossfader, [&,ch](const int value){
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, value )); });
-        deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Seek, [&,ch]{
+        middleStrip.setComponentOnClick       (ConfigurableContainer::ComponentType::Crossfader, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 2, (juce::uint8) 127)); });
     }
+
 
     //NOTE: these lambda initialization are separated to guarantee the flexibility of the components which can or cannot be included in the deck
 
     addAndMakeVisible(deckSx);
     addAndMakeVisible(deckDx);
     addAndMakeVisible(middleStrip);
+
 
     setLookAndFeel (&laf);
     setSize (800, 800);
@@ -165,9 +165,3 @@ void Controller::toggleZoom(Deck* deckToZoom){
 
 }
 
-
-/*
- * monitorare midi da terminale
- * ~aconnect -i -o -l      // visualizzare lista porte
- * ~aseqdump -p [#porta]   // dump messaggi sulla porta
-*/

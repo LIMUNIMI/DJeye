@@ -71,7 +71,7 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             auto slider =  std::make_unique<SliderAdaptive>();
             slider->setSliderStyle  (juce::Slider::RotaryVerticalDrag);
             slider->setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
-            slider->setRange        (0,127,1);
+            slider->setRange        (0.0f, 127.0f, 1.0f);
             components[type] = std::move(slider);
 
         }break;
@@ -85,7 +85,7 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
 
         switch(tipo){
         case ConfigurableContainer::Play:{
-
+            //TODO: rimane nero al cambio immagine, como mais?
             DrawableButtonAdaptive *button = static_cast<DrawableButtonAdaptive*>(comp.get());
             auto imageOff  = Drawable::createFromImageData (BinaryData::playBtnPlay_svg ,BinaryData::playBtnPlay_svgSize );
             auto imageOn   = Drawable::createFromImageData (BinaryData::playBtnPause_svg,BinaryData::playBtnPause_svgSize);

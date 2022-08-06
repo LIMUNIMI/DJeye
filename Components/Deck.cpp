@@ -70,7 +70,7 @@ void Deck::resized()
 
 }
 
-void Deck::paint(Graphics & g)
+void Deck::paint(Graphics & /*g*/)
 {
     //g.fillAll (Colours::white.withAlpha (0.1f));
 }

@@ -34,6 +34,9 @@ public:
 
     }
 
+    MouseCursor getMouseCursorFor(Component& /*c*/) override{
+        return MouseCursor(MouseCursor::StandardCursorType::CrosshairCursor);
+    }
 
     void drawRotarySlider(Graphics& g,
                           int /*x*/, int /*y*/, int width, int height,
