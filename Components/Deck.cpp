@@ -1,6 +1,5 @@
 #include "Deck.h"
 
-
 Deck::Deck(const std::vector<ConfigurableContainer::ComponentType> ComponentList) :
     ConfigurableContainer{ComponentList}
 {

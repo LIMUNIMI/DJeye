@@ -21,22 +21,21 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             components[type] = std::move(playBtn);
 
         }break;
-        case ConfigurableContainer::Browser:{
+        case ConfigurableContainer::LoadLeft:
+        case ConfigurableContainer::LoadRight:
+        case ConfigurableContainer::ScrollDown:
+        case ConfigurableContainer::ScrollUp:
+        case Browser:{
 
-            auto browserBtn = std::make_unique<DrawableButtonAdaptive>("playBtn",DrawableButton::ButtonStyle::ImageStretched);//TODO: imageFitted
+            auto rectBtn = std::make_unique<DrawableButtonAdaptive>("rectBtn",DrawableButton::ButtonStyle::ImageStretched);
 
-            Path rectHB; // hitbox for browser is rectangular
+            Path rectHB; // hitbox for these buttons is rectangular
             rectHB.addRectangle   (Rectangle<float>(0,0,1,1));
-            browserBtn->setHitBox (rectHB);
-            //browserButton.setAccuracyPaddingRatio (ComponentActualAccuracyPaggingRatio);
-            components[type] = std::move(browserBtn);
+            rectBtn->setHitBox (rectHB);
+            //rectBtn.setAccuracyPaddingRatio (ComponentActualAccuracyPaggingRatio);
+            components[type] = std::move(rectBtn);
 
         }break;
-        case ConfigurableContainer::HeadphoneOut:    break;
-        case ConfigurableContainer::Sync:            break;
-        case ConfigurableContainer::SyncMaster:      break;
-        case ConfigurableContainer::MasterVolume:    break;
-        case ConfigurableContainer::HeadphoneVolume: break;
         case ConfigurableContainer::Crossfader: {
 
             auto crossfader =  std::make_unique<SliderAdaptive>();
@@ -56,9 +55,9 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             components[type] = std::move(crossfader);
 
         } break;
-        case ConfigurableContainer::Spacer:{
-            auto spacer = std::make_unique<Component>();
-            components[type] = std::move(spacer);
+        case ConfigurableContainer::Spacer:{//NOTE: spacer does not figure inside the components map. since they're kind of special. is this bad design? i guess so... ops
+//            auto spacer = std::make_unique<Component>();
+//            components[type] = std::move(spacer);
 
         }break;
         case ConfigurableContainer::Seek:
@@ -82,7 +81,6 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
 
     for(auto& [tipo, comp] : components){ // Specific settings
         addAndMakeVisible (comp.get ());
-
         switch(tipo){
         case ConfigurableContainer::Play:{
             //TODO: rimane nero al cambio immagine, como mais?
@@ -93,6 +91,34 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
 
         }break;
         case ConfigurableContainer::Crossfader:      break;
+        case LoadLeft: {
+
+            DrawableButtonAdaptive *load = static_cast<DrawableButtonAdaptive*>(comp.get());
+            auto image = Drawable::createFromImageData (BinaryData::menu_svg,BinaryData::menu_svgSize);
+            load->setImages (image.get ());
+
+        } break;
+        case LoadRight: {
+
+            DrawableButtonAdaptive *load = static_cast<DrawableButtonAdaptive*>(comp.get());
+            auto image = Drawable::createFromImageData (BinaryData::menu_svg,BinaryData::menu_svgSize);
+            load->setImages (image.get ());
+
+        } break;
+        case ScrollDown: {
+
+            DrawableButtonAdaptive *scroll = static_cast<DrawableButtonAdaptive*>(comp.get());
+            auto image = Drawable::createFromImageData (BinaryData::menu_svg,BinaryData::menu_svgSize);
+            scroll->setImages (image.get ());
+
+        } break;
+        case ScrollUp: {
+
+            DrawableButtonAdaptive *browser = static_cast<DrawableButtonAdaptive*>(comp.get());
+            auto image = Drawable::createFromImageData (BinaryData::menu_svg,BinaryData::menu_svgSize);
+            browser->setImages (image.get ());
+
+        } break;
         case ConfigurableContainer::Browser:{
 
             DrawableButtonAdaptive *browser = static_cast<DrawableButtonAdaptive*>(comp.get());
@@ -105,8 +131,12 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
         case ConfigurableContainer::SyncMaster:      break;
         case ConfigurableContainer::MasterVolume:    break;
         case ConfigurableContainer::HeadphoneVolume: break;
-        case ConfigurableContainer::Seek:            break;
-        case ConfigurableContainer::Cue:             break;
+        case ConfigurableContainer::Seek: {
+
+        } break;
+        case ConfigurableContainer::Cue: {
+
+        } break;
         case ConfigurableContainer::HPLPFilter:{
 
             SliderAdaptive *hplpfilter = static_cast<SliderAdaptive*>(comp.get());

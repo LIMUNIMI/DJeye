@@ -22,3 +22,5 @@ copy the provided mapping (djeye.midi.xml) in this location:
 - After launching djeye-controller, go to preferences (ctrl+p) then to Controllers, select djeye controller and assign to it the "djeye" mapping, shoud be first on the list
 - Go to Library -> Library row height and set it to 70px;
 - Activate [master sync](https://manual.mixxx.org/2.0/en/chapters/djing_with_mixxx.html#master-sync) on both decks, holding down the sync button. this means you should play tracks which are similar BPM
+- enable fullscreen (`F11`)
+- djeye-controller and MIXXX should be in the same desktop

@@ -64,6 +64,7 @@ target_sources(${TargetName}
         Components/SliderAdaptive.cpp
         Components/DrawableButtonAdaptive.cpp
         Components/VerticalStrip.cpp
+        Components/BrowserWindow.cpp
     )
 
 
