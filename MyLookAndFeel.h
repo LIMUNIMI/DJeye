@@ -15,7 +15,7 @@ public:
     const String colourLessDark  = "ff3213ee"; //icone slider
     const String colourLessLight = "ff8a7bf4"; //riempimento slider
     const String colourLight     = "ffbcb1fa"; //sfondo slider
-
+    //slider sfondo non hover: a99bfa
     MyLookAndFeel(/*int NumComponents*/) {
         //numComponents = NumComponents;
 
@@ -54,6 +54,7 @@ public:
 
             auto colour = slider.findColour (Slider::backgroundColourId)
                     .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
+//            DBG(colour.toString ());
 
             g.setColour (colour);
             g.fillPath (p.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));
@@ -135,7 +136,7 @@ public:
             thumb.setCentre (sliderPos, slider.getLocalBounds ().getCentreY());
 
             Path roundedThumb;
-            roundedThumb.addRoundedRectangle (thumb, COMPONENT_CORNER_ROUNDING);
+            roundedThumb.addRoundedRectangle (thumb, COMPONENT_CORNER_ROUNDING/2);
 
             auto baseColour = slider.findColour (Slider::thumbColourId)
                     .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);

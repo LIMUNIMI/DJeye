@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-   sodipodi:docname="cue2.svg"
+   sodipodi:docname="cue.svg"
    inkscape:export-filename="playBtnPause.svg"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -29,7 +29,7 @@
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:zoom="23.959674"
-     inkscape:cx="-1.0225515"
+     inkscape:cx="-0.98081468"
      inkscape:cy="3.7145747"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
@@ -58,12 +58,12 @@
      style="display:inline"
      transform="translate(-2.4837749,-2.7294204)">
     <rect
-       style="display:inline;fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke-width:0.109755;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+       style="display:inline;fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke-width:0.0684703;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
        id="rect1198-6"
-       width="2.0906808"
-       height="2.0906808"
-       x="3.3432848"
-       y="3.5889301"
-       ry="0.21501453" />
+       width="1.3042653"
+       height="1.3042653"
+       x="3.7364924"
+       y="3.9821379"
+       ry="0.1341362" />
   </g>
 </svg>
