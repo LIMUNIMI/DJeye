@@ -20,8 +20,8 @@ public:
         //numComponents = NumComponents;
 
         setColour (Slider::backgroundColourId,          Colour::fromString(colourLight));      //sfondo slider
-        //setColour (Slider::thumbColourId,               Colour::fromString(colourLight));
         //setColour (Slider::trackColourId,               Colour::fromString(colourLight));
+        setColour (Slider::thumbColourId,               Colour::fromString (colourLessLight));
         setColour (Slider::rotarySliderFillColourId,    Colour::fromString (colourLessLight)); //riempimento slider
         setColour (Slider::rotarySliderOutlineColourId, Colour::fromString (colourLight));    //bordo slider
         setColour (DrawableButton::backgroundColourId,  Colours::transparentWhite);
@@ -52,7 +52,7 @@ public:
             Path p;
             p.addPieSegment (bounds.reduced(SLIDER_PADDING),rotaryStartAngle,rotaryEndAngle,INNER_CIRCLE_TO_SLIDER_RATIO);
 
-            auto colour = slider.findColour (Slider::rotarySliderOutlineColourId)
+            auto colour = slider.findColour (Slider::backgroundColourId)
                     .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
 
             g.setColour (colour);
@@ -86,16 +86,6 @@ public:
                            const Slider::SliderStyle style, Slider& slider) override
     {
 
-
-        auto colour = slider.findColour (Slider::backgroundColourId)
-                .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f)
-                .withAlpha (0.2f);
-        g.setColour (colour);
-
-        Path backGround;
-        backGround.addRoundedRectangle (slider.getLocalBounds (), COMPONENT_CORNER_ROUNDING);
-        g.fillPath(backGround);
-
         if (style == Slider::LinearHorizontal)
         {
             drawLinearSliderBackground (g, x, y, width, height, sliderPos, minSliderPos, maxSliderPos, style, slider);
@@ -117,17 +107,14 @@ public:
                                      const Slider::SliderStyle style, Slider& slider) override
     {
         if (style == Slider::LinearHorizontal)
-        {
-            const float sliderRadius = (float) slider.getHeight() / 3;
-            auto track = Rectangle<float>(width, sliderRadius / 2);
-            track.setCentre (slider.getLocalBounds ().getCentre().toFloat ());
-            Path indent;
-            indent.addRoundedRectangle (track, COMPONENT_CORNER_ROUNDING);
-
-            auto colour = slider.findColour (Slider::trackColourId)
-                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
+        {            
+            auto colour = slider.findColour (Slider::backgroundColourId)
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
             g.setColour (colour);
-            g.fillPath (indent);
+
+            Path backGround;
+            backGround.addRoundedRectangle (slider.getLocalBounds (), COMPONENT_CORNER_ROUNDING);
+            g.fillPath(backGround);
 
         }
         else{
@@ -144,21 +131,22 @@ public:
 
         if (style == Slider::LinearHorizontal)
         {
-            const float sliderRadius = (float) slider.getHeight() / 3;
-
-            auto thumb = Rectangle<float>(sliderRadius/3.0f,sliderRadius);
+            auto thumb = Rectangle<float>(slider.getHeight()*0.2f,slider.getHeight());
             thumb.setCentre (sliderPos, slider.getLocalBounds ().getCentreY());
 
+            Path roundedThumb;
+            roundedThumb.addRoundedRectangle (thumb, COMPONENT_CORNER_ROUNDING);
+
             auto baseColour = slider.findColour (Slider::thumbColourId)
-                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
             g.setColour (baseColour);
-            g.fillRect (thumb);
+            g.fillPath  (roundedThumb);
 
             auto thumbLine = thumb;
             thumbLine.removeFromRight (thumb.getWidth ()/3.0f);
             thumbLine.removeFromLeft (thumb.getWidth ()/3.0f);
             auto baseColourLine = Colours::whitesmoke
-                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
             g.setColour (baseColourLine);
             g.fillRect (thumbLine);
 
