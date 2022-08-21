@@ -37,13 +37,12 @@ Controller::Controller():
 
     deckDx.onMouseEnter = [&] {toggleZoom (&deckDx);};
     deckSx.onMouseEnter = [&] {toggleZoom (&deckSx);};
-//DBG("ciaone");
+
     {// setup lambdas for deckSx
         int ch = 1;
         //TODO: quando azz note-off? mai heheheh
         deckSx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
-            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));
-        DBG("ciaone");});
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));});
 
         deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Seek, [&,ch](const int value){
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, value )); });
@@ -70,6 +69,7 @@ Controller::Controller():
         deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::Loop, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127)); });
     }
+
     {// setup lambdas for deckDx
         auto ch = 2;
         deckDx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
@@ -100,18 +100,25 @@ Controller::Controller():
         deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Loop, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127)); });
     }
+
     {// setup lambdas for middleStrip
         auto ch = 3;
         middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::Browser, [&,ch]{
-            //Desktop::getInstance().setKioskModeComponent(this);
-            getTopLevelComponent ()->setVisible (false);
 
-            auto* browser = new BrowserWindow;
-            browser->addToDesktop (ComponentPeer::windowIsTemporary);
-            browser->setBounds (getBounds ());
+            auto* browser = new BrowserWindow(midiOut.get());
             browser->setVisible (true);
+            browser->setBounds (getBounds ());
+            browser->addToDesktop (ComponentPeer::windowIsTemporary);
+            browser->setMainWindowPointer (getTopLevelComponent());
 
-            //dynamic_cast<DocumentWindow*>(getTopLevelComponent ())->setMinimised  (true); //lento ma almeno funziona
+            getTopLevelComponent ()->setVisible (false);
+/* metodi alternativi:
+Desktop::getInstance().setKioskModeComponent(this);
+
+auto win = dynamic_cast<DocumentWindow*> (getTopLevelComponent   ());
+auto btn = dynamic_cast<Button*>         (win->getMinimizeButton ());
+btn->triggerClick ();
+*/
 
             midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127)); });
 
@@ -124,7 +131,6 @@ Controller::Controller():
     addAndMakeVisible (deckSx);
     addAndMakeVisible (deckDx);
     addAndMakeVisible (middleStrip);
-
     setLookAndFeel (&laf);
     setSize (800, 800);
 }

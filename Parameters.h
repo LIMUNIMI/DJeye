@@ -7,7 +7,7 @@
 #define COMPONENT_ACCURACY_PADDING_RATIO 0.1f
 //TODO: meglio constexpr o un'altra define?
 constexpr float ComponentActualAccuracyPaddingRatio = COMPONENT_ACCURACY_PADDING_RATIO * 0.5f;
-#define COMPONENT_CORNER_ROUNDING 5.0f
+#define COMPONENT_CORNER_ROUNDING 8.0f
 #define DECK_PADDING 5.0f
 #define DECK_MARGIN 10.0f
 #define SLIDER_PADDING 2.5f //gli slider verranno disegnati rientrati di questo amount rispetto ai propri bounds

@@ -47,6 +47,7 @@ void SliderAdaptive::setSnapToMiddleValue(bool newSnapToMiddleValue)
 }
 
 void SliderAdaptive::resizeHitBoxToFitRotaryParameters (){
+    //TODO: da fare solo se è rotary
     auto rotParams = getRotaryParameters();
 
     auto padding = std::abs(rotParams.startAngleRadians - rotParams.endAngleRadians)*accuracyPaddingRatio;

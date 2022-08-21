@@ -8,13 +8,18 @@
 class BrowserWindow : public juce::Component
 {
 public:
-    BrowserWindow();
+    BrowserWindow(juce::MidiOutput*  midiOut);
 
     void resized() override;
 
+    void closeBrowser();
+
+    Component *getMainWindowPointer() const;
+    void setMainWindowPointer(Component *newMainWindowPointer);
+
 protected:
     VerticalStrip leftStrip, middleStrip, rightStrip;
-
+    Component* mainWindowPointer;
 private:
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BrowserWindow)

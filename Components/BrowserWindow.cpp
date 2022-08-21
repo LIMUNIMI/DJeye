@@ -1,8 +1,8 @@
 #include "BrowserWindow.h"
 
-BrowserWindow::BrowserWindow():
+BrowserWindow::BrowserWindow(juce::MidiOutput* midiOut):
     leftStrip  {*new std::vector<ConfigurableContainer::ComponentType> {
-                ConfigurableContainer::LoadLeft,}},
+        ConfigurableContainer::LoadLeft,}},
     middleStrip{*new std::vector<ConfigurableContainer::ComponentType> {
         ConfigurableContainer::ScrollUp,
         ConfigurableContainer::Spacer,//non è il modo più elegante di dividere lo schermo da tutto sommato funziona bene dai
@@ -15,32 +15,22 @@ BrowserWindow::BrowserWindow():
         ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
         ConfigurableContainer::ScrollDown}},
-    rightStrip  {*new std::vector<ConfigurableContainer::ComponentType> {ConfigurableContainer::LoadRight}}
+    rightStrip  {*new std::vector<ConfigurableContainer::ComponentType> {
+        ConfigurableContainer::LoadRight}}
 {
         auto ch = 3;
-
         leftStrip.setComponentOnClick (ConfigurableContainer::ComponentType::LoadLeft, [&,ch]{
-            DBG("l");
-            setVisible(false);
-            getTopLevelComponent ()->setVisible (true);
-            delete this;
+            //midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 2, (juce::uint8) 127));
+            closeBrowser ();
         });
 
-        middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollUp, [&,ch]{DBG("u");});
+        middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollUp, [&,ch]{DBG("u");
+
+        });
 
         middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollDown, [&,ch]{DBG("d");});
 
         rightStrip.setComponentOnClick (ConfigurableContainer::ComponentType::LoadRight, [&,ch]{DBG("r");});
-//           dynamic_cast<DocumentWindow*>(getTopLevelComponent ())->setMinimised  (false);
-//           setVisible (false);
-//           /*midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));*/ });
-
-//        middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollUp, [&,ch]{
-//            DBG("up");
-//            delete this;
-//            dynamic_cast<DocumentWindow*>(getTopLevelComponent ())->setMinimised  (false);
-//            setVisible (false);
-//            /*midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));*/ });
 
     addAndMakeVisible (leftStrip  );
     addAndMakeVisible (middleStrip);
@@ -59,3 +49,26 @@ void BrowserWindow::resized()
     rightStrip.setBounds  (area.removeFromRight (sideWidth));
     middleStrip.setBounds (area                            );
 }
+
+void BrowserWindow::closeBrowser()
+{
+    auto mainWin = dynamic_cast<DocumentWindow*> (getMainWindowPointer ());
+    mainWin->setFullScreen (false);
+    mainWin->setFullScreen (true);
+    mainWin->setVisible   (true);
+
+    removeFromDesktop ();
+    delete this;
+    DBG("closing browser");
+}
+
+Component *BrowserWindow::getMainWindowPointer() const
+{
+    return mainWindowPointer;
+}
+
+void BrowserWindow::setMainWindowPointer(Component *newMainWindowPointer)
+{
+    mainWindowPointer = newMainWindowPointer;
+}
+

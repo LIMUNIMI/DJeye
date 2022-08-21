@@ -1,6 +1,7 @@
 #include "ConfigurableContainer.h"
 
 //TODO: decidere se muovere tutto quello che riguarda radial components in Deck
+//TODO: aggiustare la sensibilità con la rortella se possibie
 
 ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableContainer::ComponentType> ComponentList)
 {
@@ -27,7 +28,9 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
         case ConfigurableContainer::ScrollUp:
         case Browser:{
 
-            auto rectBtn = std::make_unique<DrawableButtonAdaptive>("rectBtn",DrawableButton::ButtonStyle::ImageStretched);
+            String name = "rectBtn";
+            name += type;
+            auto rectBtn = std::make_unique<DrawableButtonAdaptive>(name,DrawableButton::ButtonStyle::ImageStretched);
 
             Path rectHB; // hitbox for these buttons is rectangular
             rectHB.addRectangle   (Rectangle<float>(0,0,1,1));
@@ -133,8 +136,16 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
         case ConfigurableContainer::HeadphoneVolume: break;
         case ConfigurableContainer::Seek: {
 
+            SliderAdaptive *seek = static_cast<SliderAdaptive*>(comp.get());
+            auto image = Drawable::createFromImageData (BinaryData::seekTrack_svg,BinaryData::seekTrack_svgSize);
+            seek->setImage (image.get());//std::move(shape));
+
         } break;
         case ConfigurableContainer::Cue: {
+
+            SliderAdaptive *cue = static_cast<SliderAdaptive*>(comp.get());
+            auto image = Drawable::createFromImageData (BinaryData::cue_svg,BinaryData::cue_svgSize);
+            cue->setImage (image.get());//std::move(shape));
 
         } break;
         case ConfigurableContainer::HPLPFilter:{
@@ -160,6 +171,9 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
         case ConfigurableContainer::Loop:{
 
             SliderAdaptive *loop = static_cast<SliderAdaptive*>(comp.get());
+            auto image = Drawable::createFromImageData (BinaryData::loop_svg,BinaryData::loop_svgSize);
+            loop->setImage (image.get());//std::move(shape));
+
             loop->setRange(0,6,1);// da 1/8 a 8 barre
             loop->setValue(4);
 

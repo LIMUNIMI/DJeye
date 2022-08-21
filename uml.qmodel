@@ -49,7 +49,7 @@
                          </base-DElement>
                          <object>{d5279b5b-4f11-4820-8aad-ee9ac1bae4c7}</object>
                          <name>DrawableButtonAdaptive</name>
-                         <pos>x:-155;y:255</pos>
+                         <pos>x:-165;y:255</pos>
                          <rect>x:-70;y:-55;w:140;h:110</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -108,7 +108,7 @@
                          </base-DElement>
                          <object>{ae3e5c86-fce3-4369-98a6-8a514363a424}</object>
                          <name>Deck</name>
-                         <pos>x:265;y:85</pos>
+                         <pos>x:45;y:80</pos>
                          <rect>x:-105;y:-45;w:210;h:90</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -288,7 +288,7 @@
                          </base-DElement>
                          <object>{0be73344-f2ee-4090-8951-43edd09d1ecb}</object>
                          <name>MyLookandfeel</name>
-                         <pos>x:405;y:265</pos>
+                         <pos>x:405;y:210</pos>
                          <rect>x:-50;y:-30;w:100;h:60</rect>
                          <visual-role>0</visual-role>
                         </DObject>
@@ -422,8 +422,8 @@
                     </item>
                    </qlist>
                   </elements>
-                  <last-modified>1656413326789</last-modified>
-                  <toolbarid>Classes</toolbarid>
+                  <last-modified>1660833932626</last-modified>
+                  <toolbarid>General</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
                </MCanvasDiagram>
@@ -531,14 +531,14 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{95bae9f5-f594-457f-bd35-763a83d1568e}</uid>
+                    <uid>{5e5e03d8-85fb-446c-971d-4b2528b9279d}</uid>
                     <type>1</type>
                     <declaration>~ hitBox</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{56a759d1-efc0-4db1-b02d-cc103f39c06f}</uid>
+                    <uid>{4bd759db-5f1a-4cf2-aeab-8e8a7e0d4231}</uid>
                     <type>2</type>
                     <declaration>- ( 2x Drawable)</declaration>
                    </MClassMember>
@@ -677,7 +677,7 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{34bfb12e-58c8-457b-bbd3-26e986f153da}</uid>
+                    <uid>{e343df0d-1dbc-4710-8727-2d5ca736e033}</uid>
                     <type>2</type>
                     <declaration>- components (slider and buttons map)</declaration>
                    </MClassMember>
@@ -731,14 +731,14 @@
                  <qlist>
                   <item>
                    <MClassMember>
-                    <uid>{9d196603-4067-44d6-8425-134b7457a691}</uid>
+                    <uid>{76903783-43c4-4c30-9359-029b8a90e397}</uid>
                     <type>2</type>
                     <declaration>- decks (array)</declaration>
                    </MClassMember>
                   </item>
                   <item>
                    <MClassMember>
-                    <uid>{509838ec-01d7-42c1-9197-bce149c2cbb7}</uid>
+                    <uid>{dc6810c1-1b86-44ed-bb05-46921a9c5077}</uid>
                     <type>1</type>
                     <declaration>- mixer</declaration>
                    </MClassMember>
@@ -1063,6 +1063,135 @@
                  </MObject>
                 </base-MObject>
                </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{d4add42d-2262-4e6b-989c-5088dedf5eac}</uid>
+             <target>
+              <instance type="MPackage">
+               <MPackage>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{d4add42d-2262-4e6b-989c-5088dedf5eac}</uid>
+                    <flags>1</flags>
+                   </MElement>
+                  </base-MElement>
+                  <name>Djeye-Controller</name>
+                  <children>
+                   <handles>
+                    <handles>
+                     <qlist>
+                      <item>
+                       <handle>
+                        <uid>{5c62b640-46ca-4e01-9a11-abdb3291444f}</uid>
+                        <target>
+                         <instance type="MPackage">
+                          <MPackage>
+                           <base-MObject>
+                            <MObject>
+                             <base-MElement>
+                              <MElement>
+                               <uid>{5c62b640-46ca-4e01-9a11-abdb3291444f}</uid>
+                               <flags>1</flags>
+                              </MElement>
+                             </base-MElement>
+                             <name>Components</name>
+                             <children>
+                              <handles>
+                               <handles>
+                                <qlist>
+                                 <item>
+                                  <handle>
+                                   <uid>{1ce595f8-6a3b-4c62-a929-b466f7cdf5b1}</uid>
+                                   <target>
+                                    <instance type="MComponent">
+                                     <MComponent>
+                                      <base-MObject>
+                                       <MObject>
+                                        <base-MElement>
+                                         <MElement>
+                                          <uid>{1ce595f8-6a3b-4c62-a929-b466f7cdf5b1}</uid>
+                                          <flags>1</flags>
+                                         </MElement>
+                                        </base-MElement>
+                                        <name>BrowserWindow</name>
+                                       </MObject>
+                                      </base-MObject>
+                                     </MComponent>
+                                    </instance>
+                                   </target>
+                                  </handle>
+                                 </item>
+                                 <item>
+                                  <handle>
+                                   <uid>{54417e1e-f4b3-4d79-8ad4-7ef4f71ce38e}</uid>
+                                   <target>
+                                    <instance type="MClass">
+                                     <MClass>
+                                      <base-MObject>
+                                       <MObject>
+                                        <base-MElement>
+                                         <MElement>
+                                          <uid>{54417e1e-f4b3-4d79-8ad4-7ef4f71ce38e}</uid>
+                                          <flags>1</flags>
+                                         </MElement>
+                                        </base-MElement>
+                                        <name>BrowserWindow</name>
+                                       </MObject>
+                                      </base-MObject>
+                                     </MClass>
+                                    </instance>
+                                   </target>
+                                  </handle>
+                                 </item>
+                                 <item>
+                                  <handle>
+                                   <uid>{9c037d23-f9d3-40ed-a623-a65f50e5f42d}</uid>
+                                   <target>
+                                    <instance type="MCanvasDiagram">
+                                     <MCanvasDiagram>
+                                      <base-MDiagram>
+                                       <MDiagram>
+                                        <base-MObject>
+                                         <MObject>
+                                          <base-MElement>
+                                           <MElement>
+                                            <uid>{9c037d23-f9d3-40ed-a623-a65f50e5f42d}</uid>
+                                           </MElement>
+                                          </base-MElement>
+                                          <name>Components</name>
+                                         </MObject>
+                                        </base-MObject>
+                                       </MDiagram>
+                                      </base-MDiagram>
+                                     </MCanvasDiagram>
+                                    </instance>
+                                   </target>
+                                  </handle>
+                                 </item>
+                                </qlist>
+                               </handles>
+                              </handles>
+                             </children>
+                            </MObject>
+                           </base-MObject>
+                          </MPackage>
+                         </instance>
+                        </target>
+                       </handle>
+                      </item>
+                     </qlist>
+                    </handles>
+                   </handles>
+                  </children>
+                 </MObject>
+                </base-MObject>
+               </MPackage>
               </instance>
              </target>
             </handle>

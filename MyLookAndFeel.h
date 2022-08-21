@@ -13,14 +13,12 @@ public:
     //const String colourDark      = "ff324399"; //sfondo
     const String colourDark      = "ff160970"; //sfondo
     const String colourLessDark  = "ff3213ee"; //icone slider
-    const String colourLessLight = "ff7762f4"; //riempimento slider
+    const String colourLessLight = "ff8a7bf4"; //riempimento slider
     const String colourLight     = "ffbcb1fa"; //sfondo slider
 
     MyLookAndFeel(/*int NumComponents*/) {
         //numComponents = NumComponents;
 
-        DBG(Colours::white.toString ());
-        DBG(Colours::black.toString ());
         setColour (Slider::backgroundColourId,          Colour::fromString(colourLight));      //sfondo slider
         //setColour (Slider::thumbColourId,               Colour::fromString(colourLight));
         //setColour (Slider::trackColourId,               Colour::fromString(colourLight));
@@ -92,8 +90,11 @@ public:
         auto colour = slider.findColour (Slider::backgroundColourId)
                 .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f)
                 .withAlpha (0.2f);
+        g.setColour (colour);
 
-        g.fillAll (colour);
+        Path backGround;
+        backGround.addRoundedRectangle (slider.getLocalBounds (), COMPONENT_CORNER_ROUNDING);
+        g.fillPath(backGround);
 
         if (style == Slider::LinearHorizontal)
         {
@@ -121,7 +122,7 @@ public:
             auto track = Rectangle<float>(width, sliderRadius / 2);
             track.setCentre (slider.getLocalBounds ().getCentre().toFloat ());
             Path indent;
-            indent.addRoundedRectangle (track, 5.0f);
+            indent.addRoundedRectangle (track, COMPONENT_CORNER_ROUNDING);
 
             auto colour = slider.findColour (Slider::trackColourId)
                     .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);

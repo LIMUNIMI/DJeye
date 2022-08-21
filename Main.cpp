@@ -65,7 +65,6 @@ public:
             //setUsingNativeTitleBar (true);
             //setResizable (true, true);
             //centreWithSize (getWidth(), getHeight());
-
             setVisible (true);
         }
 
