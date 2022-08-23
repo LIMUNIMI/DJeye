@@ -1,6 +1,6 @@
 #include "BrowserWindow.h"
 
-BrowserWindow::BrowserWindow(juce::MidiOutput* midiOut):
+BrowserWindow::BrowserWindow(std::shared_ptr<MidiOutput> midiOutput):
     leftStrip  {*new std::vector<ConfigurableContainer::ComponentType> {
         ConfigurableContainer::LoadLeft,}},
     middleStrip{*new std::vector<ConfigurableContainer::ComponentType> {
@@ -9,8 +9,8 @@ BrowserWindow::BrowserWindow(juce::MidiOutput* midiOut):
         ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
-        ConfigurableContainer::Spacer,
-        ConfigurableContainer::Spacer,
+//        ConfigurableContainer::Spacer,
+//        ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
@@ -18,19 +18,29 @@ BrowserWindow::BrowserWindow(juce::MidiOutput* midiOut):
     rightStrip  {*new std::vector<ConfigurableContainer::ComponentType> {
         ConfigurableContainer::LoadRight}}
 {
-        auto ch = 3;
-        leftStrip.setComponentOnClick (ConfigurableContainer::ComponentType::LoadLeft, [&,ch]{
-            //midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 2, (juce::uint8) 127));
-            closeBrowser ();
-        });
+        midiOut = std::move(midiOutput);
 
-        middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollUp, [&,ch]{DBG("u");
+        {//setup lambdas
+            auto ch = 3;
 
-        });
+            leftStrip.setComponentOnClick (ConfigurableContainer::ComponentType::LoadLeft, [&,ch]{
+                midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 0, (juce::uint8) 127));
+                closeBrowser ();
+            });
 
-        middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollDown, [&,ch]{DBG("d");});
+            middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollUp, [&,ch]{
+                midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));
+            });
 
-        rightStrip.setComponentOnClick (ConfigurableContainer::ComponentType::LoadRight, [&,ch]{DBG("r");});
+            middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollDown, [&,ch]{
+                midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 2, (juce::uint8) 127));
+            });
+
+            rightStrip.setComponentOnClick (ConfigurableContainer::ComponentType::LoadRight, [&,ch]{
+                midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 3, (juce::uint8) 127));
+                closeBrowser ();
+            });
+        }
 
     addAndMakeVisible (leftStrip  );
     addAndMakeVisible (middleStrip);
@@ -52,7 +62,7 @@ void BrowserWindow::resized()
 
 void BrowserWindow::closeBrowser()
 {
-    auto mainWin = dynamic_cast<DocumentWindow*> (getMainWindowPointer ());
+    auto mainWin = dynamic_cast<DocumentWindow*> (getMainWindow ());
     mainWin->setFullScreen (false);
     mainWin->setFullScreen (true);
     mainWin->setVisible   (true);
@@ -62,13 +72,13 @@ void BrowserWindow::closeBrowser()
     DBG("closing browser");
 }
 
-Component *BrowserWindow::getMainWindowPointer() const
+Component *BrowserWindow::getMainWindow() const
 {
-    return mainWindowPointer;
+    return mainWindow;
 }
 
-void BrowserWindow::setMainWindowPointer(Component *newMainWindowPointer)
+void BrowserWindow::setMainWindow(Component *newMainWindow)
 {
-    mainWindowPointer = newMainWindowPointer;
+    mainWindow = newMainWindow;
 }
 

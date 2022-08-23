@@ -30,7 +30,7 @@ private:
 
     VerticalStrip middleStrip;
 
-    std::unique_ptr<MidiOutput>  midiOut;
+    std::shared_ptr<MidiOutput>  midiOut;
 
     ComponentAnimator animator;
 

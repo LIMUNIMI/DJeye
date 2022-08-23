@@ -97,35 +97,35 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
         case LoadLeft: {
 
             DrawableButtonAdaptive *load = static_cast<DrawableButtonAdaptive*>(comp.get());
-            auto image = Drawable::createFromImageData (BinaryData::menu_svg,BinaryData::menu_svgSize);
+            auto image = Drawable::createFromImageData (BinaryData::loadL_svg,BinaryData::loadL_svgSize);
             load->setImages (image.get ());
 
         } break;
         case LoadRight: {
 
             DrawableButtonAdaptive *load = static_cast<DrawableButtonAdaptive*>(comp.get());
-            auto image = Drawable::createFromImageData (BinaryData::menu_svg,BinaryData::menu_svgSize);
+            auto image = Drawable::createFromImageData (BinaryData::loadR_svg,BinaryData::loadR_svgSize);
             load->setImages (image.get ());
 
         } break;
         case ScrollDown: {
 
             DrawableButtonAdaptive *scroll = static_cast<DrawableButtonAdaptive*>(comp.get());
-            auto image = Drawable::createFromImageData (BinaryData::menu_svg,BinaryData::menu_svgSize);
+            auto image = Drawable::createFromImageData (BinaryData::browserDown_svg,BinaryData::browserDown_svgSize);
             scroll->setImages (image.get ());
 
         } break;
         case ScrollUp: {
 
             DrawableButtonAdaptive *browser = static_cast<DrawableButtonAdaptive*>(comp.get());
-            auto image = Drawable::createFromImageData (BinaryData::menu_svg,BinaryData::menu_svgSize);
+            auto image = Drawable::createFromImageData (BinaryData::browserUp_svg,BinaryData::browserUp_svgSize);
             browser->setImages (image.get ());
 
         } break;
         case ConfigurableContainer::Browser:{
 
             DrawableButtonAdaptive *browser = static_cast<DrawableButtonAdaptive*>(comp.get());
-            auto image = Drawable::createFromImageData (BinaryData::menu_svg,BinaryData::menu_svgSize);
+            auto image = Drawable::createFromImageData (BinaryData::menu_svg, BinaryData::menu_svgSize);
             browser->setImages (image.get ());
 
         }break;
@@ -146,6 +146,9 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             SliderAdaptive *cue = static_cast<SliderAdaptive*>(comp.get());
             auto image = Drawable::createFromImageData (BinaryData::cue_svg,BinaryData::cue_svgSize);
             cue->setImage (image.get());//std::move(shape));
+
+            cue->setRange(1,4,1);
+            cue->setValue(2);
 
         } break;
         case ConfigurableContainer::HPLPFilter:{
