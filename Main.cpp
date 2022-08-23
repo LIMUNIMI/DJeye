@@ -59,11 +59,14 @@ public:
                               juce::Desktop::getInstance().getDefaultLookAndFeel().findColour (ResizableWindow::backgroundColourId),
                               DocumentWindow::allButtons)
         {
+#if JUCE_DEBUG
+            setResizable (true, true);
+#endif
             setContentOwned (new MainComponent(), true);
             setTitleBarHeight (10);
             setFullScreen (true);
+            setTitle ("");
             //setUsingNativeTitleBar (true);
-            //setResizable (true, true);
             //centreWithSize (getWidth(), getHeight());
             setVisible (true);
         }
