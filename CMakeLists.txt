@@ -99,7 +99,11 @@ images/knob.svg
 images/volume.svg
 images/seekTrack.svg
 images/loop.svg
-images/cue.svg )
+images/cue.svg
+images/loadL.svg
+images/loadR.svg
+images/browserDown.svg
+images/browserUp.svg)
 
 # `target_link_libraries` links libraries and JUCE modules to other libraries or executables. Here,
 # we're linking our executable target to the `juce::juce_gui_extra` module. Inter-module
