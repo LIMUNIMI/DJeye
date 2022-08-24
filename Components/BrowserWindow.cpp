@@ -20,6 +20,11 @@ BrowserWindow::BrowserWindow(std::shared_ptr<MidiOutput> midiOutput):
 {
         midiOut = std::move(midiOutput);
 
+        // NOTE: since unfocusAllComponents() does not give underlying DJ SW focus, in some lambdas a hack is implemented.
+        // visibility is temporarely set to false, so that no juce component is present on the screen,
+        // the underlying software gets focus and can get midi conrols which require window focus.
+        // (IN MIXX navigating the library is achieved through keyboard emulation)
+
         {//setup lambdas
             auto ch = 3;
 
@@ -29,11 +34,15 @@ BrowserWindow::BrowserWindow(std::shared_ptr<MidiOutput> midiOutput):
             });
 
             middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollUp, [&,ch]{
+                setVisible   (false);
                 midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));
+                setVisible   (true);
             });
 
             middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollDown, [&,ch]{
+                setVisible   (false);
                 midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 2, (juce::uint8) 127));
+                setVisible   (true);
             });
 
             rightStrip.setComponentOnClick (ConfigurableContainer::ComponentType::LoadRight, [&,ch]{
@@ -45,6 +54,7 @@ BrowserWindow::BrowserWindow(std::shared_ptr<MidiOutput> midiOutput):
     addAndMakeVisible (leftStrip  );
     addAndMakeVisible (middleStrip);
     addAndMakeVisible (rightStrip );
+    DBG((hasKeyboardFocus (true) ? "lo ha" : "non lo ha"));
 }
 
 
