@@ -21,7 +21,7 @@ public:
 
         setColour (Slider::backgroundColourId,          Colour::fromString(colourLight));      //sfondo slider
         //setColour (Slider::trackColourId,               Colour::fromString(colourLight));
-        setColour (Slider::thumbColourId,               Colour::fromString (colourLessLight));
+        setColour (Slider::thumbColourId,               Colour::fromString (colourLessDark));
         setColour (Slider::rotarySliderFillColourId,    Colour::fromString (colourLessLight)); //riempimento slider
         setColour (Slider::rotarySliderOutlineColourId, Colour::fromString (colourLight));    //bordo slider
         setColour (DrawableButton::backgroundColourId,  Colours::transparentWhite);
@@ -33,7 +33,11 @@ public:
     }
 
     MouseCursor getMouseCursorFor(Component& /*c*/) override{
+#if DEBUG
         return MouseCursor(MouseCursor::StandardCursorType::CrosshairCursor);
+#else
+        return MouseCursor(MouseCursor::StandardCursorType::NoCursor);
+#endif
     }
 
     void drawRotarySlider(Graphics& g,
@@ -146,7 +150,7 @@ public:
             auto thumbLine = thumb;
             thumbLine.removeFromRight (thumb.getWidth ()/3.0f);
             thumbLine.removeFromLeft (thumb.getWidth ()/3.0f);
-            auto baseColourLine = Colours::whitesmoke
+            auto baseColourLine = slider.findColour (Slider::rotarySliderFillColourId)
                     .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
             g.setColour (baseColourLine);
             g.fillRect (thumbLine);
