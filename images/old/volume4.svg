@@ -2,12 +2,12 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="55.415028mm"
-   height="131.54626mm"
-   viewBox="0 0 55.415035 131.54627"
+   width="106.31882mm"
+   height="126.94871mm"
+   viewBox="0 0 106.31883 126.94871"
    version="1.1"
    id="svg5"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
    sodipodi:docname="volume.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -25,15 +25,14 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="1.1190885"
-     inkscape:cx="382.9009"
-     inkscape:cy="265.39456"
+     inkscape:cx="46.91318"
+     inkscape:cy="285.05342"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
-     showguides="true" />
+     inkscape:current-layer="layer1" />
   <defs
      id="defs2">
     <inkscape:path-effect
@@ -58,7 +57,7 @@
        id="path-effect3173"
        is_visible="true"
        lpeversion="1"
-       nodesatellites_param="F,0,0,1,0,11.66197,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1 @ F,0,0,1,0,11.66197,0,1"
+       nodesatellites_param="F,0,0,1,0,4.2333333,0,1 @ F,0,0,1,0,4.2333333,0,1 @ F,0,0,1,0,4.2333333,0,1 @ F,0,0,1,0,4.2333333,0,1 @ F,0,0,1,0,4.2333333,0,1"
        unit="px"
        method="auto"
        mode="F"
@@ -83,25 +82,28 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-192.82701,-31.573412)">
-    <rect
-       style="fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke-width:0.0819966;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
-       id="rect1273"
-       width="26.560354"
-       height="54.580105"
-       x="192.82701"
-       y="69.982002"
-       ry="2.8374684"
-       rx="2.8374684" />
-    <path
-       id="path1374"
-       style="fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke-width:0.0439217;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
-       inkscape:transform-center-x="20.251572"
-       inkscape:transform-center-y="-0.41258296"
-       d="m 239.79618,32.951561 -43.72855,41.623514 c 0.0272,0.12114 0.0461,0.24414 0.0461,0.37014 v 45.226145 l 43.66822,41.56973 a 5.0002619,5.0002619 156.79773 0 0 8.44789,-3.62117 l 0.0122,-121.546824 a 4.9991741,4.9991741 23.209283 0 0 -8.4459,-3.621535 z"
-       inkscape:path-effect="#path-effect3173"
-       inkscape:original-d="m 248.24325,24.911126 -52.17562,49.663949 c 0.0272,0.12114 0.0461,0.24414 0.0461,0.37014 v 45.226145 l 52.11494,49.61053 z"
-       sodipodi:nodetypes="ccsccc" />
+     transform="translate(-68.684746,-37.839873)">
+    <g
+       id="g10021"
+       style="fill:#3213ee;fill-opacity:1">
+      <rect
+         style="fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke-width:0.168089;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+         id="rect1273"
+         width="74.126648"
+         height="82.183029"
+         x="68.684746"
+         y="61.281048"
+         ry="3.7847443"
+         rx="3.1779087" />
+      <path
+         id="path1374"
+         style="fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke-width:0.0751283;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+         inkscape:transform-center-x="37.524737"
+         inkscape:transform-center-y="-0.67541518"
+         d="M 170.94454,37.969464 82.385139,64.131289 c -2.242213,0.662384 -3.974366,1.457585 -3.974365,1.783813 v 68.850058 a 5.5684921,5.5684921 52.756823 0 0 4.079099,5.36561 l 88.408517,24.54053 a 3.219003,3.219003 142.7628 0 0 4.07998,-3.10105 l 0.0252,-120.566806 a 3.1629112,3.1629112 36.776998 0 0 -4.059,-3.03398 z"
+         inkscape:path-effect="#path-effect3173"
+         inkscape:original-d="M 175.00442,36.770111 78.325254,65.330642 c 0.05043,0.191286 0.08552,0.385504 0.08552,0.58446 v 73.083388 l 96.566716,26.80509 z" />
+    </g>
   </g>
   <script
      id="mesh_polyfill"

@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-   sodipodi:docname="playBtnPause.svg"
+   sodipodi:docname="playBtnPauseHover.svg"
    inkscape:export-filename="playBtnPause.png"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -57,7 +57,7 @@
      inkscape:label="circleButton"
      style="display:inline">
     <circle
-       style="fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke-width:1.00157;stroke-miterlimit:4;stroke-dasharray:none"
+       style="fill:#6e58f3;fill-opacity:1;fill-rule:evenodd;stroke-width:1.00157;stroke-miterlimit:4;stroke-dasharray:none"
        id="path4478-3"
        cx="3.9999995"
        cy="4.0000005"
