@@ -12,3 +12,196 @@ The \mbox{\hyperlink{classConfigurableContainer}{Configurable\+Container}} class
 
 
 Inheritance diagram for Configurable\+Container\+:
+% FIG 0
+
+
+Collaboration diagram for Configurable\+Container\+:
+% FIG 1
+\doxysubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}\label{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}} 
+enum \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Component\+Type}} \{ \newline
+{\bfseries Play}
+, {\bfseries Crossfader}
+, {\bfseries Sync\+Master}
+, {\bfseries Sync}
+, \newline
+{\bfseries Headphone\+Out}
+, {\bfseries Headphone\+Volume}
+, {\bfseries Master\+Volume}
+, {\bfseries Browser}
+, \newline
+{\bfseries Load\+Left}
+, {\bfseries Load\+Right}
+, {\bfseries Scroll\+Down}
+, {\bfseries Scroll\+Up}
+, \newline
+{\bfseries Spacer}
+, {\bfseries Seek}
+, {\bfseries Cue}
+, {\bfseries HPLPFilter}
+, \newline
+{\bfseries Volume}
+, {\bfseries Loop}
+ \}
+\begin{DoxyCompactList}\small\item\em The Component\+Type enum describes which type of components can be in the controller NOTE\+: be carefoul, since components are stored in a map, tou can have only one spacer in each container. see \mbox{\hyperlink{classVerticalStrip_acab862c207883f7354a713173676c207}{Vertical\+Strip\+::resized()}} so see an implementation where you can insert multiple spacer even if storing only one. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classConfigurableContainer_acf3cc0f54cde8268167739448a5be588}{Configurable\+Container}} (const std\+::vector$<$ \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Configurable\+Container\+::\+Component\+Type}} $>$ Component\+List)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classConfigurableContainer}{Configurable\+Container}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classConfigurableContainer_ad009e7eada10621c7984882c53cea8ed}\label{classConfigurableContainer_ad009e7eada10621c7984882c53cea8ed}} 
+void {\bfseries paint} (juce\+::\+Graphics \&) override
+\item 
+\mbox{\Hypertarget{classConfigurableContainer_a54cdde89b449e32ec6a5398487f51e68}\label{classConfigurableContainer_a54cdde89b449e32ec6a5398487f51e68}} 
+void \mbox{\hyperlink{classConfigurableContainer_a54cdde89b449e32ec6a5398487f51e68}{resized}} () override=0
+\begin{DoxyCompactList}\small\item\em use this function to decide where your container should put its components \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classConfigurableContainer_a4aeb628b9a181e20dda42160b1aff7a9}\label{classConfigurableContainer_a4aeb628b9a181e20dda42160b1aff7a9}} 
+void {\bfseries mouse\+Enter} (const Mouse\+Event \&event) override
+\item 
+\mbox{\Hypertarget{classConfigurableContainer_afd80a84b54e9dd1a121e5cd1f6608712}\label{classConfigurableContainer_afd80a84b54e9dd1a121e5cd1f6608712}} 
+void {\bfseries mouse\+Exit} (const Mouse\+Event \&event) override
+\item 
+\mbox{\Hypertarget{classConfigurableContainer_a238138b642c33bae847655dc2771ee52}\label{classConfigurableContainer_a238138b642c33bae847655dc2771ee52}} 
+uint {\bfseries get\+Num\+Radial\+Components} () const
+\item 
+void \mbox{\hyperlink{classConfigurableContainer_ade09b088742f08f9113290747ef11501}{set\+Component\+On\+Value\+Change}} (const \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Component\+Type}} component\+Type, std\+::function$<$ void(const int val)$>$ new\+Component\+On\+Value\+Change)
+\begin{DoxyCompactList}\small\item\em set\+Component\+On\+Value\+Change \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classConfigurableContainer_aa2463869c9a9a6c02dd0ce7b3c536a0d}{set\+Component\+On\+Click}} (const \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Component\+Type}} component\+Type, std\+::function$<$ void()$>$ new\+Component\+On\+Click)
+\begin{DoxyCompactList}\small\item\em set the component lambda to execute whene it is clicked \end{DoxyCompactList}\item 
+virtual const bool \mbox{\hyperlink{classConfigurableContainer_ae90166feef29d65691a0adf708fff96f}{is\+Radial\+Component}} (const \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Component\+Type}} component\+Type) const =0
+\begin{DoxyCompactList}\small\item\em returns if the given component type is a radial component \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classConfigurableContainer_ad4a0a8821bd6fefd1cd5522fa2c54d95}\label{classConfigurableContainer_ad4a0a8821bd6fefd1cd5522fa2c54d95}} 
+uint {\bfseries get\+Num\+Components} () const
+\item 
+\mbox{\Hypertarget{classConfigurableContainer_a78c25e20842ac6422d90c3d94dae221f}\label{classConfigurableContainer_a78c25e20842ac6422d90c3d94dae221f}} 
+float \mbox{\hyperlink{classConfigurableContainer_a78c25e20842ac6422d90c3d94dae221f}{get\+Component\+Separation\+Angle}} ()
+\begin{DoxyCompactList}\small\item\em returns the angle in between the radial components NOTE\+: Usando queste misure, si ritrova un non parallelismo tra i lati degli slider, mentre con un metodo tau/\+NUM\+\_\+\+COMP e poi spingendo i componenti verso l\textquotesingle{}esterno, si ottiene una sezione \char`\"{}centrale\char`\"{} non perfettamente circolare. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{classConfigurableContainer_a8a286cab6abb59384a45074b18f93ffe}{get\+Component\+Angle}} ()
+\begin{DoxyCompactList}\small\item\em returns the angle in of the radial components \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+std\+::function$<$ void()$>$ \mbox{\hyperlink{classConfigurableContainer_affcf0ab841c2d1fe35132687c8069476}{on\+Mouse\+Enter}}
+\item 
+\mbox{\Hypertarget{classConfigurableContainer_a98bb7ff640bcf31915473010056b4369}\label{classConfigurableContainer_a98bb7ff640bcf31915473010056b4369}} 
+std\+::function$<$ void()$>$ {\bfseries on\+Mouse\+Exit}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classConfigurableContainer_a484b5709ed57d7b074d69ee655c2c8ad}\label{classConfigurableContainer_a484b5709ed57d7b074d69ee655c2c8ad}} 
+std\+::map$<$ const uint, std\+::unique\+\_\+ptr$<$ Component $>$ $>$ {\bfseries components}
+\item 
+\mbox{\Hypertarget{classConfigurableContainer_a0714e441171debf288954651e7b5dbc5}\label{classConfigurableContainer_a0714e441171debf288954651e7b5dbc5}} 
+std\+::map$<$ const \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Component\+Type}}, std\+::function$<$ void()$>$ \& $>$ {\bfseries components\+On\+Value\+Change}
+\item 
+\mbox{\Hypertarget{classConfigurableContainer_a58322ec5bdeff250f687c83612c104d2}\label{classConfigurableContainer_a58322ec5bdeff250f687c83612c104d2}} 
+std\+::map$<$ const \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Component\+Type}}, std\+::function$<$ void()$>$ \& $>$ {\bfseries components\+On\+Click}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{classConfigurableContainer}{Configurable\+Container}} class contains sliders and buttons. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classConfigurableContainer_acf3cc0f54cde8268167739448a5be588}\label{classConfigurableContainer_acf3cc0f54cde8268167739448a5be588}} 
+\index{ConfigurableContainer@{ConfigurableContainer}!ConfigurableContainer@{ConfigurableContainer}}
+\index{ConfigurableContainer@{ConfigurableContainer}!ConfigurableContainer@{ConfigurableContainer}}
+\doxysubsubsection{\texorpdfstring{ConfigurableContainer()}{ConfigurableContainer()}}
+{\footnotesize\ttfamily Configurable\+Container\+::\+Configurable\+Container (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Configurable\+Container\+::\+Component\+Type}} $>$}]{Component\+List }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classConfigurableContainer}{Configurable\+Container}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Component\+List} & the list of Configurable\+Container\+::\+Component\+Types the \mbox{\hyperlink{classConfigurableContainer}{Configurable\+Container}} will hold \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classConfigurableContainer_a8a286cab6abb59384a45074b18f93ffe}\label{classConfigurableContainer_a8a286cab6abb59384a45074b18f93ffe}} 
+\index{ConfigurableContainer@{ConfigurableContainer}!getComponentAngle@{getComponentAngle}}
+\index{getComponentAngle@{getComponentAngle}!ConfigurableContainer@{ConfigurableContainer}}
+\doxysubsubsection{\texorpdfstring{getComponentAngle()}{getComponentAngle()}}
+{\footnotesize\ttfamily float Configurable\+Container\+::get\+Component\+Angle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+returns the angle in of the radial components 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{classConfigurableContainer_a78c25e20842ac6422d90c3d94dae221f}{get\+Component\+Separation\+Angle}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{classConfigurableContainer_ae90166feef29d65691a0adf708fff96f}\label{classConfigurableContainer_ae90166feef29d65691a0adf708fff96f}} 
+\index{ConfigurableContainer@{ConfigurableContainer}!isRadialComponent@{isRadialComponent}}
+\index{isRadialComponent@{isRadialComponent}!ConfigurableContainer@{ConfigurableContainer}}
+\doxysubsubsection{\texorpdfstring{isRadialComponent()}{isRadialComponent()}}
+{\footnotesize\ttfamily virtual const bool Configurable\+Container\+::is\+Radial\+Component (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Component\+Type}}}]{component\+Type }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+returns if the given component type is a radial component 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component\+Type} & the component type to check \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{classVerticalStrip_a57a8b5ea03d01bdc949275498261cf90}{Vertical\+Strip}}, and \mbox{\hyperlink{classDeck_a74cc9efd4dd804ea2ba0815b46334f26}{Deck}}.
+
+\mbox{\Hypertarget{classConfigurableContainer_aa2463869c9a9a6c02dd0ce7b3c536a0d}\label{classConfigurableContainer_aa2463869c9a9a6c02dd0ce7b3c536a0d}} 
+\index{ConfigurableContainer@{ConfigurableContainer}!setComponentOnClick@{setComponentOnClick}}
+\index{setComponentOnClick@{setComponentOnClick}!ConfigurableContainer@{ConfigurableContainer}}
+\doxysubsubsection{\texorpdfstring{setComponentOnClick()}{setComponentOnClick()}}
+{\footnotesize\ttfamily void Configurable\+Container\+::set\+Component\+On\+Click (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Component\+Type}}}]{component\+Type,  }\item[{std\+::function$<$ void()$>$}]{new\+Component\+On\+Click }\end{DoxyParamCaption})}
+
+
+
+set the component lambda to execute whene it is clicked 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component\+Type} & Component\+Type for which to set the lambda \\
+\hline
+{\em new\+Component\+On\+Value\+Change} & lambda function to set the action to NOTE\+: for sliders it is actually assigned to on\+Mouse\+Up() \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classConfigurableContainer_ade09b088742f08f9113290747ef11501}\label{classConfigurableContainer_ade09b088742f08f9113290747ef11501}} 
+\index{ConfigurableContainer@{ConfigurableContainer}!setComponentOnValueChange@{setComponentOnValueChange}}
+\index{setComponentOnValueChange@{setComponentOnValueChange}!ConfigurableContainer@{ConfigurableContainer}}
+\doxysubsubsection{\texorpdfstring{setComponentOnValueChange()}{setComponentOnValueChange()}}
+{\footnotesize\ttfamily void Configurable\+Container\+::set\+Component\+On\+Value\+Change (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Component\+Type}}}]{component\+Type,  }\item[{std\+::function$<$ void(const int val)$>$}]{new\+Component\+On\+Value\+Change }\end{DoxyParamCaption})}
+
+
+
+set\+Component\+On\+Value\+Change 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component\+Type} & Component\+Type for which to set the lambda \\
+\hline
+{\em new\+Component\+On\+Value\+Change} & lambda function to set the antion to \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classConfigurableContainer_affcf0ab841c2d1fe35132687c8069476}\label{classConfigurableContainer_affcf0ab841c2d1fe35132687c8069476}} 
+\index{ConfigurableContainer@{ConfigurableContainer}!onMouseEnter@{onMouseEnter}}
+\index{onMouseEnter@{onMouseEnter}!ConfigurableContainer@{ConfigurableContainer}}
+\doxysubsubsection{\texorpdfstring{onMouseEnter}{onMouseEnter}}
+{\footnotesize\ttfamily std\+::function$<$void()$>$ Configurable\+Container\+::on\+Mouse\+Enter}
+
+You can assign a lambdas to this callback object to have it called when the component\textquotesingle{}s focus changes. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Components/Configurable\+Container.\+h\item 
+Components/Configurable\+Container.\+cpp\end{DoxyCompactItemize}

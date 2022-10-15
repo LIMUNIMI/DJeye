@@ -1,6 +1,7 @@
 var hierarchy =
 [
     [ "juce::Component", null, [
+      [ "BrowserWindow", "classBrowserWindow.html", null ],
       [ "ConfigurableContainer", "classConfigurableContainer.html", [
         [ "Deck", "classDeck.html", null ],
         [ "VerticalStrip", "classVerticalStrip.html", null ]
@@ -8,10 +9,11 @@ var hierarchy =
       [ "Controller", "classController.html", null ],
       [ "MainComponent", "classMainComponent.html", null ]
     ] ],
+    [ "CustomHitBoxComponent", "classCustomHitBoxComponent.html", null ],
     [ "juce::DocumentWindow", null, [
       [ "GuiAppApplication::MainWindow", "classGuiAppApplication_1_1MainWindow.html", null ]
     ] ],
-    [ "DrawableButton", "classDrawableButton.html", [
+    [ "juce::DrawableButton", null, [
       [ "DrawableButtonAdaptive", "classDrawableButtonAdaptive.html", null ]
     ] ],
     [ "juce::JUCEApplication", null, [
@@ -20,7 +22,7 @@ var hierarchy =
     [ "LookAndFeel_V4", "classLookAndFeel__V4.html", [
       [ "MyLookAndFeel", "classMyLookAndFeel.html", null ]
     ] ],
-    [ "Slider", "classSlider.html", [
+    [ "juce::Slider", null, [
       [ "SliderAdaptive", "classSliderAdaptive.html", null ]
     ] ]
 ];

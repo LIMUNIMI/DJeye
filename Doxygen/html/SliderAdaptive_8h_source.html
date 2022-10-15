@@ -92,89 +92,98 @@ $(document).ready(function(){initNavTree('SliderAdaptive_8h_source.html',''); in
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment"> *</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment"> * inoltre funziona sol con dehli bounds quadrati e non rettangolari (?)</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classSliderAdaptive.html">    8</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSliderAdaptive.html">SliderAdaptive</a> : <span class="keyword">public</span> <a class="code" href="classSlider.html">Slider</a></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <a class="code" href="classSliderAdaptive.html">SliderAdaptive</a>();</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    ~<a class="code" href="classSliderAdaptive.html">SliderAdaptive</a>(){};</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="comment">//TODO pensare se devo overridare entrambe o ne basta una: credo che servano entrambe</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">//note: shadows the component&#39;s method</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">void</span> setRotaryParameters (RotaryParameters p) noexcept;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="comment">//NOTE: shadows the component&#39;s method</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">void</span> setRotaryParameters (<span class="keywordtype">float</span> startAngleRadians,</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                              <span class="keywordtype">float</span> endAngleRadians,</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                              <span class="keywordtype">bool</span> stopAtEnd) noexcept;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="comment">/*NOTE:Note that for components on the desktop, this method will be ignored, because it&#39;s</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">     *         not always possible to implement this behaviour on all platforms.</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">     *         non capisco bene che voldì*/</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">bool</span> hitTest (<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> paint(Graphics&amp; g) <span class="keyword">override</span> ;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">void</span> resized () <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordtype">void</span> mouseUp(<span class="keyword">const</span> MouseEvent &amp;) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    std::function&lt;void()&gt; onMouseUp;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    Path <a class="code" href="classSliderAdaptive.html#acf3621b2b3f7dff0ec50de2d2e5da33f">getHitBox</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="comment">//TODO: usare gli smart pointers??</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">void</span> setImage (<span class="keyword">const</span> Drawable* image);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">//NOTE i path vengono copiati in modoprofondo, quindi basta prenderli per ref</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classSliderAdaptive.html#aeebfaf1a4331341d92f1762bcdb05176">setHitBox</a> (<span class="keyword">const</span> Path&amp; newHitBox);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSliderAdaptive.html#aeebfaf1a4331341d92f1762bcdb05176">setHitBox</a> (<span class="keyword">const</span> Path&amp;&amp; newHitBox);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classSliderAdaptive.html">    9</a></span>&#160;<span class="keyword">class </span><a class="code" href="classSliderAdaptive.html">SliderAdaptive</a> : <span class="keyword">public</span> juce::Slider</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <a class="code" href="classSliderAdaptive.html">SliderAdaptive</a>();</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    ~<a class="code" href="classSliderAdaptive.html">SliderAdaptive</a>(){};</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="comment">//TODO pensare se devo overridare entrambe o ne basta una: credo che servano entrambe</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="comment">//note: shadows the component&#39;s method</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">void</span> setRotaryParameters (RotaryParameters p) noexcept;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="comment">//NOTE: shadows the component&#39;s method</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">void</span> setRotaryParameters (<span class="keywordtype">float</span> startAngleRadians,</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                              <span class="keywordtype">float</span> endAngleRadians,</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;                              <span class="keywordtype">bool</span> stopAtEnd) noexcept;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="comment">/*NOTE:Note that for components on the desktop, this method will be ignored, because it&#39;s</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">     *         not always possible to implement this behaviour on all platforms.</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment">     *         non capisco bene che voldì*/</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">bool</span> hitTest (<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">void</span> paint(Graphics&amp; g) <span class="keyword">override</span> ;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> resized () <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordtype">void</span> mouseUp(<span class="keyword">const</span> MouseEvent &amp;) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    std::function&lt;void()&gt; onMouseUp;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    Path <a class="code" href="classSliderAdaptive.html#acf3621b2b3f7dff0ec50de2d2e5da33f">getHitBox</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">//TODO: usare gli smart pointers??</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordtype">void</span> setImage (<span class="keyword">const</span> Drawable* image);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">//NOTE i path vengono copiati in modoprofondo, quindi basta prenderli per ref</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"></span>    <span class="keywordtype">void</span> <a class="code" href="classSliderAdaptive.html#aeebfaf1a4331341d92f1762bcdb05176">setHitBox</a> (<span class="keyword">const</span> Path&amp; newHitBox);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSliderAdaptive.html#aeebfaf1a4331341d92f1762bcdb05176">setHitBox</a> (<span class="keyword">const</span> Path&amp;&amp; newHitBox);</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">bool</span> getAutoFitHitBoxToRotaryParameters() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSliderAdaptive.html#ad49e14e1f4f38cf77b9f3ef48efd1280">setAutoFitHitBoxToRotaryParameters</a>(<span class="keywordtype">bool</span> newAutoFitToRotaryParameters);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSliderAdaptive.html#ac1bbe646559f7bace545e22b1fb3f341">resizeHitBoxToFitRotaryParameters</a>();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">bool</span> getSnapToMiddleValue() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> setSnapToMiddleValue(<span class="keywordtype">bool</span> newSnapToMiddleValue);</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">float</span> getAccuracyPaddingRatio() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> setAccuracyPaddingRatio(<span class="keywordtype">float</span> newAccuracyPaddingRatio);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">bool</span> getAutoFitHitBoxToRotaryParameters() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSliderAdaptive.html#ad49e14e1f4f38cf77b9f3ef48efd1280">setAutoFitHitBoxToRotaryParameters</a>(<span class="keywordtype">bool</span> newAutoFitToRotaryParameters);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSliderAdaptive.html#ac1bbe646559f7bace545e22b1fb3f341">resizeHitBoxToFitRotaryParameters</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">bool</span> getSnapToMiddleValue() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> setSnapToMiddleValue(<span class="keywordtype">bool</span> newSnapToMiddleValue);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">float</span> getAccuracyPaddingRatio() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> setAccuracyPaddingRatio(<span class="keywordtype">float</span> newAccuracyPaddingRatio);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
 <div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="comment">//TODO: forse va messa nelle utilities??</span></div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    Path <a class="code" href="classSliderAdaptive.html#a35c84f1dfdbb30ad0d80cdb9432fb110">MakeSlice</a>(<span class="keyword">const</span> Rectangle&lt;float&gt; &amp;rectToFitIn,</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;                   <span class="keyword">const</span> <span class="keywordtype">float</span> paddingSides = 0,</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;                   <span class="keyword">const</span> <span class="keywordtype">float</span> paddingTopBottom = 0) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSliderAdaptive.html#a40a30f20aa5cf773a37a67f46c73cfeb">resizeHitBoxToFitBounds</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> mouseWheelMove (<span class="keyword">const</span> MouseEvent&amp; e, <span class="keyword">const</span> MouseWheelDetails&amp; wheel) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">int</span> getNumWheelTicksIgnored() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> setNumWheelTicksIgnored(<span class="keywordtype">int</span> newNumWheelTicksIgnored);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">//TODO: forse va messa nelle utilities??</span></div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    Path <a class="code" href="classSliderAdaptive.html#a35c84f1dfdbb30ad0d80cdb9432fb110">MakeSlice</a>(<span class="keyword">const</span> Rectangle&lt;float&gt; &amp;rectToFitIn,</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;                   <span class="keyword">const</span> <span class="keywordtype">float</span> paddingSides = 0,</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;                   <span class="keyword">const</span> <span class="keywordtype">float</span> paddingTopBottom = 0) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSliderAdaptive.html#a0ad643aabec208f8754017f4eb2ba7d1">updateHitBoxBounds</a>();</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordtype">double</span> snapValue(<span class="keywordtype">double</span> attemptedValue, DragMode dragMode) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    DrawablePath HitBox;</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    std::unique_ptr&lt;Drawable&gt; image;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keywordtype">bool</span> autoFitHitBoxToRotaryParameters = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;    <span class="keywordtype">bool</span> snapToMiddleValue = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160; </div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keywordtype">float</span> accuracyPaddingRatio = 0;<span class="comment">// so che questa proprietà c&#39;è anche in drawablebuttonadaptive ma mi sembrava esagerato fare una calsse padre splo per questo parametro. boh forse serve un&#39;interfaccia? TODO: pensa a sta roba</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (<a class="code" href="classSliderAdaptive.html">SliderAdaptive</a>)</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;};</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160; </div>
-<div class="ttc" id="aclassSliderAdaptive_html"><div class="ttname"><a href="classSliderAdaptive.html">SliderAdaptive</a></div><div class="ttdef"><b>Definition:</b> SliderAdaptive.h:9</div></div>
-<div class="ttc" id="aclassSliderAdaptive_html_a0ad643aabec208f8754017f4eb2ba7d1"><div class="ttname"><a href="classSliderAdaptive.html#a0ad643aabec208f8754017f4eb2ba7d1">SliderAdaptive::updateHitBoxBounds</a></div><div class="ttdeci">void updateHitBoxBounds()</div><div class="ttdoc">updateHitBoxBounds calls resizeHitBoxToFitBounds() or resizeHitBoxToFitRotaryParameters() depending o...</div><div class="ttdef"><b>Definition:</b> SliderAdaptive.cpp:98</div></div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160; </div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSliderAdaptive.html#a40a30f20aa5cf773a37a67f46c73cfeb">resizeHitBoxToFitBounds</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160; </div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classSliderAdaptive.html#a0ad643aabec208f8754017f4eb2ba7d1">updateHitBoxBounds</a>();</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    <span class="keywordtype">double</span> snapValue(<span class="keywordtype">double</span> attemptedValue, DragMode dragMode) <span class="keyword">override</span>;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    DrawablePath HitBox;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    std::unique_ptr&lt;Drawable&gt; image;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">bool</span> autoFitHitBoxToRotaryParameters = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    <span class="keywordtype">bool</span> snapToMiddleValue = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    <span class="keywordtype">float</span> accuracyPaddingRatio = 0;<span class="comment">// so che questa proprietà c&#39;è anche in drawablebuttonadaptive ma mi sembrava esagerato fare una calsse padre splo per questo parametro. boh forse serve un&#39;interfaccia? TODO: pensa a sta roba</span></div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160; </div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <span class="keywordtype">int</span> numWheelTicksIgnored   = 0;</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;    <span class="keywordtype">int</span> wheelTickCounter        = 0;</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160; </div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (<a class="code" href="classSliderAdaptive.html">SliderAdaptive</a>)</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;};</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="ttc" id="aclassSliderAdaptive_html"><div class="ttname"><a href="classSliderAdaptive.html">SliderAdaptive</a></div><div class="ttdef"><b>Definition:</b> SliderAdaptive.h:10</div></div>
+<div class="ttc" id="aclassSliderAdaptive_html_a0ad643aabec208f8754017f4eb2ba7d1"><div class="ttname"><a href="classSliderAdaptive.html#a0ad643aabec208f8754017f4eb2ba7d1">SliderAdaptive::updateHitBoxBounds</a></div><div class="ttdeci">void updateHitBoxBounds()</div><div class="ttdoc">updateHitBoxBounds calls resizeHitBoxToFitBounds() or resizeHitBoxToFitRotaryParameters() depending o...</div><div class="ttdef"><b>Definition:</b> SliderAdaptive.cpp:99</div></div>
 <div class="ttc" id="aclassSliderAdaptive_html_a35c84f1dfdbb30ad0d80cdb9432fb110"><div class="ttname"><a href="classSliderAdaptive.html#a35c84f1dfdbb30ad0d80cdb9432fb110">SliderAdaptive::MakeSlice</a></div><div class="ttdeci">Path MakeSlice(const Rectangle&lt; float &gt; &amp;rectToFitIn, const float paddingSides=0, const float paddingTopBottom=0) const</div><div class="ttdoc">MakeSliceWithPadding returns a path which is the slider slice, reduced by a padding.</div><div class="ttdef"><b>Definition:</b> SliderAdaptive.cpp:9</div></div>
-<div class="ttc" id="aclassSliderAdaptive_html_a40a30f20aa5cf773a37a67f46c73cfeb"><div class="ttname"><a href="classSliderAdaptive.html#a40a30f20aa5cf773a37a67f46c73cfeb">SliderAdaptive::resizeHitBoxToFitBounds</a></div><div class="ttdeci">void resizeHitBoxToFitBounds()</div><div class="ttdoc">resizeHitBoxToFitBounds update the hit box size to the bounds of this component note that AutoFitToRo...</div><div class="ttdef"><b>Definition:</b> SliderAdaptive.cpp:84</div></div>
+<div class="ttc" id="aclassSliderAdaptive_html_a40a30f20aa5cf773a37a67f46c73cfeb"><div class="ttname"><a href="classSliderAdaptive.html#a40a30f20aa5cf773a37a67f46c73cfeb">SliderAdaptive::resizeHitBoxToFitBounds</a></div><div class="ttdeci">void resizeHitBoxToFitBounds()</div><div class="ttdoc">resizeHitBoxToFitBounds update the hit box size to the bounds of this component note that AutoFitToRo...</div><div class="ttdef"><b>Definition:</b> SliderAdaptive.cpp:85</div></div>
 <div class="ttc" id="aclassSliderAdaptive_html_ac1bbe646559f7bace545e22b1fb3f341"><div class="ttname"><a href="classSliderAdaptive.html#ac1bbe646559f7bace545e22b1fb3f341">SliderAdaptive::resizeHitBoxToFitRotaryParameters</a></div><div class="ttdeci">void resizeHitBoxToFitRotaryParameters()</div><div class="ttdoc">resizeHitBoxToFitRotaryParameters update the hit box to match the pie-shape delimited by the rotary p...</div><div class="ttdef"><b>Definition:</b> SliderAdaptive.cpp:49</div></div>
-<div class="ttc" id="aclassSliderAdaptive_html_acf3621b2b3f7dff0ec50de2d2e5da33f"><div class="ttname"><a href="classSliderAdaptive.html#acf3621b2b3f7dff0ec50de2d2e5da33f">SliderAdaptive::getHitBox</a></div><div class="ttdeci">Path getHitBox() const</div><div class="ttdoc">getHitBox get the path used for hit-testing</div><div class="ttdef"><b>Definition:</b> SliderAdaptive.cpp:152</div></div>
+<div class="ttc" id="aclassSliderAdaptive_html_acf3621b2b3f7dff0ec50de2d2e5da33f"><div class="ttname"><a href="classSliderAdaptive.html#acf3621b2b3f7dff0ec50de2d2e5da33f">SliderAdaptive::getHitBox</a></div><div class="ttdeci">Path getHitBox() const</div><div class="ttdoc">getHitBox get the path used for hit-testing</div><div class="ttdef"><b>Definition:</b> SliderAdaptive.cpp:153</div></div>
 <div class="ttc" id="aclassSliderAdaptive_html_ad49e14e1f4f38cf77b9f3ef48efd1280"><div class="ttname"><a href="classSliderAdaptive.html#ad49e14e1f4f38cf77b9f3ef48efd1280">SliderAdaptive::setAutoFitHitBoxToRotaryParameters</a></div><div class="ttdeci">void setAutoFitHitBoxToRotaryParameters(bool newAutoFitToRotaryParameters)</div><div class="ttdoc">setAutoFitToRotaryParameters set if the Hitbox should bound automatically to the slider's rotary para...</div><div class="ttdef"><b>Definition:</b> SliderAdaptive.cpp:33</div></div>
-<div class="ttc" id="aclassSliderAdaptive_html_aeebfaf1a4331341d92f1762bcdb05176"><div class="ttname"><a href="classSliderAdaptive.html#aeebfaf1a4331341d92f1762bcdb05176">SliderAdaptive::setHitBox</a></div><div class="ttdeci">void setHitBox(const Path &amp;newHitBox)</div><div class="ttdoc">setHitBox set the new path for hit-testing</div><div class="ttdef"><b>Definition:</b> SliderAdaptive.cpp:141</div></div>
-<div class="ttc" id="aclassSlider_html"><div class="ttname"><a href="classSlider.html">Slider</a></div></div>
+<div class="ttc" id="aclassSliderAdaptive_html_aeebfaf1a4331341d92f1762bcdb05176"><div class="ttname"><a href="classSliderAdaptive.html#aeebfaf1a4331341d92f1762bcdb05176">SliderAdaptive::setHitBox</a></div><div class="ttdeci">void setHitBox(const Path &amp;newHitBox)</div><div class="ttdoc">setHitBox set the new path for hit-testing</div><div class="ttdef"><b>Definition:</b> SliderAdaptive.cpp:142</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
