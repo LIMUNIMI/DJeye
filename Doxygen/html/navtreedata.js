@@ -25,8 +25,13 @@
 var NAVTREE =
 [
   [ "Djeye-controller", "index.html", [
-    [ "DJeye-controller", "md_README.html", [
-      [ "Building", "md_README.html#autotoc_md1", null ]
+    [ "Djeye-controller", "md_README.html", [
+      [ "Building", "md_README.html#autotoc_md1", null ],
+      [ "Monitoring MIDI messages from terminal emulator", "md_README.html#autotoc_md2", null ],
+      [ "MIXXX setup", "md_README.html#autotoc_md3", [
+        [ "MIDI mappings", "md_README.html#autotoc_md4", null ],
+        [ "Preferences", "md_README.html#autotoc_md5", null ]
+      ] ]
     ] ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
@@ -47,7 +52,7 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"BinaryData_8h_source.html"
+"BrowserWindow_8h_source.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

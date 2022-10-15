@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['verticalstrip_42',['VerticalStrip',['../classVerticalStrip.html',1,'']]]
+  ['slideradaptive_45',['SliderAdaptive',['../classSliderAdaptive.html',1,'']]]
 ];

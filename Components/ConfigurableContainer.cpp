@@ -150,7 +150,8 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             cue->setImage (image.get());//std::move(shape));
 
             cue->setRange(1,4,1);
-            cue->setValue(2);
+            cue->setValue(1);
+            cue->setNumWheelTicksIgnored(4);
 
         } break;
         case ConfigurableContainer::HPLPFilter:{
@@ -181,6 +182,7 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
 
             loop->setRange(0,6,1);// da 1/8 a 8 barre
             loop->setValue(4);
+            loop->setNumWheelTicksIgnored(3);
 
         }break;
         default: break;

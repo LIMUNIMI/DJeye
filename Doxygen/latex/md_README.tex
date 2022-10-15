@@ -1,2 +1,10 @@
-Djeye-\/controller is a MIDI controller which interface is thought to be easy to use with input coming fom an eye tracker. it is written in c++ using the JUCE library for midi and GUI creation.\hypertarget{md_README_autotoc_md1}{}\doxysection{Building}\label{md_README_autotoc_md1}
-use CMake, pretty much the \href{https://github.com/juce-framework/JUCE}{\texttt{ JUCE}} base examples 
+Djeye-\/controller is a MIDI controller which interface is thought to be easy to use through input coming from an eye tracker. It is written in c++ using the \href{https://github.com/juce-framework/JUCE}{\texttt{ JUCE}} library. To use the eye-\/tracker see \href{https://gitlab.com/djeyes/tobii-eye-interface}{\texttt{ Tobii-\/eye-\/interface}}.  \hypertarget{md_README_autotoc_md1}{}\doxysection{Building}\label{md_README_autotoc_md1}
+Use CMake, pretty much the \href{https://github.com/juce-framework/JUCE/tree/master/examples/CMake}{\texttt{ JUCE}} base examples.\hypertarget{md_README_autotoc_md2}{}\doxysection{Monitoring MIDI messages from terminal emulator}\label{md_README_autotoc_md2}
+Show port list\+: $\sim${\ttfamily aconnect -\/iol}
+
+Dump port messages $\sim${\ttfamily aseqdump -\/p $<$\#port$>$}\hypertarget{md_README_autotoc_md3}{}\doxysection{MIXXX setup}\label{md_README_autotoc_md3}
+Install mixxx from \href{https://flathub.org/apps/details/org.mixxx.Mixxx}{\texttt{ flathub}}.\hypertarget{md_README_autotoc_md4}{}\doxysubsection{MIDI mappings}\label{md_README_autotoc_md4}
+Copy the provided mapping ({\ttfamily Mappings/djeye.\+midi.\+xml}) and script ({\ttfamily Mappings/djeye-\/scripts.\+js}) in this location\+: {\ttfamily /home/.var/app/org.\+mixxx.\+Mixxx/.mixxx/controllers/}\hypertarget{md_README_autotoc_md5}{}\doxysubsection{Preferences}\label{md_README_autotoc_md5}
+0. Launch djeye-\/controller. 0. Open MIXXX preferences ({\ttfamily ctrl+p}) a. Go to Controllers, select \char`\"{}\+DJEYE\char`\"{} and select from the \char`\"{}\+Load Mapping\char`\"{} dropdown the \char`\"{}djeye\char`\"{} mapping, shoud be first on the list. b. Go to Library and set library row height to 70px.
+
+0. Activate \href{https://manual.mixxx.org/2.0/en/chapters/djing_with_mixxx.html\#master-sync}{\texttt{ master sync}} on both decks, holding down the sync button. (this implies you should play tracks which are similar BPM) 0. enable fullscreen ({\ttfamily F11}). 0. Enable \char`\"{}big library\char`\"{} from the button on the top-\/left. 0. Put djeye-\/controller and MIXXX in the same desktop, so that MIXXX is \char`\"{}under\char`\"{} the controller. 

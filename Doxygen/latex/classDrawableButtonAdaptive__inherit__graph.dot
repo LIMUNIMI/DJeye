@@ -6,5 +6,5 @@ digraph "DrawableButtonAdaptive"
   node [fontname="Helvetica",fontsize="10",shape=record];
   Node1 [label="{DrawableButtonAdaptive\n||+ DrawableButtonAdaptive()\l+ ~DrawableButtonAdaptive()\l+ hitTest()\l+ resized()\l+ getHitBox()\l+ setHitBox()\l+ setHitBox()\l+ getAccuracyPaddingRatio()\l+ setAccuracyPaddingRatio()\l# updateHitBoxBounds()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
   Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",arrowtail="onormal"];
-  Node2 [label="{DrawableButton\n||}",height=0.2,width=0.4,color="black",URL="$classDrawableButton.html",tooltip=" "];
+  Node2 [label="{juce::DrawableButton\n||}",height=0.2,width=0.4,color="grey75",tooltip=" "];
 }
