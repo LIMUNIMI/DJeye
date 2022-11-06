@@ -33,6 +33,10 @@ Copy the provided mapping (`Mappings/djeye.midi.xml`) and script (`Mappings/djey
 0. Enable "big library" from the button on the top-left.
 0. Put djeye-controller and MIXXX in the same desktop, so that MIXXX is "under" the controller.
 
+# TODO
+- [ ] Finish mapping for the left deck
+- [ ] Implement playlist controls instead of library controls, to avoid atefacts in the browser code.
+
 # Architecture
 The configuration of the controller is quite easy to modify, just chenge the initializer list's parameters.
 ![uml diagram](./Media/uml_djeye_controller.svg)
