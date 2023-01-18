@@ -20,7 +20,7 @@ Install mixxx from [flathub](https://flathub.org/apps/details/org.mixxx.Mixxx).
 
 ### MIDI mappings
 Copy the provided mapping (`Mappings/djeye.midi.xml`) and script (`Mappings/djeye-scripts.js`) in this location:
-`/home/.var/app/org.mixxx.Mixxx/.mixxx/controllers/`
+`~home/.var/app/org.mixxx.Mixxx/.mixxx/controllers/`
 
 ### Preferences
 0. Launch djeye-controller.
@@ -34,7 +34,6 @@ Copy the provided mapping (`Mappings/djeye.midi.xml`) and script (`Mappings/djey
 0. Put djeye-controller and MIXXX in the same desktop, so that MIXXX is "under" the controller.
 
 # TODO
-- [ ] Finish mapping for the left deck
 - [ ] Implement playlist controls instead of library controls, to avoid atefacts in the browser code.
 
 # Architecture
