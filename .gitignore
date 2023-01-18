@@ -1,4 +1,4 @@
 /build*
-/CMakeLists.txt.*
-/.buildconfig
-/uml.qmodel
+CMakeLists.txt.*
+.buildconfig
+uml.qmodel
