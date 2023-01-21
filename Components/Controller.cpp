@@ -5,7 +5,8 @@ Controller::Controller():
     deckSx{*new std::vector<ConfigurableContainer::ComponentType> {
            ConfigurableContainer::Play,
            ConfigurableContainer::Seek,
-           ConfigurableContainer::Cue,
+           //ConfigurableContainer::Cue,
+           ConfigurableContainer::HeadphoneOut,
            ConfigurableContainer::HPLPFilter,
            ConfigurableContainer::Volume,
            ConfigurableContainer::Loop}},
@@ -13,7 +14,8 @@ Controller::Controller():
     deckDx{*new std::vector<ConfigurableContainer::ComponentType> {
            ConfigurableContainer::Play,
            ConfigurableContainer::Seek,
-           ConfigurableContainer::Cue,
+           //ConfigurableContainer::Cue,
+           ConfigurableContainer::HeadphoneOut,
            ConfigurableContainer::HPLPFilter,
            ConfigurableContainer::Volume,
            ConfigurableContainer::Loop}},
@@ -64,10 +66,10 @@ Controller::Controller():
         deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::Seek, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 2, (juce::uint8) 127)); });
 
-        deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Cue, [&,ch](const int value){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 21, value)); });
-        deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::Cue, [&,ch]{
-            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 3, (juce::uint8) 127)); });
+//        deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Cue, [&,ch](const int value){
+//            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 21, value)); });
+//        deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::Cue, [&,ch]{
+//            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 3, (juce::uint8) 127)); });
 
         deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::HPLPFilter, [&,ch](const int value){
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 22, value)); });
@@ -83,8 +85,11 @@ Controller::Controller():
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 24, value)); });
         deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::Loop, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127));
-            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 6, (juce::uint8) 127));
-        });
+            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 6, (juce::uint8) 127)); });
+
+        deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::HeadphoneOut, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 7, (juce::uint8) 127));
+            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 7, (juce::uint8) 127)); });
     }
 
     {// setup lambdas for deckDx
@@ -97,10 +102,10 @@ Controller::Controller():
         deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Seek, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 2, (juce::uint8) 127)); });
 
-        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Cue, [&,ch](const int value){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 21, value)); });
-        deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Cue, [&,ch]{
-            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 3, (juce::uint8) 127)); });
+//        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Cue, [&,ch](const int value){
+//            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 21, value)); });
+//        deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Cue, [&,ch]{
+//            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 3, (juce::uint8) 127)); });
 
         deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::HPLPFilter, [&,ch](const int value){
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 22, value)); });
@@ -115,7 +120,12 @@ Controller::Controller():
         deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Loop, [&,ch](const int value){
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 24, value)); });
         deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Loop, [&,ch]{
-            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127)); });
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127));
+            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 6, (juce::uint8) 127));});
+
+        deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::HeadphoneOut, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 7, (juce::uint8) 127));
+            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 7, (juce::uint8) 127));});
     }
 
     {// setup lambdas for middleStrip

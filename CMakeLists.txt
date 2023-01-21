@@ -106,6 +106,7 @@ juce_add_binary_data(GuiAppData SOURCES
     images/loadL.svg
     images/loadR.svg
     images/browserDown.svg
+    images/headphones.svg
     images/browserUp.svg)
 
 # `target_link_libraries` links libraries and JUCE modules to other libraries or executables. Here,

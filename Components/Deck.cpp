@@ -39,11 +39,11 @@ void Deck::resized()
         }break;
         case ConfigurableContainer::Crossfader:      break;
         case ConfigurableContainer::Browser:         break;
-        case ConfigurableContainer::HeadphoneOut:    break;
+        case ConfigurableContainer::HeadphoneVolume: break;
         case ConfigurableContainer::Sync:            break;
         case ConfigurableContainer::SyncMaster:      break;
         case ConfigurableContainer::MasterVolume:    break;
-        case ConfigurableContainer::HeadphoneVolume: break;
+        case ConfigurableContainer::HeadphoneOut:
         case ConfigurableContainer::Seek:
         case ConfigurableContainer::Cue:
         case ConfigurableContainer::HPLPFilter:
@@ -79,6 +79,7 @@ const bool Deck::isRadialComponent(const ComponentType componentType) const
     auto array = {ConfigurableContainer::ComponentType::Seek,
                   ConfigurableContainer::ComponentType::Cue,
                   ConfigurableContainer::ComponentType::HPLPFilter,
+                  ConfigurableContainer::ComponentType::HeadphoneOut,
                   ConfigurableContainer::ComponentType::Volume,
                   ConfigurableContainer::ComponentType::Loop};
 
