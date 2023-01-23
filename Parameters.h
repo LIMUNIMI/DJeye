@@ -11,11 +11,11 @@ constexpr float ComponentActualAccuracyPaddingRatio = COMPONENT_ACCURACY_PADDING
 #define DECK_PADDING 5.0f
 #define DECK_MARGIN 10.0f
 #define SLIDER_PADDING 2.5f //gli slider verranno disegnati rientrati di questo amount rispetto ai propri bounds
+#define DISABLED_ALPHA 0.7f
 
 /* TODOS
  *
  * PRIORITA 0:
- * TODO: finire mapping
  *  TODO: comprendere come beccarsi info da MIXXX per lo scorrimento della traccia
  * TODO: gestione browser
  *  -opz 1: minimizza il controller, mixx sarà sotto, quindi fai apparire un widget per lo scorrimento della lista
@@ -24,7 +24,6 @@ constexpr float ComponentActualAccuracyPaddingRatio = COMPONENT_ACCURACY_PADDING
  * PRIORITA 1:
  * TODO: aggiungere widget popup  + e - che all'hover con cursore (o idealmente allo strizzamneot di occhio dx(possibilmente click destro) )
  * TODO: aggiungere ctr+q e ctrl+w
- * TODO: disegna un cursore decente
  * TODO: disegna icone
 
  * REFACTORING:

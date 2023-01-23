@@ -104,6 +104,12 @@ public:
         return (MathConstants<float>::twoPi - (getComponentSeparationAngle () * getNumRadialComponents()))
                 / getNumRadialComponents(); }
 
+    /**
+     * @brief toggles component alpha from 1 o disabled and viceversa
+     * @param componentType
+     */
+    void toggleComponentAlpha(const ComponentType componentType);
+
 protected:
 
     std::map<const uint, std::unique_ptr<Component>> components;
