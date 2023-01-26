@@ -139,7 +139,7 @@ Controller::Controller():
 
             auto* browser = new BrowserWindow(midiOut);
             browser->setVisible (true);
-            browser->setBounds (getBounds ());
+            browser->setBounds (getBounds ().expanded (CONTROLLLER_RECUCTION));
             browser->addToDesktop (ComponentPeer::windowIsTemporary);
             browser->setMainWindow (getTopLevelComponent());
 

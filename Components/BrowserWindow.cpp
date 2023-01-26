@@ -8,10 +8,10 @@ BrowserWindow::BrowserWindow(std::shared_ptr<MidiOutput> midiOutput):
         ConfigurableContainer::Spacer,//non è il modo più elegante di dividere lo schermo da tutto sommato funziona bene dai
         ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
-        ConfigurableContainer::Spacer,
 //        ConfigurableContainer::Spacer,
+////        ConfigurableContainer::Spacer,
+////        ConfigurableContainer::Spacer,
 //        ConfigurableContainer::Spacer,
-        ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
         ConfigurableContainer::ScrollDown}},
