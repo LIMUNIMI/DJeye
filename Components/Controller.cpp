@@ -165,7 +165,7 @@ btn->triggerClick ();
     addAndMakeVisible (deckDx);
     addAndMakeVisible (middleStrip);
     setLookAndFeel (&laf);
-    setSize (800, 800);
+//    setSize (800, 800);
 }
 
 Controller::~Controller()
