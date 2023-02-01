@@ -2,6 +2,7 @@
 
 #include "VerticalStrip.h"
 #include "ConfigurableContainer.h"
+#include "../MyLookAndFeel.h"
 /**
  * @brief The BrowserWindow class is a simple window which displays controls to navigate the dj software browser
  */
@@ -32,6 +33,7 @@ protected:
     VerticalStrip leftStrip, middleStrip, rightStrip;
     Component* mainWindow;
     std::shared_ptr<MidiOutput> midiOut;
+    MyLookAndFeel laf;
 private:
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (BrowserWindow)
