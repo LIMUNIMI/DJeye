@@ -1,4 +1,6 @@
 /build*
 CMakeLists.txt.*
 .buildconfig
-uml.qmodel
+uml.qmodel	
+Doxygen/*
+Doxyfile
