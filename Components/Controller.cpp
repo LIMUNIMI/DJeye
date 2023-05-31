@@ -26,6 +26,17 @@ Controller::Controller():
                 ConfigurableContainer::Crossfader,
                 ConfigurableContainer::Spacer}}
 
+/*                ConfigurableContainer::Spacer,
+                  ConfigurableContainer::Crossfader,
+                  ConfigurableContainer::Spacer,
+                  ConfigurableContainer::Spacer,
+                  ConfigurableContainer::ScrollUp,
+                  ConfigurableContainer::Spacer,
+                  ConfigurableContainer::ScrollDown,
+                  ConfigurableContainer::Spacer,
+                  ConfigurableContainer::Spacer,
+                  ConfigurableContainer::Browser,
+                  ConfigurableContainer::Spacer*/
 {
 #if JUCE_LINUX || JUCE_BSD || JUCE_MAC || JUCE_IOS || DOXYGEN
     auto unique = juce::MidiOutput::createNewDevice("DJEYE");
