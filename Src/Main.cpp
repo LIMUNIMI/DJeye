@@ -1,4 +1,4 @@
-#include "MainComponent.h"
+#include "Components/MainComponent.h"
 #include <utility>
 //==============================================================================
 class GuiAppApplication  : public juce::JUCEApplication

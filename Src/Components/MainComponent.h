@@ -12,9 +12,9 @@
     your controls and content.
 */
 
-#include "Parameters.h"
-#include "Components/Controller.h"
-#include "MyLookAndFeel.h"
+#include "../Parameters.h"
+#include "Controller.h"
+#include "../MyLookAndFeel.h"
 
 //==============================================================================
 

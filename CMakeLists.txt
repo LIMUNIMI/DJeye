@@ -54,18 +54,18 @@ juce_generate_juce_header(${TargetName})
 
 target_sources(${TargetName}
     PRIVATE
-        Main.cpp
-        MainComponent.cpp
-        Parameters.h
-        MyLookAndFeel.h
-        MyLookAndFeel_loop.h
-        Components/Controller.cpp
-        Components/Deck.cpp
-        Components/ConfigurableContainer.cpp
-        Components/SliderAdaptive.cpp
-        Components/DrawableButtonAdaptive.cpp
-        Components/VerticalStrip.cpp
-        Components/BrowserWindow.cpp
+        Src/Main.cpp
+        Src/Parameters.h
+        Src/MyLookAndFeel.h
+        Src/MyLookAndFeel_loop.h
+        Src/Components/MainComponent.cpp
+        Src/Components/Controller.cpp
+        Src/Components/Deck.cpp
+        Src/Components/ConfigurableContainer.cpp
+        Src/Components/SliderAdaptive.cpp
+        Src/Components/DrawableButtonAdaptive.cpp
+        Src/Components/VerticalStrip.cpp
+        Src/Components/BrowserWindow.cpp
     )
 
 
@@ -93,26 +93,26 @@ target_compile_definitions(${TargetName}
 # Conversion to binary-data will happen when your target is built.
 
 juce_add_binary_data(GuiAppData SOURCES
-    Assets/images/menu.svg
-    Assets/images/menuHover.svg
-    Assets/images/playBtnPause.svg
-    Assets/images/playBtnPlay.svg
-    Assets/images/playBtnPauseHover.svg
-    Assets/images/playBtnPlayHover.svg
-    Assets/images/knob.svg
-    Assets/images/volume.svg
-    Assets/images/seekTrack.svg
-    Assets/images/loop.svg
-    Assets/images/cue.svg
-    Assets/images/headphones.svg
-    Assets/images/loadL.svg
-    Assets/images/loadR.svg
-    Assets/images/browserDown.svg
-    Assets/images/browserUp.svg
-    Assets/images/loadLOver.svg
-    Assets/images/loadROver.svg
-    Assets/images/browserDownOver.svg
-    Assets/images/browserUpOver.svg)
+    Assets/Images/menu.svg
+    Assets/Images/menuHover.svg
+    Assets/Images/playBtnPause.svg
+    Assets/Images/playBtnPlay.svg
+    Assets/Images/playBtnPauseHover.svg
+    Assets/Images/playBtnPlayHover.svg
+    Assets/Images/knob.svg
+    Assets/Images/volume.svg
+    Assets/Images/seekTrack.svg
+    Assets/Images/loop.svg
+    Assets/Images/cue.svg
+    Assets/Images/headphones.svg
+    Assets/Images/loadL.svg
+    Assets/Images/loadR.svg
+    Assets/Images/browserDown.svg
+    Assets/Images/browserUp.svg
+    Assets/Images/loadLOver.svg
+    Assets/Images/loadROver.svg
+    Assets/Images/browserDownOver.svg
+    Assets/Images/browserUpOver.svg)
 
 # `target_link_libraries` links libraries and JUCE modules to other libraries or executables. Here,
 # we're linking our executable target to the `juce::juce_gui_extra` module. Inter-module

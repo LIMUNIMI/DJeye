@@ -47,4 +47,4 @@ The gaze-based interaction introduces some limitations in the expressive possibi
 
 # Architecture
 The configuration of the controller is quite easy to modify, just change the initializer list's parameters.
-![UML diagram](./Media/uml_djeye_controller.svg)
+![UML diagram](./Assets/Media/uml_djeye_controller.svg)
