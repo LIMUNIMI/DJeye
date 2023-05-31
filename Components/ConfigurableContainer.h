@@ -4,6 +4,7 @@
 #include "SliderAdaptive.h"
 #include "DrawableButtonAdaptive.h"
 
+#include "../MyLookAndFeel_loop.h"
 /**
  * @brief The ConfigurableContainer class contains sliders and buttons
  */
@@ -118,6 +119,7 @@ protected:
 
 
 private:
+    MyLookAndFeelLoop laf_loop; //i know this is bad but for now it works
 
     // static constexpr auto tau = MathConstants<float>::twoPi;
     // static constexpr auto componentSeparationAngle = (tau / NUM_COMPONENTS) * SEPARATION_TO_COMPONENT_DIMENSION_RATIO;

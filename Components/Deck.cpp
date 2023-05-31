@@ -47,10 +47,14 @@ void Deck::resized()
         case ConfigurableContainer::Seek:
         case ConfigurableContainer::Cue:
         case ConfigurableContainer::HPLPFilter:
-        case ConfigurableContainer::Volume:
-        case ConfigurableContainer::Loop:{
+        case ConfigurableContainer::Volume:{
 
             comp->setBounds (componentsContainer.reduced (DECK_PADDING));
+
+        }break;
+        case ConfigurableContainer::Loop:{
+            comp->setBounds (componentsContainer.reduced (DECK_PADDING));
+            //comp->setLookAndFeel(&laf_loop);
 
         }break;
         default: break;
