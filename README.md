@@ -37,7 +37,7 @@ Copy the provided mapping (`Mappings/djeye.midi.xml`) and script (`Mappings/djey
 - [x] insert headphone preview button
 - [ ] interface controls values syncronization with MIXXX controls (eg. track position must be syncronized)
 - [ ] display track name
-- [ ] Implement playlist controls instead of library controls, to avoid atefacts in the browser code
+- [x] Implement playlist controls instead of library controls, to avoid atefacts in the browser code
 
 # Limitations
 The gaze-based interaction introduces some limitations in the expressive possibilities of the controller:

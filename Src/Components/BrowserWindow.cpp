@@ -74,22 +74,20 @@ void BrowserWindow::resized()
 
 void BrowserWindow::closeBrowser()
 {
-    auto mainWin = dynamic_cast<DocumentWindow*> (getMainWindow ());
-//    mainWin->setFullScreen (false);
-//    mainWin->setFullScreen (true);
-    mainWin->setVisible   (true);
+    mainWindow->setVisible   (true);
+    mainWindow->setFullScreen (true);
 
     removeFromDesktop ();
     DBG("closing browser");
     delete this;
 }
 
-Component *BrowserWindow::getMainWindow() const
+DocumentWindow *BrowserWindow::getMainWindow() const
 {
     return mainWindow;
 }
 
-void BrowserWindow::setMainWindow(Component *newMainWindow)
+void BrowserWindow::setMainWindow(DocumentWindow *newMainWindow)
 {
     mainWindow = newMainWindow;
 }

@@ -142,13 +142,14 @@ Controller::Controller():
     {// setup lambdas for middleStrip
         auto ch = 3;
         middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::Browser, [&,ch]{
-
-            getTopLevelComponent ()->setVisible (false);
+            auto mainWin = dynamic_cast<DocumentWindow*> (getTopLevelComponent ());
             auto* browser = new BrowserWindow(midiOut);
             browser->setVisible (true);
             browser->setBounds (getBounds ().expanded (CONTROLLLER_RECUCTION));
             browser->addToDesktop (ComponentPeer::windowIsTemporary);
-            browser->setMainWindow (getTopLevelComponent());
+            browser->setMainWindow (mainWin);
+            mainWin ->setFullScreen (false);
+            mainWin ->setVisible (false);
 
 /* metodi alternativi:
             Desktop::getInstance().setKioskModeComponent(this);

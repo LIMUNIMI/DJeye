@@ -68,11 +68,10 @@ public:
             setTitle (" ");
 #endif
             setContentOwned (new MainComponent(), true);
-            //setSize(200,200);
             setFullScreen (true);
+            setVisible (true);
             //setUsingNativeTitleBar (true);
             //centreWithSize (getWidth(), getHeight());
-            setVisible (true);
         }
 
         void closeButtonPressed() override

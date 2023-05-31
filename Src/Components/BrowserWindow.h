@@ -23,16 +23,16 @@ public:
      * @brief Returns the main window this browser will make visible when closing
      * @return
      */
-    Component *getMainWindow() const;
+    DocumentWindow *getMainWindow() const;
     /**
      * @brief Sets the main window this browser will make visible when closing
      * @param newMainWindowPointer
      */
-    void setMainWindow(Component *newMainWindowPointer);
+    void setMainWindow(DocumentWindow *newMainWindowPointer);
 
 protected:
     VerticalStrip leftStrip, middleStrip, rightStrip;
-    Component* mainWindow;
+    DocumentWindow* mainWindow;
     std::shared_ptr<MidiOutput> midiOut;
     MyLookAndFeel laf;
 private:

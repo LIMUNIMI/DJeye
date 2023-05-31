@@ -4,8 +4,7 @@
 MainComponent::MainComponent()
 {
     addAndMakeVisible(controller);
-    //setSize (600, 400);
-    //setFramesPerSecond (60); // This sets the frequency of the update calls.
+    setSize (1, 1);//just to give initial value
 }
 
 MainComponent::~MainComponent()
