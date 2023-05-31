@@ -16,7 +16,7 @@ public:
      * components will be arranged in a top->bottom manner following the order given in ComponentList
      */
     VerticalStrip(const std::vector<ConfigurableContainer::ComponentType> ComponentList);
-    ~VerticalStrip(){};
+    ~VerticalStrip(){}
 
     void resized() override;
 

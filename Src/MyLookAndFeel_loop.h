@@ -16,12 +16,12 @@ void drawRotarySlider(Graphics& g,
 
 {
     MyLookAndFeel::drawRotarySlider (g,x,y,width,height,sliderPosProportional,rotaryStartAngle,rotaryEndAngle,slider); //this sould be on the declaration
-    auto nTicks = slider.getRange ().getLength ();
-    g.setColour (juce::Colours::white);
-    auto rect = Rectangle(0,0,20,20);
-    rect.setCentre(slider.getLocalBounds ().getCentre ());
-    auto normValue = slider.getValue ()/ nTicks;
-    float angle = jmap((float)normValue, rotaryStartAngle, rotaryEndAngle);
+//    auto nTicks = slider.getRange ().getLength ();
+//    g.setColour (juce::Colours::white);
+//    auto rect = Rectangle(0,0,20,20);
+//    rect.setCentre(slider.getLocalBounds ().getCentre ());
+//    auto normValue = slider.getValue ()/ nTicks;
+//    float angle = jmap((float)normValue, rotaryStartAngle, rotaryEndAngle);
 //    rect.applyTransform(AffineTransform::rotation(angle).translated(bounds.getCentre()));
 //    g.drawText ("1/2", rect, juce::Justification::centred, true);
 

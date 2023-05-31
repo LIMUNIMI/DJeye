@@ -79,6 +79,10 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             components[type] = std::move(slider);
 
         }break;
+        case ConfigurableContainer::SyncMaster:
+        case ConfigurableContainer::Sync:
+        case ConfigurableContainer::HeadphoneVolume:
+        case ConfigurableContainer::MasterVolume:
         default:                    break;
         }
     }

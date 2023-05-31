@@ -15,7 +15,7 @@ public:
      * radialComponents will be arranged in a clockwise manner following the order given in ComponentList
      */
     Deck(const std::vector<ConfigurableContainer::ComponentType> ComponentList);
-    ~Deck(){};
+    ~Deck(){}
 
     void resized() override;
 

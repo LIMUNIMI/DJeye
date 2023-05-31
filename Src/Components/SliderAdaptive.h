@@ -10,7 +10,7 @@ class SliderAdaptive : public juce::Slider
 {
 public:
     SliderAdaptive();
-    ~SliderAdaptive(){};
+    ~SliderAdaptive(){}
 
     //TODO pensare se devo overridare entrambe o ne basta una: credo che servano entrambe
     //note: shadows the component's method
