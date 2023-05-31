@@ -1,5 +1,6 @@
 #pragma once
 #include <JuceHeader.h>
+#include "Parameters.h"
 
 class DrawableButtonAdapted : public DrawableButton
 {
@@ -25,25 +26,29 @@ public:
     void resized () override;
 
     /**
-     * @brief getBoundingBox get the path used for hit-testing
+     * @brief getHitBox get the path used for hit-testing
      */
-    Path getBoundingBox();
-
-protected:
+    Path getHitBox();
+    //NOTA i path vengono copiati in modoprofondo, quindi basta prenderli per ref
     /**
-     * @brief setBoundingBox set the new path for hit-testing
+     * @brief setHitBox set the new path for hit-testing
      */
-    void setBoundingBox (Path newBoundingBox);
+    void setHitBox (const Path& newHitBox);
+    /**
+     * @brief setHitBox set the new path for hit-testing
+     */
+    void setHitBox (const Path&& newHitBox);
+protected:
 
 private:
     //
     /**
-     * @brief boundingBox the component's path used for hit-testing
+     * @brief HitBox the component's path used for hit-testing
      * utilizzo un drawablepath invece che un path perchè è un component
      * => può essere messo come figlio del deck
      * => si muove da solo insieme la parent
      */
-    DrawablePath boundingBox;
+    DrawablePath HitBox;
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DrawableButtonAdapted)
