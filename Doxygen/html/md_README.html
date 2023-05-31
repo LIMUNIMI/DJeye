@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.9.1"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Djeye-controller: DJeye-controller</title>
+<title>Djeye-controller: Djeye-controller</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,13 +82,27 @@ $(document).ready(function(){initNavTree('md_README.html',''); initResizable(); 
 
 <div class="PageDoc"><div class="header">
   <div class="headertitle">
-<div class="title">DJeye-controller </div>  </div>
+<div class="title">Djeye-controller </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Djeye-controller is a MIDI controller which interface is thought to be easy to use with input coming fom an eye tracker. it is written in c++ using the JUCE library for midi and GUI creation.</p>
+<div class="textblock"><p>Djeye-controller is a MIDI controller which interface is thought to be easy to use through input coming from an eye tracker. It is written in c++ using the <a href="https://github.com/juce-framework/JUCE">JUCE</a> library. To use the eye-tracker see <a href="https://gitlab.com/djeyes/tobii-eye-interface">Tobii-eye-interface</a>.  <img src="./Media/djeye-demo.webm" alt="djeye-interface video" class="inline"/></p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 Building</h1>
-<p>use CMake, pretty much the <a href="https://github.com/juce-framework/JUCE">JUCE</a> base examples </p>
+<p>Use CMake, pretty much the <a href="https://github.com/juce-framework/JUCE/tree/master/examples/CMake">JUCE</a> base examples.</p>
+<h1><a class="anchor" id="autotoc_md2"></a>
+Monitoring MIDI messages from terminal emulator</h1>
+<p>Show port list: ~<code>aconnect -iol</code></p>
+<p>Dump port messages ~<code>aseqdump -p &lt;#port&gt;</code></p>
+<h1><a class="anchor" id="autotoc_md3"></a>
+MIXXX setup</h1>
+<p>Install mixxx from <a href="https://flathub.org/apps/details/org.mixxx.Mixxx">flathub</a>.</p>
+<h2><a class="anchor" id="autotoc_md4"></a>
+MIDI mappings</h2>
+<p>Copy the provided mapping (<code>Mappings/djeye.midi.xml</code>) and script (<code>Mappings/djeye-scripts.js</code>) in this location: <code>/home/.var/app/org.mixxx.Mixxx/.mixxx/controllers/</code></p>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Preferences</h2>
+<p>0. Launch djeye-controller. 0. Open MIXXX preferences (<code>ctrl+p</code>) a. Go to Controllers, select "DJEYE" and select from the "Load Mapping" dropdown the "djeye" mapping, shoud be first on the list. b. Go to Library and set library row height to 70px.</p>
+<p>0. Activate <a href="https://manual.mixxx.org/2.0/en/chapters/djing_with_mixxx.html#master-sync">master sync</a> on both decks, holding down the sync button. (this implies you should play tracks which are similar BPM) 0. enable fullscreen (<code>F11</code>). 0. Enable "big library" from the button on the top-left. 0. Put djeye-controller and MIXXX in the same desktop, so that MIXXX is "under" the controller. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

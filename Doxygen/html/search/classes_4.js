@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['maincomponent_37',['MainComponent',['../classMainComponent.html',1,'']]],
-  ['mainwindow_38',['MainWindow',['../classGuiAppApplication_1_1MainWindow.html',1,'GuiAppApplication']]],
-  ['mylookandfeel_39',['MyLookAndFeel',['../classMyLookAndFeel.html',1,'']]]
+  ['lookandfeel_5fv4_41',['LookAndFeel_V4',['../classLookAndFeel__V4.html',1,'']]]
 ];

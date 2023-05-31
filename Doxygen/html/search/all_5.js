@@ -1,7 +1,4 @@
 var searchData=
 [
-  ['maincomponent_14',['MainComponent',['../classMainComponent.html',1,'']]],
-  ['mainwindow_15',['MainWindow',['../classGuiAppApplication_1_1MainWindow.html',1,'GuiAppApplication']]],
-  ['makeslice_16',['MakeSlice',['../classSliderAdaptive.html#a35c84f1dfdbb30ad0d80cdb9432fb110',1,'SliderAdaptive']]],
-  ['mylookandfeel_17',['MyLookAndFeel',['../classMyLookAndFeel.html',1,'']]]
+  ['isradialcomponent_16',['isRadialComponent',['../classConfigurableContainer.html#ae90166feef29d65691a0adf708fff96f',1,'ConfigurableContainer::isRadialComponent()'],['../classDeck.html#a74cc9efd4dd804ea2ba0815b46334f26',1,'Deck::isRadialComponent()'],['../classVerticalStrip.html#a57a8b5ea03d01bdc949275498261cf90',1,'VerticalStrip::isRadialComponent()']]]
 ];
