@@ -12,8 +12,11 @@ Controller::Controller():
 
     deckDx{*new std::vector<ConfigurableContainer::ComponentType> {
            ConfigurableContainer::Play,
+           ConfigurableContainer::Seek,
+           ConfigurableContainer::Cue,
            ConfigurableContainer::HPLPFilter,
-           ConfigurableContainer::Volume}},
+           ConfigurableContainer::Volume,
+           ConfigurableContainer::Loop}},
 
     middleStrip{*new std::vector<ConfigurableContainer::ComponentType> {
                 ConfigurableContainer::Spacer,
