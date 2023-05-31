@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="207.37108mm"
+   height="207.37108mm"
+   viewBox="0 0 207.37108 207.37108"
    version="1.1"
    id="svg5"
    inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
@@ -25,8 +25,8 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.76367188"
-     inkscape:cx="461.58568"
-     inkscape:cy="425.57545"
+     inkscape:cx="455.03836"
+     inkscape:cy="422.95652"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
@@ -76,9 +76,10 @@
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(-2.0625305,-0.75382233)">
     <circle
-       style="fill:url(#meshgradient6228);fill-rule:evenodd;stroke-width:0.424414;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke;fill-opacity:1"
+       style="fill:url(#meshgradient6228);fill-opacity:1;fill-rule:evenodd;stroke-width:0.424414;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
        id="path63"
        cx="105.74807"
        cy="104.43936"

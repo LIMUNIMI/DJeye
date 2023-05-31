@@ -1,19 +1,18 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "shapebuttonadaptedv2.h"
-#include "ShapeButtonAdapted.h"
-#include "MyLookAndFeel.h"
+#include "../MyLookAndFeel.h"
 #include "Deck.h"
+#include "MiddleStrip.h"
 
 //==============================================================================
 /*
 */
-class hoverZoomTest  : public juce::Component
+class Controller  : public juce::Component
 {
 public:
-    hoverZoomTest();
-    ~hoverZoomTest() override;
+    Controller();
+    ~Controller() override;
 
     void paint (juce::Graphics&) override;
     void resized() override;
@@ -21,18 +20,19 @@ public:
 protected:
     void /*constexpr*/ sendMidi (const int noteNumber);
     void toggleZoom (/*const*/ Deck* deckToZoom);
-    void /*constexpr*/ manageActionOnButton(const Button* button) ;
 
 private:
-    MyLookAndFeel customTheme;
+    MyLookAndFeel laf;
 
-    //ImageButton buttonSx;
-    //ImageButton buttonDx;
     Deck deckSx;
     Deck deckDx;
     Deck* selectedDeck = &deckSx;
+
+    MiddleStrip middleStrip;
+
     std::unique_ptr<MidiOutput>  midiOut;
 
     ComponentAnimator animator;
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (hoverZoomTest)
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Controller)
 };

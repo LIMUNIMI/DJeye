@@ -1,26 +1,26 @@
 #pragma once
 #include <JuceHeader.h>
-#include "Parameters.h"
-/* A slider that hit-tests only in the pie shape of the slider's rotary parameters
+#include "../Parameters.h"
+/* A slider that hit-tests ina custom hitbox, it can be set to automatically deduce the Hitbox from its rotary parameters (pie shape)
  *
  * inoltre funziona sol con dehli bounds quadrati e non rettangolari (?)
 */
-class SliderAdapted : public Slider
+class SliderAdaptive : public Slider
 {
 public:
-    SliderAdapted();
-    ~SliderAdapted(){};
+    SliderAdaptive();
+    ~SliderAdaptive(){};
 
     //TODO pensare se devo overridare entrambe o ne basta una: credo che servano entrambe
     //note: shadows the component's method
     void setRotaryParameters (RotaryParameters p) noexcept;
 
-    //note: shadows the component's method
+    //NOTE: shadows the component's method
     void setRotaryParameters (float startAngleRadians,
                               float endAngleRadians,
                               bool stopAtEnd) noexcept;
 
-    /*NOTA:Note that for components on the desktop, this method will be ignored, because it's
+    /*NOTE:Note that for components on the desktop, this method will be ignored, because it's
      *         not always possible to implement this behaviour on all platforms.
      *         non capisco bene che voldì*/
     bool hitTest (int x, int y) override;
@@ -39,15 +39,10 @@ public:
      */
     Path getHitBox() const;
 
-    /**
-     * @brief resizeHitBoxToFitRotaryParameters update the bounding box to match the pie-shape delimited by the rotary parameters
-     */
-    void resizeHitBoxToFitRotaryParameters();
-
     //TODO: usare gli smart pointers??
     void setImage (const Drawable* image);
 
-    //NOTA i path vengono copiati in modoprofondo, quindi basta prenderli per ref
+    //NOTE i path vengono copiati in modoprofondo, quindi basta prenderli per ref
     /**
      * @brief setHitBox set the new path for hit-testing
      */
@@ -59,6 +54,17 @@ public:
     void setHitBox (const Path&& newHitBox);
 
 
+    bool getAutoFitHitBoxToRotaryParameters() const;
+
+    /**
+     * @brief setAutoFitToRotaryParameters set if the Hitbox should bound automatically to the slider's rotary parameter (pie shape)
+     */
+    void setAutoFitHitBoxToRotaryParameters(bool newAutoFitToRotaryParameters);
+
+    /**
+     * @brief resizeHitBoxToFitRotaryParameters update the hit box to match the pie-shape delimited by the rotary parameters
+     */
+    void resizeHitBoxToFitRotaryParameters();
 protected:
 
     /**
@@ -68,11 +74,25 @@ protected:
      * @param paddingTopBottom the padding to remove from the inner-most and from the outer-most part of the slide (nothe this is the reduction from each side)
      * @return path representing the slider reduced by a padding
      */
+    //TODO: forse va messa nelle utilities??
     Path MakeSlice(const Rectangle<float> &rectToFitIn,
                    const float paddingSides = 0,
                    const float paddingTopBottom = 0) const;
+
+
+    /**
+     * @brief resizeHitBoxToFitBounds update the hit box size to the bounds of this component
+     * note that AutoFitToRotaryParameters should be set to false for this to work
+     */
+    void resizeHitBoxToFitBounds();
+
+    /**
+     * @brief updateHitBoxBounds calls resizeHitBoxToFitBounds() or resizeHitBoxToFitRotaryParameters() depending on the vaue of autoFitToRotaryParameters
+     */
+    void updateHitBoxBounds();
+
 private:
-    //
+
     /**
      * @brief HitBox the component's path used for hit-testing
      * utilizzo un drawablepath invece che un path perchè è un component
@@ -81,7 +101,26 @@ private:
      */
     DrawablePath HitBox;
     std::unique_ptr<Drawable> image;
+    bool autoFitHitBoxToRotaryParameters = false;
 
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAdapted)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAdaptive)
 };
 
+/**
+ * @brief Simply a sliderAdapted with a custom snapping which snaps on the middle
+ */
+class SliderAdaptiveSnap : public SliderAdaptive
+{
+public:
+    SliderAdaptiveSnap();
+
+private:
+    /**
+     * @brief snapValue note that it snaps only when using velocitydrag, otherwise (like scrolling with mousewheel) it wouldn't move after snapping
+     */
+    double snapValue(double attemptedValue, DragMode dragMode) override;
+
+
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAdaptiveSnap)
+
+};

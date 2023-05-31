@@ -12,13 +12,13 @@
     your controls and content.
 */
 
-# include "hoverzoomtest.h"
-#include "Deck.h"
+#include "Parameters.h"
+#include "Components/Controller.h"
 
 //==============================================================================
 
 
-class MainComponent  : public juce::AnimatedAppComponent
+class MainComponent  : public juce::Component/*: public juce::AnimatedAppComponent*/
 {
 public:
     //==============================================================================
@@ -26,7 +26,7 @@ public:
     ~MainComponent() override;
 
     //==============================================================================
-    void update() override;
+    //void update() override;
 
     //==============================================================================
     void paint (juce::Graphics& g) override;
@@ -36,7 +36,6 @@ private:
     //==============================================================================
     // Your private member variables go here...
 
-    hoverZoomTest hoverzoomtestWindow;
-    Deck deck;
+    Controller controller;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };
