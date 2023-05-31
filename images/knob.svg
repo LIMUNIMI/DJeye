@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
-   sodipodi:docname="knob.svg"
+   sodipodi:docname="knob2.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -25,7 +25,7 @@
      inkscape:document-units="mm"
      showgrid="false"
      inkscape:zoom="0.76367188"
-     inkscape:cx="455.03836"
+     inkscape:cx="456.34782"
      inkscape:cy="422.95652"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
@@ -43,35 +43,6 @@
          offset="0"
          id="stop2958" />
     </linearGradient>
-    <meshgradient
-       inkscape:collect="always"
-       id="meshgradient6228"
-       gradientUnits="userSpaceOnUse"
-       x="32.43132"
-       y="31.122614">
-      <meshrow
-         id="meshrow20028">
-        <meshpatch
-           id="meshpatch20030">
-          <stop
-             path="c 6.18654,-444.824  276.975,54.6228  191.781,125.961"
-             style="stop-color:#ffffff;stop-opacity:1"
-             id="stop20032" />
-          <stop
-             path="c -82.4829,165.179  60.7304,14.9155  -183.646,156.181"
-             style="stop-color:#0003d2;stop-opacity:1"
-             id="stop20034" />
-          <stop
-             path="c -345.535,430.038  -19.8173,-99.3436  -60.3083,-139.837"
-             style="stop-color:#ffffff;stop-opacity:1"
-             id="stop20036" />
-          <stop
-             path="c -40.4903,-40.4918  -336.871,-117.417  52.1733,-142.305"
-             style="stop-color:#0003d2;stop-opacity:1"
-             id="stop20038" />
-        </meshpatch>
-      </meshrow>
-    </meshgradient>
   </defs>
   <g
      inkscape:label="Layer 1"
@@ -79,7 +50,7 @@
      id="layer1"
      transform="translate(-2.0625305,-0.75382233)">
     <circle
-       style="fill:url(#meshgradient6228);fill-opacity:1;fill-rule:evenodd;stroke-width:0.424414;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+       style="fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke-width:0.424414;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
        id="path63"
        cx="105.74807"
        cy="104.43936"

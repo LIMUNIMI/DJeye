@@ -21,7 +21,7 @@ Controller::Controller():
                 //ConfigurableContainer::Spacer,
                 ConfigurableContainer::Spacer,
                 ConfigurableContainer::Crossfader,
-                /*ConfigurableContainer::Spacer*/}}
+                ConfigurableContainer::Spacer}}
 
 {
 #if JUCE_LINUX || JUCE_BSD || JUCE_MAC || JUCE_IOS || DOXYGEN
@@ -41,31 +41,34 @@ Controller::Controller():
     {// setup lambdas for deckSx
         int ch = 1;
         //TODO: quando azz note-off?
-        deckSx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
-            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127)); });
+//        deckSx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
 
-        deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Seek, [&,ch](const int val){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, val )); });
+//            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));
+
+//        });
+
+        deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Seek, [&,ch](const int value){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, value )); });
         deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::Seek, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 2, (juce::uint8) 127)); });
 
-        deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Cue, [&,ch](const int val){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 21, val)); });
+        deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Cue, [&,ch](const int value){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 21, value)); });
         deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::Cue, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 3, (juce::uint8) 127)); });
 
-        deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::HPLPFilter, [&,ch](const int val){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 22, val)); });
+        deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::HPLPFilter, [&,ch](const int value){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 22, value)); });
         deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::HPLPFilter, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 4, (juce::uint8) 127)); });
 
-        deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Volume, [&,ch](const int val){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 23, val)); });
+        deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Volume, [&,ch](const int value){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 23, value)); });
         deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::Volume, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 5, (juce::uint8) 127)); });
 
-        deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Loop, [&,ch](const int val){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 24, val)); });
+        deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Loop, [&,ch](const int value){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 24, value)); });
         deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::Loop, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127)); });
     }
@@ -75,28 +78,28 @@ Controller::Controller():
         deckDx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127)); });
 
-        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Seek, [&,ch](const int val){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, val )); });
+        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Seek, [&,ch](const int value){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, value )); });
         deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Seek, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 2, (juce::uint8) 127)); });
 
-        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Cue, [&,ch](const int val){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 21, val)); });
+        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Cue, [&,ch](const int value){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 21, value)); });
         deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Cue, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 3, (juce::uint8) 127)); });
 
-        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::HPLPFilter, [&,ch](const int val){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 22, val)); });
+        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::HPLPFilter, [&,ch](const int value){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 22, value)); });
         deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::HPLPFilter, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 4, (juce::uint8) 127)); });
 
-        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Volume, [&,ch](const int val){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 23, val)); });
+        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Volume, [&,ch](const int value){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 23, value)); });
         deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Volume, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 5, (juce::uint8) 127)); });
 
-        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Loop, [&,ch](const int val){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 24, val)); });
+        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Loop, [&,ch](const int value){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 24, value)); });
         deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Loop, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127)); });
     }
@@ -106,8 +109,8 @@ Controller::Controller():
         deckDx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127)); });
 
-        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Seek, [&,ch](const int val){
-            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, val )); });
+        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Seek, [&,ch](const int value){
+            midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, value )); });
         deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Seek, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 2, (juce::uint8) 127)); });
     }
@@ -128,7 +131,7 @@ Controller::~Controller()
 }
 
 void Controller::paint (juce::Graphics& g) {
-    g.fillAll (Colours::aliceblue);
+    g.fillAll (Colour::fromString (laf.colourDark));
 }
 
 void Controller::resized()

@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="106.31882mm"
-   height="126.94871mm"
-   viewBox="0 0 106.31883 126.94871"
+   width="207.37108mm"
+   height="207.37108mm"
+   viewBox="0 0 207.37108 207.37108"
    version="1.1"
    id="svg5"
    inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
-   sodipodi:docname="volume.svg"
+   sodipodi:docname="knob.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,9 +24,9 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="1.1190885"
-     inkscape:cx="46.91318"
-     inkscape:cy="285.05342"
+     inkscape:zoom="0.76367188"
+     inkscape:cx="455.03836"
+     inkscape:cy="422.95652"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
@@ -35,40 +35,6 @@
      inkscape:current-layer="layer1" />
   <defs
      id="defs2">
-    <inkscape:path-effect
-       effect="fillet_chamfer"
-       id="path-effect3175"
-       is_visible="true"
-       lpeversion="1"
-       nodesatellites_param="IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1 @ IC,0,0,1,0,0,0,1"
-       unit="px"
-       method="auto"
-       mode="F"
-       radius="76"
-       chamfer_steps="1"
-       flexible="false"
-       use_knot_distance="true"
-       apply_no_radius="true"
-       apply_with_radius="true"
-       only_selected="false"
-       hide_knots="false" />
-    <inkscape:path-effect
-       effect="fillet_chamfer"
-       id="path-effect3173"
-       is_visible="true"
-       lpeversion="1"
-       nodesatellites_param="F,0,0,1,0,4.2333333,0,1 @ F,0,0,1,0,4.2333333,0,1 @ F,0,0,1,0,4.2333333,0,1 @ F,0,0,1,0,4.2333333,0,1 @ F,0,0,1,0,4.2333333,0,1"
-       unit="px"
-       method="auto"
-       mode="F"
-       radius="16"
-       chamfer_steps="1"
-       flexible="false"
-       use_knot_distance="true"
-       apply_no_radius="true"
-       apply_with_radius="true"
-       only_selected="false"
-       hide_knots="false" />
     <linearGradient
        id="linearGradient2960"
        inkscape:swatch="solid">
@@ -77,33 +43,54 @@
          offset="0"
          id="stop2958" />
     </linearGradient>
+    <meshgradient
+       inkscape:collect="always"
+       id="meshgradient6228"
+       gradientUnits="userSpaceOnUse"
+       x="32.43132"
+       y="31.122614">
+      <meshrow
+         id="meshrow20028">
+        <meshpatch
+           id="meshpatch20030">
+          <stop
+             path="c 6.18654,-444.824  276.975,54.6228  191.781,125.961"
+             style="stop-color:#ffffff;stop-opacity:1"
+             id="stop20032" />
+          <stop
+             path="c -82.4829,165.179  60.7304,14.9155  -183.646,156.181"
+             style="stop-color:#0003d2;stop-opacity:1"
+             id="stop20034" />
+          <stop
+             path="c -345.535,430.038  -19.8173,-99.3436  -60.3083,-139.837"
+             style="stop-color:#ffffff;stop-opacity:1"
+             id="stop20036" />
+          <stop
+             path="c -40.4903,-40.4918  -336.871,-117.417  52.1733,-142.305"
+             style="stop-color:#0003d2;stop-opacity:1"
+             id="stop20038" />
+        </meshpatch>
+      </meshrow>
+    </meshgradient>
   </defs>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-68.684746,-37.839873)">
-    <g
-       id="g10021"
-       style="fill:#3213ee;fill-opacity:1">
-      <rect
-         style="fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke-width:0.168089;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
-         id="rect1273"
-         width="74.126648"
-         height="82.183029"
-         x="68.684746"
-         y="61.281048"
-         ry="3.7847443"
-         rx="3.1779087" />
-      <path
-         id="path1374"
-         style="fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke-width:0.0751283;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
-         inkscape:transform-center-x="37.524737"
-         inkscape:transform-center-y="-0.67541518"
-         d="M 170.94454,37.969464 82.385139,64.131289 c -2.242213,0.662384 -3.974366,1.457585 -3.974365,1.783813 v 68.850058 a 5.5684921,5.5684921 52.756823 0 0 4.079099,5.36561 l 88.408517,24.54053 a 3.219003,3.219003 142.7628 0 0 4.07998,-3.10105 l 0.0252,-120.566806 a 3.1629112,3.1629112 36.776998 0 0 -4.059,-3.03398 z"
-         inkscape:path-effect="#path-effect3173"
-         inkscape:original-d="M 175.00442,36.770111 78.325254,65.330642 c 0.05043,0.191286 0.08552,0.385504 0.08552,0.58446 v 73.083388 l 96.566716,26.80509 z" />
-    </g>
+     transform="translate(-2.0625305,-0.75382233)">
+    <circle
+       style="fill:url(#meshgradient6228);fill-opacity:1;fill-rule:evenodd;stroke-width:0.424414;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+       id="path63"
+       cx="105.74807"
+       cy="104.43936"
+       r="103.68554" />
+    <rect
+       style="fill:#cbcbcb;fill-opacity:1;fill-rule:evenodd;stroke-width:0.146251;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+       id="rect11150"
+       width="6.719471"
+       height="51.416458"
+       x="102.38834"
+       y="0.75382233" />
   </g>
   <script
      id="mesh_polyfill"

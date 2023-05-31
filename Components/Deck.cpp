@@ -72,7 +72,7 @@ void Deck::resized()
 
 void Deck::paint(Graphics & g)
 {
-    g.fillAll (Colours::blueviolet.withAlpha (0.2f));
+    //g.fillAll (Colours::white.withAlpha (0.1f));
 }
 
 const bool Deck::isRadialComponent(const ComponentType componentType) const

@@ -12,9 +12,9 @@ void VerticalStrip::resized()
     //crossfader.setBounds    (area.removeFromBottom (getHeight()*0.4).reduced (getWidth()*0.05,getHeight()*0.1));
     //browserButton.setBounds (area.removeFromTop    (getHeight()*0.4).reduced (getWidth()*0.05,getHeight()*0.1));
 
-    auto numComponents = getNumComponents () + getNumSpacers ();
+    auto numComponents = getNumComponents () + getNumSpacers () - 1;//1 è quello che sta nei components
 
-    if(numComponents){
+    if(numComponents > 0){
         auto remainingBounds = getLocalBounds ();
         int singleComponentHeight = remainingBounds.getHeight () / (int) numComponents;
 
@@ -31,7 +31,7 @@ void VerticalStrip::resized()
 
 void VerticalStrip::paint(Graphics &g)
 {
-    g.fillAll (Colours::aliceblue);
+    //g.fillAll (Colours::aliceblue);
 }
 
 const bool VerticalStrip::isRadialComponent(const ComponentType /*componentType*/) const
