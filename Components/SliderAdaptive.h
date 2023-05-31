@@ -72,6 +72,12 @@ public:
     float getAccuracyPaddingRatio() const;
     void setAccuracyPaddingRatio(float newAccuracyPaddingRatio);
 
+
+    void mouseWheelMove (const MouseEvent& e, const MouseWheelDetails& wheel) override;
+
+    int getNumWheelTicksIgnored() const;
+    void setNumWheelTicksIgnored(int newNumWheelTicksIgnored);
+
 protected:
 
     /**
@@ -116,6 +122,9 @@ private:
     bool snapToMiddleValue = false;
 
     float accuracyPaddingRatio = 0;// so che questa proprietà c'è anche in drawablebuttonadaptive ma mi sembrava esagerato fare una calsse padre splo per questo parametro. boh forse serve un'interfaccia? TODO: pensa a sta roba
+
+    int numWheelTicksIgnored   = 0;
+    int wheelTickCounter        = 0;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAdaptive)
 };

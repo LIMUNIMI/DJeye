@@ -178,6 +178,17 @@ double SliderAdaptive::snapValue(double attemptedValue, DragMode dragMode)
     }else return attemptedValue;
 }
 
+int SliderAdaptive::getNumWheelTicksIgnored() const
+{
+    return numWheelTicksIgnored;
+}
+
+void SliderAdaptive::setNumWheelTicksIgnored(int newNumWheelTicksIgnored)
+{
+    jassert(newNumWheelTicksIgnored >= 0);
+    numWheelTicksIgnored = newNumWheelTicksIgnored;
+}
+
 float SliderAdaptive::getAccuracyPaddingRatio() const
 {
     return accuracyPaddingRatio;
@@ -187,6 +198,14 @@ void SliderAdaptive::setAccuracyPaddingRatio(float newAccuracyPaddingRatio)
 {
     accuracyPaddingRatio = newAccuracyPaddingRatio;
     updateHitBoxBounds();
+}
+
+void SliderAdaptive::mouseWheelMove(const MouseEvent &e, const MouseWheelDetails &wheel)
+{
+    wheelTickCounter = (wheelTickCounter + 1) % (getNumWheelTicksIgnored() + 1);
+    DBG(wheelTickCounter);
+    if (wheelTickCounter == 0)
+        Slider::mouseWheelMove(e,wheel);
 }
 
 
