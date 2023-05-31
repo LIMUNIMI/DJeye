@@ -35,7 +35,7 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             Path rectHB; // hitbox for these buttons is rectangular
             rectHB.addRectangle   (Rectangle<float>(0,0,1,1));
             rectBtn->setHitBox (rectHB);
-            //rectBtn.setAccuracyPaddingRatio (ComponentActualAccuracyPaggingRatio);
+//            rectBtn->setAccuracyPaddingRatio (ComponentActualAccuracyPaddingRatio);
             components[type] = std::move(rectBtn);
 
         }break;
@@ -101,28 +101,32 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
 
             DrawableButtonAdaptive *load = static_cast<DrawableButtonAdaptive*>(comp.get());
             auto image = Drawable::createFromImageData (BinaryData::loadL_svg,BinaryData::loadL_svgSize);
-            load->setImages (image.get ());
+            auto imageOver = Drawable::createFromImageData (BinaryData::loadLOver_svg,BinaryData::loadLOver_svgSize);
+            load->setImages (image.get (),imageOver.get ());
 
         } break;
         case LoadRight: {
 
             DrawableButtonAdaptive *load = static_cast<DrawableButtonAdaptive*>(comp.get());
             auto image = Drawable::createFromImageData (BinaryData::loadR_svg,BinaryData::loadR_svgSize);
-            load->setImages (image.get ());
+            auto imageOver = Drawable::createFromImageData (BinaryData::loadROver_svg,BinaryData::loadROver_svgSize);
+            load->setImages (image.get (),imageOver.get ());
 
         } break;
         case ScrollDown: {
 
             DrawableButtonAdaptive *scroll = static_cast<DrawableButtonAdaptive*>(comp.get());
             auto image = Drawable::createFromImageData (BinaryData::browserDown_svg,BinaryData::browserDown_svgSize);
-            scroll->setImages (image.get ());
+            auto imageOver = Drawable::createFromImageData (BinaryData::browserDownOver_svg,BinaryData::browserDownOver_svgSize);
+            scroll->setImages (image.get (),imageOver.get ());
 
         } break;
         case ScrollUp: {
 
             DrawableButtonAdaptive *scroll = static_cast<DrawableButtonAdaptive*>(comp.get());
             auto image = Drawable::createFromImageData (BinaryData::browserUp_svg,BinaryData::browserUp_svgSize);
-            scroll->setImages (image.get ());
+            auto imageOver = Drawable::createFromImageData (BinaryData::browserUpOver_svg,BinaryData::browserUpOver_svgSize);
+            scroll->setImages (image.get (),imageOver.get ());
 
         } break;
         case ConfigurableContainer::Browser:{

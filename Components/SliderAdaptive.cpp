@@ -89,7 +89,7 @@ void SliderAdaptive::resizeHitBoxToFitBounds()
 
     auto mindim = jmin(getLocalBounds ().getHeight (),getLocalBounds ().getWidth ());
 
-    HitBox.setTransformToFit (getLocalBounds().toFloat ().reduced (mindim*accuracyPaddingRatio),juce::RectanglePlacement::centred);
+    HitBox.setTransformToFit (getLocalBounds().toFloat ().reduced (mindim*accuracyPaddingRatio),juce::RectanglePlacement::fillDestination);
 
     Path p = HitBox.getPath ();
     p.applyTransform (HitBox.getTransform ());

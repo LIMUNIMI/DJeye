@@ -7,7 +7,7 @@
    viewBox="0 0 3.6309396 15.367214"
    version="1.1"
    id="svg5"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
    sodipodi:docname="loadL.svg"
    inkscape:export-filename="playBtnPause.svg"
    inkscape:export-xdpi="96"
@@ -29,8 +29,8 @@
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:zoom="16.942048"
-     inkscape:cx="12.483733"
-     inkscape:cy="30.692865"
+     inkscape:cx="8.5290751"
+     inkscape:cy="19.714264"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
@@ -62,9 +62,9 @@
      id="layer2"
      inkscape:label="circleButton"
      style="display:inline"
-     transform="translate(2.5452375,7.2778841)">
+     transform="translate(2.5452375,7.277884)">
     <rect
-       style="fill:#3213ee;fill-rule:evenodd;stroke:none;stroke-width:0.324083;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke;fill-opacity:1"
+       style="fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.324083;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
        id="rect1152"
        width="3.6309397"
        height="15.367213"
@@ -81,5 +81,16 @@
          x="-0.83560061"
          y="1.5077995"
          id="tspan607">L</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.07136px;line-height:1.25;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa Bold';display:inline;fill:#a99bfa;fill-opacity:1;stroke:none;stroke-width:0.200881"
+       x="-0.73512489"
+       y="-1.1656315"
+       id="text555-3"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.07136px;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa Bold';text-align:center;text-anchor:middle;fill:#a99bfa;fill-opacity:1;stroke-width:0.200881"
+         x="-0.73512483"
+         y="-1.1656315"
+         id="tspan607-6">Load</tspan></text>
   </g>
 </svg>

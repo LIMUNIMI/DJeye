@@ -7,12 +7,12 @@ BrowserWindow::BrowserWindow(std::shared_ptr<MidiOutput> midiOutput):
         ConfigurableContainer::ScrollUp,
         ConfigurableContainer::Spacer,//non è il modo più elegante di dividere lo schermo da tutto sommato funziona bene dai
         ConfigurableContainer::Spacer,
-        ConfigurableContainer::Spacer,
+//        ConfigurableContainer::Spacer,
 //        ConfigurableContainer::Spacer,
 ////        ConfigurableContainer::Spacer,
 ////        ConfigurableContainer::Spacer,
 //        ConfigurableContainer::Spacer,
-        ConfigurableContainer::Spacer,
+//        ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
         ConfigurableContainer::ScrollDown}},
     rightStrip  {*new std::vector<ConfigurableContainer::ComponentType> {
@@ -55,6 +55,7 @@ BrowserWindow::BrowserWindow(std::shared_ptr<MidiOutput> midiOutput):
     addAndMakeVisible (middleStrip);
     addAndMakeVisible (rightStrip );
     DBG((hasKeyboardFocus (true) ? "lo ha" : "non lo ha"));
+    setLookAndFeel (&laf);
 }
 
 

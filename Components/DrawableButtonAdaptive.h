@@ -23,7 +23,6 @@ public:
     bool hitTest(int x, int y) override;
 
     void resized () override;
-
     /**
      * @brief getHitBox get the path used for hit-testing
      */
@@ -47,7 +46,6 @@ protected:
     * It gets automatically called when updating the hitbox, the accuracyPaddingRatio or the window is resized
     */
     void updateHitBoxBounds();
-
 
 private:
     //
