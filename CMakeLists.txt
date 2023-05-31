@@ -7,7 +7,7 @@
 # CMake's behaviour is compatible with the named version. This is a standard CMake command, so more
 # information can be found in the CMake docs.
 
-set (TargetName "DJeye_gui") # imposta nome progetto
+set (TargetName "DJeye") # imposta nome progetto
 
 cmake_minimum_required(VERSION 3.15)
 
@@ -37,7 +37,7 @@ juce_add_gui_app(${TargetName}
     # ICON_SMALL ...
     # DOCUMENT_EXTENSIONS ...           # Specify file extensions that should be associated with this app
     # COMPANY_NAME ...                  # Specify the name of the app's author
-    PRODUCT_NAME "Guarza che bello zoom!!")     # The name of the final executable, which can differ from the target name
+    PRODUCT_NAME "Faccio dei test")     # The name of the final executable, which can differ from the target name
 
 # `juce_generate_juce_header` will create a JuceHeader.h for a given target, which will be generated
 # into your build tree. This should be included with `#include <JuceHeader.h>`. The include path for
@@ -56,12 +56,17 @@ target_sources(${TargetName}
     PRIVATE
         Main.cpp
         MainComponent.cpp
-        shapebuttonadaptedv2.h
-        uml.qmodel
-        #shapebuttonadaptedv2.cpp
-        #hoverzoomtest.h
+        Parameters.h
+        Deck.cpp
+        MyLookAndFeel.h
+        SliderAdapted.cpp
+        #DrawableButtonAdapted.cpp
+        #Utils.cpp
         hoverzoomtest.cpp
-        ShapeButtonAdapted.h)
+        SliderAdaptedSnap.cpp
+        #shapebuttonadaptedv2.h
+        #ShapeButtonAdapted.h        
+    )
 
 
 
@@ -87,7 +92,13 @@ target_compile_definitions(${TargetName}
 # static library. These source files can be of any kind (wav data, images, fonts, icons etc.).
 # Conversion to binary-data will happen when your target is built.
 
-# juce_add_binary_data(GuiAppData SOURCES ...)
+juce_add_binary_data(GuiAppData SOURCES
+#images/megabottone.png
+#images/circleButton.png
+#images/radiousButton.png
+images/circleButton.svg
+images/knob.svg
+)
 
 # `target_link_libraries` links libraries and JUCE modules to other libraries or executables. Here,
 # we're linking our executable target to the `juce::juce_gui_extra` module. Inter-module
@@ -97,7 +108,7 @@ target_compile_definitions(${TargetName}
 
 target_link_libraries(${TargetName}
     PRIVATE
-        # GuiAppData            # If we'd created a binary data target, we'd link to it here
+        GuiAppData            # If we'd created a binary data target, we'd link to it here
         juce::juce_audio_utils
         juce::juce_gui_extra
     PUBLIC

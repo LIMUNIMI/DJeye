@@ -11,8 +11,10 @@
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
-# include "shapebuttonadaptedv2.h"
+
 # include "hoverzoomtest.h"
+#include "Deck.h"
+
 //==============================================================================
 
 
@@ -34,7 +36,7 @@ private:
     //==============================================================================
     // Your private member variables go here...
 
-    //ShapeButtonAdaptedv2 button;
-    hoverZoomTest window;
+    //hoverZoomTest hoverzoomtestWindow;
+    Deck deck;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainComponent)
 };

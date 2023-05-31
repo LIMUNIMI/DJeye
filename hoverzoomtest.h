@@ -3,6 +3,8 @@
 #include <JuceHeader.h>
 #include "shapebuttonadaptedv2.h"
 #include "ShapeButtonAdapted.h"
+#include "MyLookAndFeel.h"
+
 //==============================================================================
 /*
 */
@@ -17,14 +19,17 @@ public:
 
 protected:
     void sendMidi (const int noteNumber);
-    void toggleZoom (ShapeButtonAdaptedv2* buttonToZoom);
-    void manageActionOnButton(ShapeButtonAdaptedv2* button);
+    void toggleZoom (Button* buttonToZoom);
+    void manageActionOnButton(Button* button);
 
 private:
+    MyLookAndFeel customTheme;
 
-    ShapeButtonAdaptedv2 buttonSx;
-    ShapeButtonAdaptedv2 buttonDx;
-    ShapeButtonAdaptedv2* selectedButton;
+    //ImageButton buttonSx;
+    //ImageButton buttonDx;
+    DrawableButton buttonSx;
+    DrawableButton buttonDx;
+    Button* selectedButton;
     std::unique_ptr<MidiOutput>  midiOut;
     ComponentAnimator animator;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (hoverZoomTest)
