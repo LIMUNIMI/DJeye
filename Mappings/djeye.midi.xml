@@ -39,8 +39,8 @@
                 </options>
             </control>
             <control>
-                <group>[Library]</group>
-                <key>MoveUp</key>
+                <group>[Playlist]</group>
+                <key>SelectPrevTrack</key>
                 <description>Move library selection up</description>
                 <status>0x92</status>
                 <midino>0x01</midino>
@@ -49,8 +49,8 @@
                 </options>
             </control>
             <control>
-                <group>[Library]</group>
-                <key>MoveDown</key>
+                <group>[Playlist]</group>
+                <key>SelectNextTrack</key>
                 <description>Move library selection down</description>
                 <status>0x92</status>
                 <midino>0x02</midino>

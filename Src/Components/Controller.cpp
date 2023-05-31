@@ -158,7 +158,7 @@ Controller::Controller():
             btn->triggerClick ();
 */
 
-            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 100, (juce::uint8) 127));
+            //midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 100, (juce::uint8) 127));
         });
 
         middleStrip.setComponentOnValueChange (ConfigurableContainer::ComponentType::Crossfader, [&,ch](const int value){

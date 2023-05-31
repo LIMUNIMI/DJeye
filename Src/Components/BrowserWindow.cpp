@@ -34,15 +34,15 @@ BrowserWindow::BrowserWindow(std::shared_ptr<MidiOutput> midiOutput):
             });
 
             middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollUp, [&,ch]{
-                setVisible   (false);
+                //setVisible   (false);
                 midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));
-                setVisible   (true);
+                //setVisible   (true);
             });
 
             middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollDown, [&,ch]{
-                setVisible   (false);
+                //setVisible   (false);
                 midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 2, (juce::uint8) 127));
-                setVisible   (true);
+                //setVisible   (true);
             });
 
             rightStrip.setComponentOnClick (ConfigurableContainer::ComponentType::LoadRight, [&,ch]{
@@ -80,8 +80,8 @@ void BrowserWindow::closeBrowser()
     mainWin->setVisible   (true);
 
     removeFromDesktop ();
-    delete this;
     DBG("closing browser");
+    delete this;
 }
 
 Component *BrowserWindow::getMainWindow() const
