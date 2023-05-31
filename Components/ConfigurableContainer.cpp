@@ -26,7 +26,7 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
         case ConfigurableContainer::LoadRight:
         case ConfigurableContainer::ScrollDown:
         case ConfigurableContainer::ScrollUp:
-        case Browser:{
+        case ConfigurableContainer::Browser:{
 
             String name = "rectBtn";
             name += type;
@@ -75,6 +75,7 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             slider->setSliderStyle  (juce::Slider::RotaryVerticalDrag);
             slider->setTextBoxStyle (juce::Slider::NoTextBox, false, 0, 0);
             slider->setRange        (0.0f, 127.0f, 1.0f);
+//            slider->setLookAndFeel (&laf_loop);
             components[type] = std::move(slider);
 
         }break;
@@ -187,6 +188,8 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             auto image = Drawable::createFromImageData (BinaryData::volume_svg,BinaryData::volume_svgSize);
             volume->setImage (image.get());//std::move(shape));
 
+            volume->setDoubleClickReturnValue (true, 0.0f);
+
         }break;
         case ConfigurableContainer::Loop:{
 
@@ -195,8 +198,10 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             loop->setImage (image.get());//std::move(shape));
 
             loop->setRange(0,6,1);// da 1/8 a 8 barre
-            loop->setValue(4);
+            loop->setValue(4); //2 bars
             loop->setNumWheelTicksIgnored(3);
+
+            loop->setDoubleClickReturnValue (true, 4);
 
             loop->setAlpha (DISABLED_ALPHA); //start off
 
