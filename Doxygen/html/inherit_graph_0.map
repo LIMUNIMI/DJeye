@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classDeck.html" title="Deck contains some ConfigurableContainer::ComponentType components it arranges the radial components ..." alt="" coords="5,31,60,57"/>
+<area shape="rect" id="node2" href="$classConfigurableContainer.html" title="The ConfigurableContainer class contains sliders and buttons." alt="" coords="108,5,275,32"/>
+<area shape="rect" id="node4" href="$classController.html" title=" " alt="" coords="148,56,235,83"/>
+<area shape="rect" id="node5" href="$classMainComponent.html" title=" " alt="" coords="127,107,256,133"/>
+<area shape="rect" id="node3" href="$classVerticalStrip.html" title="The VerticalStrip class is a component container which arranges components vertically...." alt="" coords="323,5,424,32"/>
+</map>

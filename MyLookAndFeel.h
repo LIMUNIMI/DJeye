@@ -1,5 +1,6 @@
 #pragma once
 #include <JuceHeader.h>
+#include "Components/SliderAdaptive.h"
 #include "Parameters.h"
 
 
@@ -7,9 +8,10 @@ class MyLookAndFeel : public LookAndFeel_V4
 {
 public:
     //https://0to255.com/7762f4
+
     //const String accentColour    = "";
-    const String colourDark      = "ff160970"; //sfondo
     //const String colourDark      = "ff324399"; //sfondo
+    const String colourDark      = "ff160970"; //sfondo
     const String colourLessDark  = "ff3213ee"; //icone slider
     const String colourLessLight = "ff7762f4"; //riempimento slider
     const String colourLight     = "ffbcb1fa"; //sfondo slider
@@ -25,12 +27,13 @@ public:
         setColour (Slider::rotarySliderFillColourId,    Colour::fromString (colourLessLight)); //riempimento slider
         setColour (Slider::rotarySliderOutlineColourId, Colour::fromString (colourLight));    //bordo slider
 
-//        setColour (TextButton::buttonColourId,  Colours::white);
-//        setColour (TextButton::textColourOffId, Colours::white);
-//        setColour (TextButton::buttonOnColourId, findColour (TextButton::textColourOffId));
-//        setColour (TextButton::textColourOnId,   findColour (TextButton::buttonColourId));
+        //        setColour (TextButton::buttonColourId,  Colours::white);
+        //        setColour (TextButton::textColourOffId, Colours::white);
+        //        setColour (TextButton::buttonOnColourId, findColour (TextButton::textColourOffId));
+        //        setColour (TextButton::textColourOnId,   findColour (TextButton::buttonColourId));
 
     }
+
 
     void drawRotarySlider(Graphics& g,
                           int /*x*/, int /*y*/, int width, int height,
@@ -38,31 +41,43 @@ public:
                           Slider& slider) override
     {
 
-        //TODO: sfumatura radiale
-        //TODO: bordo più spesso
+        //TODO: sfumatura radiale (?)
 
         const auto minDim = jmin(width,height);
         auto bounds = Rectangle<int> (minDim, minDim).toFloat()/*.reduced (DECK_PADDING)*/;
         bounds.setCentre(width/2,height/2);//GCC traduce da solo /2 in *0.5? boh, credo di si
 
-        // Draw outline + background
-        Path outline;
-        //const auto lineThickness = jmin (15.0f, (float) minDim * 0.45f) * 0.3f;//TODO: aggiustare magic numbers
-        const auto lineThickness = SLIDER_PADDING*2;
-        outline.addPieSegment (bounds.reduced(SLIDER_PADDING),rotaryStartAngle,rotaryEndAngle,INNER_CIRCLE_TO_SLIDER_RATIO);
+        {// Draw outline + background
+            Path p;
+            p.addPieSegment (bounds.reduced(SLIDER_PADDING),rotaryStartAngle,rotaryEndAngle,INNER_CIRCLE_TO_SLIDER_RATIO);
 
-        g.setColour (slider.findColour (Slider::rotarySliderOutlineColourId));
-        g.fillPath (outline.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));
-        //g.strokePath (outline.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING),PathStrokeType (lineThickness));//TODO: aggiustare magic numbers
+            auto colour = slider.findColour (Slider::rotarySliderOutlineColourId)
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
 
+            g.setColour (colour);
+            g.fillPath (p.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));
 
-        // Draw value pie
-        Path section;
-        const auto angle = jmap(sliderPosProportional,rotaryStartAngle,rotaryEndAngle);
-        section.addPieSegment (bounds.reduced(SLIDER_PADDING),rotaryStartAngle,angle,INNER_CIRCLE_TO_SLIDER_RATIO);
+            //const auto lineThickness = jmin (15.0f, (float) minDim * 0.45f) * 0.3f;//TODO: aggiustare magic numbers
+            //const auto lineThickness = SLIDER_PADDING*2;
+            //g.strokePath (outline.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING),PathStrokeType (lineThickness));//TODO: aggiustare magic numbers
+        }
 
-        g.setColour (slider.findColour (Slider::rotarySliderFillColourId));
-        g.fillPath (section.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));
+        {// Draw value pie
+            Path p;
+            const auto angle = jmap(sliderPosProportional,rotaryStartAngle,rotaryEndAngle);
+
+            SliderAdaptive *sliderA = dynamic_cast<SliderAdaptive*> (&slider);
+            p.addPieSegment (bounds.reduced(SLIDER_PADDING),
+                             sliderA->getSnapToMiddleValue()? angle-0.03 : rotaryStartAngle,
+                             sliderA->getSnapToMiddleValue()? angle+0.03 : angle,
+                             INNER_CIRCLE_TO_SLIDER_RATIO);
+
+            auto colour = slider.findColour (Slider::rotarySliderFillColourId)
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
+
+            g.setColour (colour);
+            g.fillPath (p.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));
+        }
     }
 
     void drawLinearSlider (Graphics& g, int x, int y, int width, int height,
@@ -70,7 +85,12 @@ public:
                            const Slider::SliderStyle style, Slider& slider) override
     {
 
-        g.fillAll (slider.findColour (Slider::backgroundColourId).withAlpha (0.1f));
+
+        auto colour = slider.findColour (Slider::backgroundColourId)
+                .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f)
+                .withAlpha (0.2f);
+
+        g.fillAll (colour);
 
         if (style == Slider::LinearHorizontal)
         {
@@ -100,7 +120,9 @@ public:
             Path indent;
             indent.addRoundedRectangle (track, 5.0f);
 
-            g.setColour (slider.findColour (Slider::trackColourId));
+            auto colour = slider.findColour (Slider::trackColourId)
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
+            g.setColour (colour);
             g.fillPath (indent);
 
         }
@@ -124,8 +146,7 @@ public:
             thumb.setCentre (sliderPos, slider.getLocalBounds ().getCentreY());
 
             auto baseColour = slider.findColour (Slider::thumbColourId)
-                    .withMultipliedSaturation (slider.isEnabled() ? 1.0f : 0.5f)
-                    .withMultipliedAlpha (0.8f);
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
             g.setColour (baseColour);
             g.fillRect (thumb);
 
@@ -133,8 +154,7 @@ public:
             thumbLine.removeFromRight (thumb.getWidth ()/3.0f);
             thumbLine.removeFromLeft (thumb.getWidth ()/3.0f);
             auto baseColourLine = Colours::whitesmoke
-                    .withMultipliedSaturation (slider.isEnabled() ? 1.0f : 0.5f)
-                    .withMultipliedAlpha (0.8f);
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
             g.setColour (baseColourLine);
             g.fillRect (thumbLine);
 
@@ -145,18 +165,18 @@ public:
         }
     }
 
-//    int getSliderThumbRadius (Slider& slider) override
-//    {
-//        return  slider.isHorizontal() ? static_cast<int> ((float) slider.getHeight() / 3)
-//                                      : static_cast<int> ((float) slider.getWidth()  / 3);
-//    }
+    //    int getSliderThumbRadius (Slider& slider) override
+    //    {
+    //        return  slider.isHorizontal() ? static_cast<int> ((float) slider.getHeight() / 3)
+    //                                      : static_cast<int> ((float) slider.getWidth()  / 3);
+    //    }
 
     //    int getNumComponents() const{
     //        return numComponents;
     //    }
 
 
-    private:
-        //int numComponents;
+private:
+    //int numComponents;
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MyLookAndFeel)
 };

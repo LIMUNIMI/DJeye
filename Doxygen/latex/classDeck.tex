@@ -1,0 +1,82 @@
+\hypertarget{classDeck}{}\doxysection{Deck Class Reference}
+\label{classDeck}\index{Deck@{Deck}}
+
+
+\mbox{\hyperlink{classDeck}{Deck}} contains some \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Configurable\+Container\+::\+Component\+Type}} components it arranges the radial components in a circle, equally spacing between them. NOTE\+: not all \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Configurable\+Container\+::\+Component\+Type}} are supported for now.  
+
+
+
+
+{\ttfamily \#include $<$Deck.\+h$>$}
+
+
+
+Inheritance diagram for Deck\+:
+% FIG 0
+
+
+Collaboration diagram for Deck\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDeck_acf9b55e7dc01d7028de7523efbd5e833}{Deck}} (const std\+::vector$<$ \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Configurable\+Container\+::\+Component\+Type}} $>$ Component\+List)
+\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classDeck}{Deck}}. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDeck_af3117f4060c2a918555b560b70c06979}\label{classDeck_af3117f4060c2a918555b560b70c06979}} 
+void \mbox{\hyperlink{classDeck_af3117f4060c2a918555b560b70c06979}{resized}} () override
+\begin{DoxyCompactList}\small\item\em use this function to decide where your container should put its components \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classDeck_a5c37cd032b06fc23307372ef4371b7e7}\label{classDeck_a5c37cd032b06fc23307372ef4371b7e7}} 
+void {\bfseries paint} (juce\+::\+Graphics \&) override
+\item 
+const bool \mbox{\hyperlink{classDeck_a74cc9efd4dd804ea2ba0815b46334f26}{is\+Radial\+Component}} (const \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Component\+Type}} component\+Type) const override
+\begin{DoxyCompactList}\small\item\em returns if the given component type is a radial component \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classDeck}{Deck}} contains some \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Configurable\+Container\+::\+Component\+Type}} components it arranges the radial components in a circle, equally spacing between them. NOTE\+: not all \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Configurable\+Container\+::\+Component\+Type}} are supported for now. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDeck_acf9b55e7dc01d7028de7523efbd5e833}\label{classDeck_acf9b55e7dc01d7028de7523efbd5e833}} 
+\index{Deck@{Deck}!Deck@{Deck}}
+\index{Deck@{Deck}!Deck@{Deck}}
+\doxysubsubsection{\texorpdfstring{Deck()}{Deck()}}
+{\footnotesize\ttfamily Deck\+::\+Deck (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Configurable\+Container\+::\+Component\+Type}} $>$}]{Component\+List }\end{DoxyParamCaption})}
+
+
+
+\mbox{\hyperlink{classDeck}{Deck}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em Component\+List} & radial\+Components will be arranged in a clockwise manner following the order given in Component\+List \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDeck_a74cc9efd4dd804ea2ba0815b46334f26}\label{classDeck_a74cc9efd4dd804ea2ba0815b46334f26}} 
+\index{Deck@{Deck}!isRadialComponent@{isRadialComponent}}
+\index{isRadialComponent@{isRadialComponent}!Deck@{Deck}}
+\doxysubsubsection{\texorpdfstring{isRadialComponent()}{isRadialComponent()}}
+{\footnotesize\ttfamily const bool Deck\+::is\+Radial\+Component (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classConfigurableContainer_a6d581c8b03c278609a4d463278a1b709}{Component\+Type}}}]{component\+Type }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+returns if the given component type is a radial component 
+
+
+\begin{DoxyParams}{Parameters}
+{\em component\+Type} & the component type to check \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{classConfigurableContainer_ae90166feef29d65691a0adf708fff96f}{Configurable\+Container}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Components/Deck.\+h\item 
+Components/Deck.\+cpp\end{DoxyCompactItemize}
