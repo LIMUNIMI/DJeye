@@ -9,7 +9,9 @@
 
 set (TargetName "djeye-controller") # imposta nome progetto
 
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.8)
+set (CXX_STANDARD 17)
+set (CMAKE_CXX_STANDARD 17)
 
 # The top-level CMakeLists.txt file for a project must contain a literal, direct call to the
 # `project()` command. `project()` sets up some helpful variables that describe source/binary
