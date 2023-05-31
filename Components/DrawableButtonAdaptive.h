@@ -5,7 +5,6 @@
 class DrawableButtonAdaptive : public DrawableButton
 {
 public:
-    //DrawableButtonAdapted();
     /** Creates a DrawableButtonAdapted.
 
         After creating one of these, use setImages() to specify the drawables to use.
@@ -29,16 +28,26 @@ public:
      * @brief getHitBox get the path used for hit-testing
      */
     Path getHitBox() const noexcept;
-    //NOTA i path vengono copiati in modoprofondo, quindi basta prenderli per ref
     /**
-     * @brief setHitBox set the new path for hit-testing
+     * @brief Set the new path for hit-testing
+     * note: paths are deep-copied
      */
     void setHitBox (const Path& newHitBox);
     /**
-     * @brief setHitBox set the new path for hit-testing
+     * @brief Set the new path for hit-testing
+     * note: paths are deep-copied
      */
     void setHitBox (const Path&& newHitBox);
+    float getAccuracyPaddingRatio() const;
+    void setAccuracyPaddingRatio(float newAccuracyPaddingRatio);
+
 protected:
+    /**
+    * @brief Updates the hitbox bounds taking into consideration the accuracyPaddingRatio.
+    * It gets automatically called when updating the hitbox, the accuracyPaddingRatio or the window is resized
+    */
+    void updateHitBoxBounds();
+
 
 private:
     //
@@ -49,6 +58,7 @@ private:
      * => si muove da solo insieme la parent
      */
     DrawablePath HitBox;
+    float accuracyPaddingRatio = 0;
 
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (DrawableButtonAdaptive)

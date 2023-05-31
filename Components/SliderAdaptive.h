@@ -65,6 +65,12 @@ public:
      * @brief resizeHitBoxToFitRotaryParameters update the hit box to match the pie-shape delimited by the rotary parameters
      */
     void resizeHitBoxToFitRotaryParameters();
+    bool getSnapToMiddleValue() const;
+    void setSnapToMiddleValue(bool newSnapsToMiddleValue);
+
+    float getAccuracyPaddingRatio() const;
+    void setAccuracyPaddingRatio(float newAccuracyPaddingRatio);
+
 protected:
 
     /**
@@ -92,6 +98,10 @@ protected:
     void updateHitBoxBounds();
 
 private:
+    /**
+     * @brief snapValue note that it snaps only when using velocitydrag, otherwise (like scrolling with mousewheel) it wouldn't move after snapping
+     */
+    double snapValue(double attemptedValue, DragMode dragMode) override;
 
     /**
      * @brief HitBox the component's path used for hit-testing
@@ -102,25 +112,10 @@ private:
     DrawablePath HitBox;
     std::unique_ptr<Drawable> image;
     bool autoFitHitBoxToRotaryParameters = false;
+    bool snapToMiddleValue = false;
+
+    float accuracyPaddingRatio = 0;// so che questa proprietà c'è anche in drawablebuttonadaptive ma mi sembrava esagerato fare una calsse padre splo per questo parametro. boh forse serve un'interfaccia? TODO: pensa a sta roba
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAdaptive)
 };
 
-/**
- * @brief Simply a sliderAdapted with a custom snapping which snaps on the middle
- */
-class SliderAdaptiveSnap : public SliderAdaptive
-{
-public:
-    SliderAdaptiveSnap();
-
-private:
-    /**
-     * @brief snapValue note that it snaps only when using velocitydrag, otherwise (like scrolling with mousewheel) it wouldn't move after snapping
-     */
-    double snapValue(double attemptedValue, DragMode dragMode) override;
-
-
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SliderAdaptiveSnap)
-
-};

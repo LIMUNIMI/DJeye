@@ -2,33 +2,31 @@
 #include <JuceHeader.h>
 #include "Parameters.h"
 
-#define PRIMARY_COLOUR juce::Colours::darkblue
-#define SECONDARY_COLOUR juce::Colours::aliceblue
 
 class MyLookAndFeel : public LookAndFeel_V4
 {
 public:
-    MyLookAndFeel() {
+    MyLookAndFeel(/*int NumComponents*/) {
 
-        auto baseColour = Colours::red;
-
-        setColour (Slider::thumbColourId,               Colour::greyLevel (0.95f));
-        setColour (Slider::textBoxOutlineColourId,      Colours::transparentWhite);
-        setColour (Slider::rotarySliderFillColourId,    baseColour);
-        setColour (Slider::rotarySliderOutlineColourId, Colours::white);
-        setColour (Slider::trackColourId,               Colours::black);
+        //numComponents = NumComponents;
+        auto accentColour = Colours::black;
+        setColour (Slider::backgroundColourId,          Colours::grey.withAlpha (0.5f));
+        setColour (Slider::thumbColourId,               Colours::black);
+        setColour (Slider::trackColourId,               Colours::grey);
+        setColour (Slider::rotarySliderFillColourId,    Colours::blue.withAlpha (0.5f));
+        setColour (Slider::rotarySliderOutlineColourId, accentColour);
 
         setColour (TextButton::buttonColourId,  Colours::white);
-        setColour (TextButton::textColourOffId, baseColour);
-
+        setColour (TextButton::textColourOffId, Colours::white);
         setColour (TextButton::buttonOnColourId, findColour (TextButton::textColourOffId));
         setColour (TextButton::textColourOnId,   findColour (TextButton::buttonColourId));
+
     }
 
     void drawRotarySlider(Graphics& g,
                           int /*x*/, int /*y*/, int width, int height,
                           float sliderPosProportional, float rotaryStartAngle, float rotaryEndAngle,
-                          Slider&) override
+                          Slider& slider) override
     {
 
         //TODO: sfumatura radiale
@@ -44,12 +42,7 @@ public:
         const auto lineThickness = SLIDER_PADDING*2;
         outline.addPieSegment (bounds.reduced(SLIDER_PADDING),rotaryStartAngle,rotaryEndAngle,INNER_CIRCLE_TO_SLIDER_RATIO);
 
-        /*outline.closeSubPath ();
-        g.setColour (Colours::red);
-        g.drawRect (bounds);
-        g.drawRect (bounds.reduced (SLIDER_MARGIN));
-*/
-        g.setColour (SECONDARY_COLOUR);
+        g.setColour (slider.findColour (Slider::rotarySliderOutlineColourId));
         g.strokePath (outline.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING),PathStrokeType (lineThickness));//TODO: aggiustare magic numbers
 
         // Draw value
@@ -57,82 +50,102 @@ public:
         const auto angle = jmap(sliderPosProportional,rotaryStartAngle,rotaryEndAngle);
         section.addPieSegment (bounds.reduced(SLIDER_PADDING),rotaryStartAngle,angle,INNER_CIRCLE_TO_SLIDER_RATIO);
 
-        g.setColour (PRIMARY_COLOUR);
+        g.setColour (slider.findColour (Slider::rotarySliderFillColourId));
         g.fillPath (section.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));
     }
 
-
     void drawLinearSlider (Graphics& g, int x, int y, int width, int height,
-                                    float sliderPos, float minSliderPos, float maxSliderPos,
-                                    const Slider::SliderStyle style, Slider& slider) override
-        {
+                           float sliderPos, float minSliderPos, float maxSliderPos,
+                           const Slider::SliderStyle style, Slider& slider) override
+    {
+
         g.fillAll (slider.findColour (Slider::backgroundColourId));
 
-                if (style == Slider::LinearBar || style == Slider::LinearBarVertical)
-                {
-                    Path p;
-
-                    if (style == Slider::LinearBarVertical)
-                        p.addRectangle ((float) x, sliderPos, (float) width, 1.0f + (float) height - sliderPos);
-                    else
-                        p.addRectangle ((float) x, (float) y, sliderPos - (float) x, (float) height);
-
-                    auto baseColour = slider.findColour (Slider::rotarySliderFillColourId)
-                                            .withMultipliedSaturation (slider.isEnabled() ? 1.0f : 0.5f)
-                                            .withMultipliedAlpha (0.8f);
-
-                    g.setColour (baseColour);
-                    g.fillPath (p);
-
-                    auto lineThickness = jmin (15.0f, (float) jmin (width, height) * 0.45f) * 0.1f;
-                    g.drawRect (slider.getLocalBounds().toFloat(), lineThickness);
-                }
-                else
-                {
-                    drawLinearSliderBackground (g, x, y, width, height, sliderPos, minSliderPos, maxSliderPos, style, slider);
-                    //drawLinearSliderThumb      (g, x, y, width, height, sliderPos, minSliderPos, maxSliderPos, style, slider);
-                }
-        }
-
-
-
-    void drawLinearSliderBackground (Graphics& g, int x, int y, int width, int height,
-                                     float /*sliderPos*/,
-                                     float /*minSliderPos*/,
-                                     float /*maxSliderPos*/,
-                                     const Slider::SliderStyle /*style*/, Slider& slider) override
-    {
-        auto sliderRadius = (float) getSliderThumbRadius (slider) - 5.0f;
-        Path on, off;
-
-        if (slider.isHorizontal())
+        if (style == Slider::LinearHorizontal)
         {
-            auto iy = (float) y + (float) height * 0.5f - sliderRadius * 0.5f;
-            Rectangle<float> r ((float) x - sliderRadius * 0.5f, iy, (float) width + sliderRadius, sliderRadius);
-            auto onW = r.getWidth() * ((float) slider.valueToProportionOfLength (slider.getValue()));
-
-            on.addRectangle (r.removeFromLeft (onW));
-            off.addRectangle (r);
+            drawLinearSliderBackground (g, x, y, width, height, sliderPos, minSliderPos, maxSliderPos, style, slider);
+            drawLinearSliderThumb      (g, x, y, width, height, sliderPos, minSliderPos, maxSliderPos, style, slider);
         }
         else
         {
-            auto ix = (float) x + (float) width * 0.5f - sliderRadius * 0.5f;
-            Rectangle<float> r (ix, (float) y - sliderRadius * 0.5f, sliderRadius, (float) height + sliderRadius);
-            auto onH = r.getHeight() * ((float) slider.valueToProportionOfLength (slider.getValue()));
-
-            on.addRectangle (r.removeFromBottom (onH));
-            off.addRectangle (r);
+            LookAndFeel_V4::drawLinearSlider (g, x, y, width, height, sliderPos, minSliderPos, maxSliderPos, style, slider);
         }
-
-        g.setColour (slider.findColour (Slider::rotarySliderFillColourId));
-        g.fillPath (on);
-
-        g.setColour (slider.findColour (Slider::trackColourId));
-        g.fillPath (off);
     }
 
+    /**
+    * @brief drawLinearSliderBackground draws the track of the lider
+    */
+    void drawLinearSliderBackground (Graphics& g, int x, int y, int width, int height,
+                                     float sliderPos,
+                                     float minSliderPos,
+                                     float maxSliderPos,
+                                     const Slider::SliderStyle style, Slider& slider) override
+    {
+        if (style == Slider::LinearHorizontal)
+        {
+            const float sliderRadius = (float) slider.getHeight() / 3;
+            auto track = Rectangle<float>(width, sliderRadius / 2);
+            track.setCentre (slider.getLocalBounds ().getCentre().toFloat ());
+            Path indent;
+            indent.addRoundedRectangle (track, 5.0f);
 
+            g.setColour (slider.findColour (Slider::trackColourId));
+            g.fillPath (indent);
 
+        }
+        else{
+            LookAndFeel_V4::drawLinearSliderBackground (g, x, y, width, height, sliderPos, minSliderPos, maxSliderPos, style, slider);
+        }
+    }
+
+    void drawLinearSliderThumb (Graphics& g, int x, int y, int width, int height,
+                                float sliderPos,
+                                float minSliderPos,
+                                float maxSliderPos,
+                                const Slider::SliderStyle style, Slider& slider) override
+    {
+
+        if (style == Slider::LinearHorizontal)
+        {
+            const float sliderRadius = (float) slider.getHeight() / 3;
+
+            auto thumb = Rectangle<float>(sliderRadius/3.0f,sliderRadius);
+            thumb.setCentre (sliderPos, slider.getLocalBounds ().getCentreY());
+
+            auto baseColour = slider.findColour (Slider::thumbColourId)
+                    .withMultipliedSaturation (slider.isEnabled() ? 1.0f : 0.5f)
+                    .withMultipliedAlpha (0.8f);
+            g.setColour (baseColour);
+            g.fillRect (thumb);
+
+            auto thumbLine = thumb;
+            thumbLine.removeFromRight (thumb.getWidth ()/3.0f);
+            thumbLine.removeFromLeft (thumb.getWidth ()/3.0f);
+            auto baseColourLine = Colours::whitesmoke
+                    .withMultipliedSaturation (slider.isEnabled() ? 1.0f : 0.5f)
+                    .withMultipliedAlpha (0.8f);
+            g.setColour (baseColourLine);
+            g.fillRect (thumbLine);
+
+        }
+        else
+        {
+            LookAndFeel_V4::drawLinearSliderThumb (g, x, y, width, height, sliderPos, minSliderPos, maxSliderPos, style, slider);
+        }
+    }
+
+//    int getSliderThumbRadius (Slider& slider) override
+//    {
+//        return  slider.isHorizontal() ? static_cast<int> ((float) slider.getHeight() / 3)
+//                                      : static_cast<int> ((float) slider.getWidth()  / 3);
+//    }
+
+    //    int getNumComponents() const{
+    //        return numComponents;
+    //    }
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MyLookAndFeel)
+
+    private:
+        //int numComponents;
 };

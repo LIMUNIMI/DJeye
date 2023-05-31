@@ -1,5 +1,4 @@
 #pragma once
-
 #include <JuceHeader.h>
 #include "../MyLookAndFeel.h"
 #include "Deck.h"
@@ -18,10 +17,10 @@ public:
     void resized() override;
 
 protected:
-    void /*constexpr*/ sendMidi (const int noteNumber);
-    void toggleZoom (/*const*/ Deck* deckToZoom);
+    void toggleZoom (Deck* deckToZoom);
 
 private:
+
     MyLookAndFeel laf;
 
     Deck deckSx;

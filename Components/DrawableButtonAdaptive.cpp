@@ -14,20 +14,8 @@ bool DrawableButtonAdaptive::hitTest(int x, int y)
 
 void DrawableButtonAdaptive::resized()
 {
-
-    /* NOTE: quando si lavora con i drawables si dovrebbe solo modificare il transform e non i bounds
-     * https://forum.juce.com/t/drawablecomposite-resets-coordinates-when-inserting-drawableimage/25851/4*/
-
     DrawableButton::resized ();
-
-    auto mindim = jmin(getLocalBounds ().getHeight (),getLocalBounds ().getWidth ());
-
-    HitBox.setTransformToFit (getLocalBounds().toFloat ().reduced (mindim*ComponentActualAccuracyPaggingRatio),juce::RectanglePlacement::centred);
-
-    Path p = HitBox.getPath ();
-    p.applyTransform (HitBox.getTransform ());
-    HitBox.setPath(p);
-
+    updateHitBoxBounds();
 }
 
 Path DrawableButtonAdaptive::getHitBox() const noexcept
@@ -43,5 +31,30 @@ void DrawableButtonAdaptive::setHitBox(const Path& newHitBox)
 void DrawableButtonAdaptive::setHitBox(const Path&& newHitBox)
 {
     HitBox.setPath (std::move(newHitBox));
+    updateHitBoxBounds();
+}
+
+float DrawableButtonAdaptive::getAccuracyPaddingRatio() const
+{
+    return accuracyPaddingRatio;
+}
+
+void DrawableButtonAdaptive::setAccuracyPaddingRatio(float newAccuracyPaddingRatio)
+{
+    accuracyPaddingRatio = newAccuracyPaddingRatio;
+    updateHitBoxBounds();
+}
+
+void DrawableButtonAdaptive::updateHitBoxBounds()
+{
+    /* NOTE: quando si lavora con i drawables si dovrebbe solo modificare il transform e non i bounds
+ * https://forum.juce.com/t/drawablecomposite-resets-coordinates-when-inserting-drawableimage/25851/4*/
+    auto mindim = jmin(getLocalBounds ().getHeight (),getLocalBounds ().getWidth ());
+
+    HitBox.setTransformToFit (getLocalBounds().toFloat ().reduced (mindim*accuracyPaddingRatio),juce::RectanglePlacement::centred);
+
+    Path p = HitBox.getPath ();
+    p.applyTransform (HitBox.getTransform ());
+    HitBox.setPath(p);
 }
 
