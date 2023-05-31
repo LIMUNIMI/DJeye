@@ -13,17 +13,15 @@ public:
     //const String colourDark      = "ff324399"; //sfondo
     const String colourDark      = "ff160970"; //sfondo
     const String colourLessDark  = "ff3213ee"; //icone slider
-    const String colourLessLight = "ff7762f4"; //riempimento slider
+    const String colourLessLight = "ff8a7bf4"; //riempimento slider
     const String colourLight     = "ffbcb1fa"; //sfondo slider
-
+    //slider sfondo non hover: a99bfa
     MyLookAndFeel(/*int NumComponents*/) {
         //numComponents = NumComponents;
 
-        DBG(Colours::white.toString ());
-        DBG(Colours::black.toString ());
         setColour (Slider::backgroundColourId,          Colour::fromString(colourLight));      //sfondo slider
-        //setColour (Slider::thumbColourId,               Colour::fromString(colourLight));
         //setColour (Slider::trackColourId,               Colour::fromString(colourLight));
+        setColour (Slider::thumbColourId,               Colour::fromString (colourLessDark));
         setColour (Slider::rotarySliderFillColourId,    Colour::fromString (colourLessLight)); //riempimento slider
         setColour (Slider::rotarySliderOutlineColourId, Colour::fromString (colourLight));    //bordo slider
         setColour (DrawableButton::backgroundColourId,  Colours::transparentWhite);
@@ -35,7 +33,11 @@ public:
     }
 
     MouseCursor getMouseCursorFor(Component& /*c*/) override{
+#if DEBUG
         return MouseCursor(MouseCursor::StandardCursorType::CrosshairCursor);
+#else
+        return MouseCursor(MouseCursor::StandardCursorType::NoCursor);
+#endif
     }
 
     void drawRotarySlider(Graphics& g,
@@ -54,8 +56,9 @@ public:
             Path p;
             p.addPieSegment (bounds.reduced(SLIDER_PADDING),rotaryStartAngle,rotaryEndAngle,INNER_CIRCLE_TO_SLIDER_RATIO);
 
-            auto colour = slider.findColour (Slider::rotarySliderOutlineColourId)
+            auto colour = slider.findColour (Slider::backgroundColourId)
                     .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
+//            DBG(colour.toString ());
 
             g.setColour (colour);
             g.fillPath (p.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));
@@ -88,13 +91,6 @@ public:
                            const Slider::SliderStyle style, Slider& slider) override
     {
 
-
-        auto colour = slider.findColour (Slider::backgroundColourId)
-                .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f)
-                .withAlpha (0.2f);
-
-        g.fillAll (colour);
-
         if (style == Slider::LinearHorizontal)
         {
             drawLinearSliderBackground (g, x, y, width, height, sliderPos, minSliderPos, maxSliderPos, style, slider);
@@ -116,17 +112,14 @@ public:
                                      const Slider::SliderStyle style, Slider& slider) override
     {
         if (style == Slider::LinearHorizontal)
-        {
-            const float sliderRadius = (float) slider.getHeight() / 3;
-            auto track = Rectangle<float>(width, sliderRadius / 2);
-            track.setCentre (slider.getLocalBounds ().getCentre().toFloat ());
-            Path indent;
-            indent.addRoundedRectangle (track, 5.0f);
-
-            auto colour = slider.findColour (Slider::trackColourId)
-                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
+        {            
+            auto colour = slider.findColour (Slider::backgroundColourId)
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
             g.setColour (colour);
-            g.fillPath (indent);
+
+            Path backGround;
+            backGround.addRoundedRectangle (slider.getLocalBounds (), COMPONENT_CORNER_ROUNDING);
+            g.fillPath(backGround);
 
         }
         else{
@@ -143,21 +136,22 @@ public:
 
         if (style == Slider::LinearHorizontal)
         {
-            const float sliderRadius = (float) slider.getHeight() / 3;
-
-            auto thumb = Rectangle<float>(sliderRadius/3.0f,sliderRadius);
+            auto thumb = Rectangle<float>(slider.getHeight()*0.2f,slider.getHeight());
             thumb.setCentre (sliderPos, slider.getLocalBounds ().getCentreY());
 
+            Path roundedThumb;
+            roundedThumb.addRoundedRectangle (thumb, COMPONENT_CORNER_ROUNDING/2);
+
             auto baseColour = slider.findColour (Slider::thumbColourId)
-                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
             g.setColour (baseColour);
-            g.fillRect (thumb);
+            g.fillPath  (roundedThumb);
 
             auto thumbLine = thumb;
             thumbLine.removeFromRight (thumb.getWidth ()/3.0f);
             thumbLine.removeFromLeft (thumb.getWidth ()/3.0f);
-            auto baseColourLine = Colours::whitesmoke
-                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
+            auto baseColourLine = slider.findColour (Slider::rotarySliderFillColourId)
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
             g.setColour (baseColourLine);
             g.fillRect (thumbLine);
 

@@ -25,10 +25,11 @@ Controller::Controller():
 
 {
 #if JUCE_LINUX || JUCE_BSD || JUCE_MAC || JUCE_IOS || DOXYGEN
-    midiOut = juce::MidiOutput::createNewDevice("DJEYE");
+    auto unique = juce::MidiOutput::createNewDevice("DJEYE");
 #else
-    midiOut = juce::MidiOutput::openDevice("DJEYE"); //TODO: da testare
+    auto unique = juce::MidiOutput::openDevice("DJEYE"); //TODO: da testare
 #endif
+    midiOut = std::move(unique);
     if (midiOut){
         //TODO: eccezione
     }
@@ -37,13 +38,12 @@ Controller::Controller():
 
     deckDx.onMouseEnter = [&] {toggleZoom (&deckDx);};
     deckSx.onMouseEnter = [&] {toggleZoom (&deckSx);};
-//DBG("ciaone");
+
     {// setup lambdas for deckSx
         int ch = 1;
         //TODO: quando azz note-off? mai heheheh
         deckSx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
-            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));
-        DBG("ciaone");});
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));});
 
         deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Seek, [&,ch](const int value){
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, value )); });
@@ -68,8 +68,11 @@ Controller::Controller():
         deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Loop, [&,ch](const int value){
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 24, value)); });
         deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::Loop, [&,ch]{
-            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127)); });
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127));
+            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 6, (juce::uint8) 127));
+        });
     }
+
     {// setup lambdas for deckDx
         auto ch = 2;
         deckDx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
@@ -100,20 +103,28 @@ Controller::Controller():
         deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Loop, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127)); });
     }
+
     {// setup lambdas for middleStrip
         auto ch = 3;
         middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::Browser, [&,ch]{
-            //Desktop::getInstance().setKioskModeComponent(this);
-            getTopLevelComponent ()->setVisible (false);
 
-            auto* browser = new BrowserWindow;
-            browser->addToDesktop (ComponentPeer::windowIsTemporary);
-            browser->setBounds (getBounds ());
+            auto* browser = new BrowserWindow(midiOut);
             browser->setVisible (true);
+            browser->setBounds (getBounds ());
+            browser->addToDesktop (ComponentPeer::windowIsTemporary);
+            browser->setMainWindow (getTopLevelComponent());
 
-            //dynamic_cast<DocumentWindow*>(getTopLevelComponent ())->setMinimised  (true); //lento ma almeno funziona
+            getTopLevelComponent ()->setVisible (false);
+/* metodi alternativi:
+Desktop::getInstance().setKioskModeComponent(this);
 
-            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127)); });
+auto win = dynamic_cast<DocumentWindow*> (getTopLevelComponent   ());
+auto btn = dynamic_cast<Button*>         (win->getMinimizeButton ());
+btn->triggerClick ();
+*/
+
+            //midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 100, (juce::uint8) 127));
+        });
 
         middleStrip.setComponentOnValueChange (ConfigurableContainer::ComponentType::Crossfader, [&,ch](const int value){
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, value )); });
@@ -124,7 +135,6 @@ Controller::Controller():
     addAndMakeVisible (deckSx);
     addAndMakeVisible (deckDx);
     addAndMakeVisible (middleStrip);
-
     setLookAndFeel (&laf);
     setSize (800, 800);
 }

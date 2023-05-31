@@ -7,8 +7,8 @@
    viewBox="0 0 207.37108 207.37108"
    version="1.1"
    id="svg5"
-   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
-   sodipodi:docname="knob2.svg"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="knob.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -24,9 +24,9 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.76367188"
-     inkscape:cx="456.34782"
-     inkscape:cy="422.95652"
+     inkscape:zoom="1.0799951"
+     inkscape:cx="402.77959"
+     inkscape:cy="494.44667"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
@@ -56,12 +56,13 @@
        cy="104.43936"
        r="103.68554" />
     <rect
-       style="fill:#cbcbcb;fill-opacity:1;fill-rule:evenodd;stroke-width:0.146251;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+       style="fill:#7762f4;fill-opacity:1;fill-rule:evenodd;stroke-width:0.206326;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
        id="rect11150"
-       width="6.719471"
-       height="51.416458"
-       x="102.38834"
-       y="0.75382233" />
+       width="9.395174"
+       height="73.189034"
+       x="101.05048"
+       y="0.75382233"
+       ry="0.95000046" />
   </g>
   <script
      id="mesh_polyfill"

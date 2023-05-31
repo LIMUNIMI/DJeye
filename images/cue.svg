@@ -2,13 +2,13 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="8mm"
-   height="8mm"
-   viewBox="0 0 8 8"
+   width="3.8097005mm"
+   height="3.8097005mm"
+   viewBox="0 0 3.8097005 3.8097005"
    version="1.1"
    id="svg5"
    inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
-   sodipodi:docname="playBtnPlay.svg"
+   sodipodi:docname="cue.svg"
    inkscape:export-filename="playBtnPause.svg"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -29,8 +29,8 @@
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:zoom="23.959674"
-     inkscape:cx="9.1194897"
-     inkscape:cy="14.023563"
+     inkscape:cx="-0.98081468"
+     inkscape:cy="3.7145747"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
      inkscape:window-x="0"
@@ -55,30 +55,15 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="circleButton"
-     style="display:inline">
-    <circle
-       style="fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke-width:1.00157;stroke-miterlimit:4;stroke-dasharray:none"
-       id="path4478-3"
-       cx="3.9999995"
-       cy="4.0000005"
-       r="4" />
-    <path
-       sodipodi:type="star"
-       style="display:inline;fill:#a99bfa;fill-opacity:1;fill-rule:evenodd;stroke-width:1.00157;stroke-miterlimit:4;stroke-dasharray:none"
-       id="path7015"
-       inkscape:flatsided="true"
-       sodipodi:sides="3"
-       sodipodi:cx="220.0576"
-       sodipodi:cy="69.904015"
-       sodipodi:r1="6.7678976"
-       sodipodi:r2="3.3839488"
-       sodipodi:arg1="0.035140146"
-       sodipodi:arg2="1.0823377"
-       inkscape:rounded="0.08"
-       inkscape:randomized="0"
-       d="m 226.82132,70.141791 c -0.0329,0.937208 -9.55633,5.998026 -10.3515,5.500888 -0.79517,-0.497137 -0.41628,-11.275034 0.41184,-11.715105 0.82812,-0.440071 9.97261,5.277008 9.93966,6.214217 z"
-       transform="matrix(0.26437779,-0.010427,0.010427,0.26437779,-54.969666,-12.153731)"
-       inkscape:transform-center-x="-0.29903497"
-       inkscape:transform-center-y="0.0096102506" />
+     style="display:inline"
+     transform="translate(-2.4837749,-2.7294204)">
+    <rect
+       style="display:inline;fill:#3213ee;fill-opacity:1;fill-rule:evenodd;stroke-width:0.0684703;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+       id="rect1198-6"
+       width="1.3042653"
+       height="1.3042653"
+       x="3.7364924"
+       y="3.9821379"
+       ry="0.1341362" />
   </g>
 </svg>

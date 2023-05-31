@@ -7,7 +7,7 @@
    viewBox="0 0 8 8"
    version="1.1"
    id="svg5"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.2 (dc2aedaf03, 2022-05-15)"
    sodipodi:docname="playBtnPlay.svg"
    inkscape:export-filename="playBtnPause.svg"
    inkscape:export-xdpi="96"
@@ -29,7 +29,7 @@
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:zoom="23.959674"
-     inkscape:cx="9.1194897"
+     inkscape:cx="8.9525425"
      inkscape:cy="14.023563"
      inkscape:window-width="1920"
      inkscape:window-height="1011"
@@ -64,7 +64,7 @@
        r="4" />
     <path
        sodipodi:type="star"
-       style="display:inline;fill:#a99bfa;fill-opacity:1;fill-rule:evenodd;stroke-width:1.00157;stroke-miterlimit:4;stroke-dasharray:none"
+       style="display:inline;fill:#7762f4;fill-opacity:1;fill-rule:evenodd;stroke-width:1.00157;stroke-miterlimit:4;stroke-dasharray:none"
        id="path7015"
        inkscape:flatsided="true"
        sodipodi:sides="3"

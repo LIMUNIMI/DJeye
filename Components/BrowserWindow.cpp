@@ -1,50 +1,60 @@
 #include "BrowserWindow.h"
 
-BrowserWindow::BrowserWindow():
+BrowserWindow::BrowserWindow(std::shared_ptr<MidiOutput> midiOutput):
     leftStrip  {*new std::vector<ConfigurableContainer::ComponentType> {
-                ConfigurableContainer::LoadLeft,}},
+        ConfigurableContainer::LoadLeft,}},
     middleStrip{*new std::vector<ConfigurableContainer::ComponentType> {
         ConfigurableContainer::ScrollUp,
         ConfigurableContainer::Spacer,//non è il modo più elegante di dividere lo schermo da tutto sommato funziona bene dai
         ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
-        ConfigurableContainer::Spacer,
-        ConfigurableContainer::Spacer,
+//        ConfigurableContainer::Spacer,
+//        ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
         ConfigurableContainer::Spacer,
         ConfigurableContainer::ScrollDown}},
-    rightStrip  {*new std::vector<ConfigurableContainer::ComponentType> {ConfigurableContainer::LoadRight}}
+    rightStrip  {*new std::vector<ConfigurableContainer::ComponentType> {
+        ConfigurableContainer::LoadRight}}
 {
-        auto ch = 3;
+        midiOut = std::move(midiOutput);
 
-        leftStrip.setComponentOnClick (ConfigurableContainer::ComponentType::LoadLeft, [&,ch]{
-            DBG("l");
-            setVisible(false);
-            getTopLevelComponent ()->setVisible (true);
-            delete this;
-        });
+        // NOTE: since unfocusAllComponents() does not give underlying DJ SW focus, in some lambdas a hack is implemented.
+        // visibility is temporarely set to false, so that no juce component is present on the screen,
+        // the underlying software gets focus and can get midi conrols which require window focus.
+        // (IN MIXX navigating the library is achieved through keyboard emulation)
 
-        middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollUp, [&,ch]{DBG("u");});
+        {//setup lambdas
+            auto ch = 3;
 
-        middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollDown, [&,ch]{DBG("d");});
+            leftStrip.setComponentOnClick (ConfigurableContainer::ComponentType::LoadLeft, [&,ch]{
+                midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 0, (juce::uint8) 127));
+                closeBrowser ();
+            });
 
-        rightStrip.setComponentOnClick (ConfigurableContainer::ComponentType::LoadRight, [&,ch]{DBG("r");});
-//           dynamic_cast<DocumentWindow*>(getTopLevelComponent ())->setMinimised  (false);
-//           setVisible (false);
-//           /*midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));*/ });
+            middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollUp, [&,ch]{
+                setVisible   (false);
+                midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));
+                setVisible   (true);
+            });
 
-//        middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollUp, [&,ch]{
-//            DBG("up");
-//            delete this;
-//            dynamic_cast<DocumentWindow*>(getTopLevelComponent ())->setMinimised  (false);
-//            setVisible (false);
-//            /*midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));*/ });
+            middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::ScrollDown, [&,ch]{
+                setVisible   (false);
+                midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 2, (juce::uint8) 127));
+                setVisible   (true);
+            });
+
+            rightStrip.setComponentOnClick (ConfigurableContainer::ComponentType::LoadRight, [&,ch]{
+                midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 3, (juce::uint8) 127));
+                closeBrowser ();
+            });
+        }
 
     addAndMakeVisible (leftStrip  );
     addAndMakeVisible (middleStrip);
     addAndMakeVisible (rightStrip );
+    DBG((hasKeyboardFocus (true) ? "lo ha" : "non lo ha"));
 }
 
 
@@ -59,3 +69,26 @@ void BrowserWindow::resized()
     rightStrip.setBounds  (area.removeFromRight (sideWidth));
     middleStrip.setBounds (area                            );
 }
+
+void BrowserWindow::closeBrowser()
+{
+    auto mainWin = dynamic_cast<DocumentWindow*> (getMainWindow ());
+    mainWin->setFullScreen (false);
+    mainWin->setFullScreen (true);
+    mainWin->setVisible   (true);
+
+    removeFromDesktop ();
+    delete this;
+    DBG("closing browser");
+}
+
+Component *BrowserWindow::getMainWindow() const
+{
+    return mainWindow;
+}
+
+void BrowserWindow::setMainWindow(Component *newMainWindow)
+{
+    mainWindow = newMainWindow;
+}
+
