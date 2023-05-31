@@ -43,7 +43,14 @@ Controller::Controller():
 #if JUCE_LINUX || JUCE_BSD || JUCE_MAC || JUCE_IOS || DOXYGEN
     auto unique = juce::MidiOutput::createNewDevice("DJEYE");
 #else
-    auto unique = juce::MidiOutput::openDevice("DJEYE"); //TODO: da testare
+    std::unique_ptr< MidiOutput > unique = nullptr;
+    auto devices = juce::MidiOutput::getAvailableDevices();
+
+    for (int i = 0; i < devices.indexOf(devices.getLast()); i++) {
+        if (devices[i].name == "DJEYE") {
+            unique = juce::MidiOutput::openDevice(devices[i].identifier);
+        }
+    }
 #endif
     midiOut = std::move(unique);
     if (midiOut){
