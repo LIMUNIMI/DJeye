@@ -87,14 +87,14 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
         addAndMakeVisible (comp.get ());
         switch(tipo){
         case ConfigurableContainer::Play:{
-            //TODO: rimane nero al cambio immagine, como mais?
+
             DrawableButtonAdaptive *button = static_cast<DrawableButtonAdaptive*>(comp.get());
             auto imageOff      = Drawable::createFromImageData (BinaryData::playBtnPlay_svg ,BinaryData::playBtnPlay_svgSize           );
             auto imageOn       = Drawable::createFromImageData (BinaryData::playBtnPause_svg,BinaryData::playBtnPause_svgSize          );
             auto imageOffHover = Drawable::createFromImageData (BinaryData::playBtnPlayHover_svg,BinaryData::playBtnPlayHover_svgSize  );
             auto imageOnHover  = Drawable::createFromImageData (BinaryData::playBtnPauseHover_svg,BinaryData::playBtnPauseHover_svgSize);
-            button->setImages (imageOn.get (),imageOnHover.get (),nullptr,nullptr,
-                               imageOff.get () ,imageOffHover.get () ,nullptr,nullptr);
+            button->setImages (imageOff.get (),imageOffHover.get (),nullptr,nullptr,
+                               imageOn.get () ,imageOnHover.get () ,nullptr,nullptr);
         }break;
         case ConfigurableContainer::Crossfader:      break;
         case LoadLeft: {
