@@ -3,7 +3,7 @@ Djeye-controller is a MIDI controller which interface is thought to be easy to u
 It is written in c++ using the [JUCE](https://github.com/juce-framework/JUCE) library.
 To use the eye-tracker see [Tobii-eye-interface](https://gitlab.com/djeyes/tobii-eye-interface).
 </br>
-![djeye-interface video](./Media/djeye-demo.webm)
+[djeye-interface-video](./Assets/Media/djeye-demo.webm)
 
 ## Building
 Use CMake, pretty much the [JUCE](https://github.com/juce-framework/JUCE/tree/master/examples/CMake) base examples.

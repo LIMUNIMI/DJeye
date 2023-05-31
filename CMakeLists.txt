@@ -93,26 +93,26 @@ target_compile_definitions(${TargetName}
 # Conversion to binary-data will happen when your target is built.
 
 juce_add_binary_data(GuiAppData SOURCES
-    images/menu.svg
-    images/menuHover.svg
-    images/playBtnPause.svg
-    images/playBtnPlay.svg
-    images/playBtnPauseHover.svg
-    images/playBtnPlayHover.svg
-    images/knob.svg
-    images/volume.svg
-    images/seekTrack.svg
-    images/loop.svg
-    images/cue.svg
-    images/headphones.svg
-    images/loadL.svg
-    images/loadR.svg
-    images/browserDown.svg
-    images/browserUp.svg
-    images/loadLOver.svg
-    images/loadROver.svg
-    images/browserDownOver.svg
-    images/browserUpOver.svg)
+    Assets/images/menu.svg
+    Assets/images/menuHover.svg
+    Assets/images/playBtnPause.svg
+    Assets/images/playBtnPlay.svg
+    Assets/images/playBtnPauseHover.svg
+    Assets/images/playBtnPlayHover.svg
+    Assets/images/knob.svg
+    Assets/images/volume.svg
+    Assets/images/seekTrack.svg
+    Assets/images/loop.svg
+    Assets/images/cue.svg
+    Assets/images/headphones.svg
+    Assets/images/loadL.svg
+    Assets/images/loadR.svg
+    Assets/images/browserDown.svg
+    Assets/images/browserUp.svg
+    Assets/images/loadLOver.svg
+    Assets/images/loadROver.svg
+    Assets/images/browserDownOver.svg
+    Assets/images/browserUpOver.svg)
 
 # `target_link_libraries` links libraries and JUCE modules to other libraries or executables. Here,
 # we're linking our executable target to the `juce::juce_gui_extra` module. Inter-module
