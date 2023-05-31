@@ -65,6 +65,7 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
         }break;
         case ConfigurableContainer::Seek:
         case ConfigurableContainer::Cue:
+        case ConfigurableContainer::HeadphoneOut:
         case ConfigurableContainer::HPLPFilter:
         case ConfigurableContainer::Volume:
         case ConfigurableContainer::Loop:{
@@ -101,6 +102,7 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             DrawableButtonAdaptive *load = static_cast<DrawableButtonAdaptive*>(comp.get());
             auto image = Drawable::createFromImageData (BinaryData::loadL_svg,BinaryData::loadL_svgSize);
             load->setImages (image.get ());
+
         } break;
         case LoadRight: {
 
@@ -131,11 +133,18 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             browser->setImages (image.get (),imageHover.get ());
 
         }break;
-        case ConfigurableContainer::HeadphoneOut:    break;
+        case ConfigurableContainer::HeadphoneVolume: break;
         case ConfigurableContainer::Sync:            break;
         case ConfigurableContainer::SyncMaster:      break;
         case ConfigurableContainer::MasterVolume:    break;
-        case ConfigurableContainer::HeadphoneVolume: break;
+        case ConfigurableContainer::HeadphoneOut: {
+
+            SliderAdaptive *hout = static_cast<SliderAdaptive*>(comp.get());
+            auto image = Drawable::createFromImageData (BinaryData::headphones_svg,BinaryData::headphones_svgSize);
+            hout->setImage (image.get());//std::move(shape));
+            hout->setEnabled (false);//this slider should only be clicked
+
+        } break;
         case ConfigurableContainer::Seek: {
 
             SliderAdaptive *seek = static_cast<SliderAdaptive*>(comp.get());

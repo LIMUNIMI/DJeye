@@ -34,7 +34,7 @@ Copy the provided mapping (`Mappings/djeye.midi.xml`) and script (`Mappings/djey
 0. Put djeye-controller and MIXXX in the same desktop, so that MIXXX is "under" the controller.
 
 # TODO (in order of priority)
-- [ ] insert cue (headphone preview) volume slider
+- [x] insert headphone preview button
 - [ ] interface controls values syncronization with MIXXX controls (eg. track position must be syncronized)
 - [ ] display track name
 - [ ] Implement playlist controls instead of library controls, to avoid atefacts in the browser code
@@ -43,6 +43,7 @@ Copy the provided mapping (`Mappings/djeye.midi.xml`) and script (`Mappings/djey
 The gaze-based interaction introduces some limitations in the expressive possibilities of the controller:
 - simultaneous controls manipulation is not possible.
 - due to the extension of graphic targets the number of controls which is possible to display simultaneously is not high.
+- headphones volume is not modifiable.
 
 # Architecture
 The configuration of the controller is quite easy to modify, just change the initializer list's parameters.
