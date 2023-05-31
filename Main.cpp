@@ -61,11 +61,14 @@ public:
         {
 #if JUCE_DEBUG
             setResizable (true, true);
+            setTitleBarHeight (10);
+            setTitle ("debug mode");
+#else
+            setTitleBarHeight (1);
+            setTitle (" ");
 #endif
             setContentOwned (new MainComponent(), true);
-            setTitleBarHeight (10);
             setFullScreen (true);
-            setTitle ("");
             //setUsingNativeTitleBar (true);
             //centreWithSize (getWidth(), getHeight());
             setVisible (true);
