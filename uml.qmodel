@@ -186,9 +186,29 @@
                       </DAssociation>
                      </instance>
                     </item>
+                    <item>
+                     <instance type="DClass">
+                      <DClass>
+                       <base-DObject>
+                        <DObject>
+                         <base-DElement>
+                          <DElement>
+                           <uid>{bd4c9c28-2775-4bd4-b196-eb13904ed15a}</uid>
+                          </DElement>
+                         </base-DElement>
+                         <object>{d749c0b3-aac5-43af-b2be-46f2680fa92f}</object>
+                         <name>CustomLookAndFeel</name>
+                         <pos>x:815;y:100</pos>
+                         <rect>x:-60;y:-30;w:120;h:60</rect>
+                         <visual-role>0</visual-role>
+                        </DObject>
+                       </base-DObject>
+                      </DClass>
+                     </instance>
+                    </item>
                    </qlist>
                   </elements>
-                  <last-modified>1652617657412</last-modified>
+                  <last-modified>1652709950500</last-modified>
                   <toolbarid>General</toolbarid>
                  </MDiagram>
                 </base-MDiagram>
@@ -475,6 +495,27 @@
                   </item>
                  </qlist>
                 </members>
+               </MClass>
+              </instance>
+             </target>
+            </handle>
+           </item>
+           <item>
+            <handle>
+             <uid>{d749c0b3-aac5-43af-b2be-46f2680fa92f}</uid>
+             <target>
+              <instance type="MClass">
+               <MClass>
+                <base-MObject>
+                 <MObject>
+                  <base-MElement>
+                   <MElement>
+                    <uid>{d749c0b3-aac5-43af-b2be-46f2680fa92f}</uid>
+                   </MElement>
+                  </base-MElement>
+                  <name>CustomLookAndFeel</name>
+                 </MObject>
+                </base-MObject>
                </MClass>
               </instance>
              </target>
