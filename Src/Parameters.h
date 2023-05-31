@@ -14,6 +14,8 @@ constexpr float ComponentActualAccuracyPaddingRatio = COMPONENT_ACCURACY_PADDING
 #define DISABLED_ALPHA 0.7f
 #define CONTROLLLER_RECUCTION 75.0f //padding da applicare completamente al controller
 
+typedef unsigned int uint; //for compatibility with MSVC
+
 /* TODOS
  *
  * PRIORITA 0:

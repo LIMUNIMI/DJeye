@@ -44,7 +44,7 @@ public:
      * @param ComponentList: the list of ConfigurableContainer::ComponentTypes the ConfigurableContainer will hold
      */
     ConfigurableContainer(const std::vector<ConfigurableContainer::ComponentType> ComponentList);
-    ~ConfigurableContainer(){}
+    ~ConfigurableContainer()  noexcept override {}
 
     void paint (juce::Graphics&) override;
 

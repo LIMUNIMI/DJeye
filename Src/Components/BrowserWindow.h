@@ -10,6 +10,7 @@ class BrowserWindow : public juce::Component
 {
 public:
     BrowserWindow(std::shared_ptr<MidiOutput>  midiOut);
+    ~BrowserWindow()  noexcept override {}
 
     void resized() override;
 
