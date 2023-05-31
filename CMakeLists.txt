@@ -60,10 +60,10 @@ target_sources(${TargetName}
         MyLookAndFeel.h
         Components/Controller.cpp
         Components/Deck.cpp
+        Components/ConfigurableContainer.cpp
         Components/SliderAdaptive.cpp
         Components/DrawableButtonAdaptive.cpp
-        Components/MiddleStrip.cpp
-        #Utils.cpp
+        Components/VerticalStrip.cpp
     )
 
 

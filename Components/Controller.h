@@ -2,7 +2,7 @@
 #include <JuceHeader.h>
 #include "../MyLookAndFeel.h"
 #include "Deck.h"
-#include "MiddleStrip.h"
+#include "VerticalStrip.h"
 
 //==============================================================================
 /*
@@ -27,7 +27,7 @@ private:
     Deck deckDx;
     Deck* selectedDeck = &deckSx;
 
-    MiddleStrip middleStrip;
+    VerticalStrip middleStrip;
 
     std::unique_ptr<MidiOutput>  midiOut;
 
