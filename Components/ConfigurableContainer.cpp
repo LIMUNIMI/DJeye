@@ -93,8 +93,8 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             auto imageOn       = Drawable::createFromImageData (BinaryData::playBtnPause_svg,BinaryData::playBtnPause_svgSize          );
             auto imageOffHover = Drawable::createFromImageData (BinaryData::playBtnPlayHover_svg,BinaryData::playBtnPlayHover_svgSize  );
             auto imageOnHover  = Drawable::createFromImageData (BinaryData::playBtnPauseHover_svg,BinaryData::playBtnPauseHover_svgSize);
-            button->setImages (imageOff.get (),imageOffHover.get (),nullptr,nullptr,
-                               imageOn.get () ,imageOnHover.get () ,nullptr,nullptr);
+            button->setImages (imageOn.get (),imageOnHover.get (),nullptr,nullptr,
+                               imageOff.get () ,imageOffHover.get () ,nullptr,nullptr);
         }break;
         case ConfigurableContainer::Crossfader:      break;
         case LoadLeft: {
@@ -143,6 +143,7 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             auto image = Drawable::createFromImageData (BinaryData::headphones_svg,BinaryData::headphones_svgSize);
             hout->setImage (image.get());//std::move(shape));
             hout->setEnabled (false);//this slider should only be clicked
+            hout->setAlpha (DISABLED_ALPHA); //start off
 
         } break;
         case ConfigurableContainer::Seek: {
@@ -193,6 +194,8 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             loop->setValue(4);
             loop->setNumWheelTicksIgnored(3);
 
+            loop->setAlpha (DISABLED_ALPHA); //start off
+
         }break;
         default: break;
         }
@@ -226,6 +229,15 @@ uint ConfigurableContainer::getNumComponents() const
 {
     return components.size ();
 }
+
+void ConfigurableContainer::toggleComponentAlpha(const ComponentType componentType)
+{
+    if (components.count (componentType)){
+        SliderAdaptive *slider = dynamic_cast<SliderAdaptive*>(components[componentType].get());
+        if(slider) slider->setAlpha(slider->getAlpha () < DISABLED_ALPHA+ 0.1f? 1.0f : DISABLED_ALPHA);
+    }
+}
+
 
 void ConfigurableContainer::setComponentOnValueChange(const ConfigurableContainer::ComponentType componentType, std::function<void (const int val)> newComponentOnValueChange)
 {

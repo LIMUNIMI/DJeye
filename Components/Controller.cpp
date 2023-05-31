@@ -85,11 +85,14 @@ Controller::Controller():
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 24, value)); });
         deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::Loop, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127));
-            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 6, (juce::uint8) 127)); });
+            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 6, (juce::uint8) 127));
+            deckSx.toggleComponentAlpha (ConfigurableContainer::ComponentType::Loop);           });
 
         deckSx.setComponentOnClick       (ConfigurableContainer::ComponentType::HeadphoneOut, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 7, (juce::uint8) 127));
-            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 7, (juce::uint8) 127)); });
+            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 7, (juce::uint8) 127));
+            deckSx.toggleComponentAlpha (ConfigurableContainer::ComponentType::HeadphoneOut);   });
+
     }
 
     {// setup lambdas for deckDx
@@ -121,11 +124,13 @@ Controller::Controller():
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 24, value)); });
         deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Loop, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127));
-            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 6, (juce::uint8) 127));});
+            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 6, (juce::uint8) 127));
+            deckDx.toggleComponentAlpha (ConfigurableContainer::ComponentType::Loop);           });
 
         deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::HeadphoneOut, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 7, (juce::uint8) 127));
-            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 7, (juce::uint8) 127));});
+            midiOut->sendMessageNow(juce::MidiMessage::noteOff         (ch, 7, (juce::uint8) 127));
+            deckDx.toggleComponentAlpha (ConfigurableContainer::ComponentType::HeadphoneOut);   });
     }
 
     {// setup lambdas for middleStrip
