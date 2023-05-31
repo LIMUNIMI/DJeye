@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="3.6309397mm"
+   height="15.367213mm"
+   viewBox="0 0 3.6309396 15.367214"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="loadLOver.svg"
+   inkscape:export-filename="playBtnPause.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#ffffff"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:zoom="16.942048"
+     inkscape:cx="8.6471246"
+     inkscape:cy="19.714264"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer2"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-midpoints="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:snap-page="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:showpageshadow="0"
+     inkscape:deskcolor="#505050">
+    <sodipodi:guide
+       position="3.6309398,15.353163"
+       orientation="0,-1"
+       id="guide337"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2" />
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="circleButton"
+     style="display:inline"
+     transform="translate(2.5452375,7.277884)">
+    <rect
+       style="fill:#6e58f3;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.324083;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+       id="rect1152"
+       width="3.6309397"
+       height="15.367213"
+       x="-2.5452375"
+       y="-7.277884" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;line-height:1.25;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa Bold';display:inline;fill:#a99bfa;fill-opacity:1;stroke:none;stroke-width:0.264583"
+       x="-0.83560061"
+       y="1.5077995"
+       id="text555"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.82222px;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa Bold';text-align:center;text-anchor:middle;fill:#a99bfa;fill-opacity:1;stroke-width:0.264583"
+         x="-0.83560061"
+         y="1.5077995"
+         id="tspan607">L</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.07136px;line-height:1.25;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa Bold';display:inline;fill:#a99bfa;fill-opacity:1;stroke:none;stroke-width:0.200881"
+       x="-0.73512489"
+       y="-1.1656315"
+       id="text555-3"><tspan
+         sodipodi:role="line"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:1.07136px;font-family:Comfortaa;-inkscape-font-specification:'Comfortaa Bold';text-align:center;text-anchor:middle;fill:#a99bfa;fill-opacity:1;stroke-width:0.200881"
+         x="-0.73512483"
+         y="-1.1656315"
+         id="tspan607-6">Load</tspan></text>
+  </g>
+</svg>
