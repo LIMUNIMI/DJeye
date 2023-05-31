@@ -12,6 +12,7 @@ constexpr float ComponentActualAccuracyPaddingRatio = COMPONENT_ACCURACY_PADDING
 #define DECK_MARGIN 10.0f
 #define SLIDER_PADDING 2.5f //gli slider verranno disegnati rientrati di questo amount rispetto ai propri bounds
 #define DISABLED_ALPHA 0.7f
+#define CONTROLLLER_RECUCTION 80.0f
 
 /* TODOS
  *

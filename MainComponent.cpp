@@ -4,11 +4,9 @@
 MainComponent::MainComponent()
 {
     addAndMakeVisible(controller);
-    setSize (600, 400);
+    //setSize (600, 400);
     //setFramesPerSecond (60); // This sets the frequency of the update calls.
-
 }
-
 
 MainComponent::~MainComponent()
 {
@@ -24,12 +22,12 @@ MainComponent::~MainComponent()
 //==============================================================================
 void MainComponent::paint (juce::Graphics& g) //chiamata dopo il resized
 {
-    g.fillAll (Colours::greenyellow);
+   g.fillAll (Colour::fromString (laf.colourDark));
 }
 
 
 void MainComponent::resized()
 {
-    controller.setBounds(getLocalBounds());
+    controller.setBounds(getLocalBounds().reduced (CONTROLLLER_RECUCTION));
     //Desktop::getInstance().setKioskModeComponent(&controller, false);
 }
