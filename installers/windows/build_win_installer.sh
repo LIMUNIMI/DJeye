@@ -13,7 +13,7 @@ $"C:\Program Files (x86)\Inno Setup 6\ISCC.exe" $script_file
 # reset version number
 sed -i "s/${app_version}/##APPVERSION##/g" $script_file
 
-exec="SimplePlugin-Win-$app_version.exe"
+exec="djeye-Win-$app_version.exe"
 direc=$PWD
 
 # sign

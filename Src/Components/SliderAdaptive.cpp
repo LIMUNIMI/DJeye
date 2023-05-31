@@ -106,7 +106,7 @@ void SliderAdaptive::setRotaryParameters(RotaryParameters p) noexcept
 {
     Slider::setRotaryParameters (p);
     updateHitBoxBounds ();
-};
+}
 
 void SliderAdaptive::setRotaryParameters(float startAngleRadians, float endAngleRadians, bool stopAtEnd) noexcept
 {
@@ -152,7 +152,7 @@ void SliderAdaptive::setHitBox(const Path&& newHitBox)
 
 Path SliderAdaptive::getHitBox() const {
     return HitBox.getPath ();
-};
+}
 
 void SliderAdaptive::setImage (const Drawable* newImage)
 {//TODO: usare i maledetti unique ptrs che non riesco a far funzionare
