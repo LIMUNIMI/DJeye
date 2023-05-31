@@ -8,11 +8,7 @@ VerticalStrip::VerticalStrip(const std::vector<ConfigurableContainer::ComponentT
 
 void VerticalStrip::resized()
 {
-    //Component::resized();
-    //crossfader.setBounds    (area.removeFromBottom (getHeight()*0.4).reduced (getWidth()*0.05,getHeight()*0.1));
-    //browserButton.setBounds (area.removeFromTop    (getHeight()*0.4).reduced (getWidth()*0.05,getHeight()*0.1));
-
-    auto numComponents = getNumComponents () + getNumSpacers () - 1;//1 è quello che sta nei components
+    auto numComponents = getNumComponents () + getNumSpacers ();//1 è quello che sta nei components
 
     if(numComponents > 0){
         auto remainingBounds = getLocalBounds ();
@@ -29,10 +25,7 @@ void VerticalStrip::resized()
     }
 }
 
-void VerticalStrip::paint(Graphics &g)
-{
-    //g.fillAll (Colours::aliceblue);
-}
+void VerticalStrip::paint(Graphics &/*g*/){}
 
 const bool VerticalStrip::isRadialComponent(const ComponentType /*componentType*/) const
 {

@@ -7,7 +7,7 @@
 # CMake's behaviour is compatible with the named version. This is a standard CMake command, so more
 # information can be found in the CMake docs.
 
-set (TargetName "Djeye") # imposta nome progetto
+set (TargetName "djeye-controller") # imposta nome progetto
 
 cmake_minimum_required(VERSION 3.15)
 
@@ -64,6 +64,7 @@ target_sources(${TargetName}
         Components/SliderAdaptive.cpp
         Components/DrawableButtonAdaptive.cpp
         Components/VerticalStrip.cpp
+        Components/BrowserWindow.cpp
     )
 
 

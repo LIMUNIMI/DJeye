@@ -1,5 +1,6 @@
 ﻿#include "Controller.h"
-
+//TODO: rendere unique pointer l'inizializzaizone: il problema è che la make unique nno trova il costruttore implicito
+//oppure renderlo simile al funzionamento del parameterlayout?
 Controller::Controller():
     deckSx{*new std::vector<ConfigurableContainer::ComponentType> {
            ConfigurableContainer::Play,
@@ -12,13 +13,12 @@ Controller::Controller():
     deckDx{*new std::vector<ConfigurableContainer::ComponentType> {
            ConfigurableContainer::Play,
            ConfigurableContainer::HPLPFilter,
-           ConfigurableContainer::Seek}},
+           ConfigurableContainer::Volume}},
 
     middleStrip{*new std::vector<ConfigurableContainer::ComponentType> {
                 ConfigurableContainer::Spacer,
                 ConfigurableContainer::Browser,
                 ConfigurableContainer::Spacer,
-                //ConfigurableContainer::Spacer,
                 ConfigurableContainer::Spacer,
                 ConfigurableContainer::Crossfader,
                 ConfigurableContainer::Spacer}}
@@ -37,15 +37,13 @@ Controller::Controller():
 
     deckDx.onMouseEnter = [&] {toggleZoom (&deckDx);};
     deckSx.onMouseEnter = [&] {toggleZoom (&deckSx);};
-
+//DBG("ciaone");
     {// setup lambdas for deckSx
         int ch = 1;
-        //TODO: quando azz note-off?
-//        deckSx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
-
-//            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));
-
-//        });
+        //TODO: quando azz note-off? mai heheheh
+        deckSx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127));
+        DBG("ciaone");});
 
         deckSx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Seek, [&,ch](const int value){
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, value )); });
@@ -74,7 +72,6 @@ Controller::Controller():
     }
     {// setup lambdas for deckDx
         auto ch = 2;
-        //TODO: quando azz note-off?
         deckDx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127)); });
 
@@ -104,22 +101,29 @@ Controller::Controller():
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 6, (juce::uint8) 127)); });
     }
     {// setup lambdas for middleStrip
-        auto ch = 2;
-        //TODO: quando azz note-off?
-        deckDx.setComponentOnClick (ConfigurableContainer::ComponentType::Play, [&,ch]{
+        auto ch = 3;
+        middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::Browser, [&,ch]{
+            //Desktop::getInstance().setKioskModeComponent(this);
+            getTopLevelComponent ()->setVisible (false);
+
+            auto* browser = new BrowserWindow;
+            browser->addToDesktop (ComponentPeer::windowIsTemporary);
+            browser->setBounds (getBounds ());
+            browser->setVisible (true);
+
+            //dynamic_cast<DocumentWindow*>(getTopLevelComponent ())->setMinimised  (true); //lento ma almeno funziona
+
             midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 1, (juce::uint8) 127)); });
 
-        deckDx.setComponentOnValueChange (ConfigurableContainer::ComponentType::Seek, [&,ch](const int value){
+        middleStrip.setComponentOnValueChange (ConfigurableContainer::ComponentType::Crossfader, [&,ch](const int value){
             midiOut->sendMessageNow(juce::MidiMessage::controllerEvent (ch, 20, value )); });
-        deckDx.setComponentOnClick       (ConfigurableContainer::ComponentType::Seek, [&,ch]{
+        middleStrip.setComponentOnClick       (ConfigurableContainer::ComponentType::Crossfader, [&,ch]{
             midiOut->sendMessageNow(juce::MidiMessage::noteOn          (ch, 2, (juce::uint8) 127)); });
     }
 
-    //NOTE: these lambda initialization are separated to guarantee the flexibility of the components which can or cannot be included in the deck
-
-    addAndMakeVisible(deckSx);
-    addAndMakeVisible(deckDx);
-    addAndMakeVisible(middleStrip);
+    addAndMakeVisible (deckSx);
+    addAndMakeVisible (deckDx);
+    addAndMakeVisible (middleStrip);
 
     setLookAndFeel (&laf);
     setSize (800, 800);
@@ -152,13 +156,13 @@ void Controller::toggleZoom(Deck* deckToZoom){
     // | s |m| d |
 
     auto area = getLocalBounds ();
-    auto deckToUnZoom = deckToZoom == &deckDx ? &deckSx : &deckDx;
-    auto boundsBig    = deckToZoom == &deckSx ? area.removeFromLeft (getWidth()*4/7)://2/3
-                                                area.removeFromRight(getWidth()*4/7);
-    auto boundsVertical = deckToZoom == &deckSx ? area.removeFromLeft (getWidth()*1/7)://2/3
+    auto deckToUnZoom   = deckToZoom == &deckDx ? &deckSx : &deckDx;
+    auto boundsBig      = deckToZoom == &deckSx ? area.removeFromLeft (getWidth()*4/7):
+                                                  area.removeFromRight(getWidth()*4/7);
+    auto boundsVertical = deckToZoom == &deckSx ? area.removeFromLeft (getWidth()*1/7):
                                                   area.removeFromRight(getWidth()*1/7);
-    auto boundsSmall  = deckToZoom == &deckSx ? area.removeFromLeft (getWidth()*3/7)://1/3
-                                                area.removeFromRight(getWidth()*3/7);
+    auto boundsSmall    = deckToZoom == &deckSx ? area.removeFromLeft (getWidth()*3/7):
+                                                  area.removeFromRight(getWidth()*3/7);
 
     boundsVertical.reduce (0,DECK_MARGIN);
 
@@ -168,9 +172,3 @@ void Controller::toggleZoom(Deck* deckToZoom){
 
 }
 
-
-/*
- * monitorare midi da terminale
- * ~aconnect -i -o -l      // visualizzare lista porte
- * ~aseqdump -p [#porta]   // dump messaggi sulla porta
-*/

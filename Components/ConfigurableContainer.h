@@ -26,6 +26,10 @@ public:
         HeadphoneVolume,// Controls the global volume in the headphones
         MasterVolume,   // Controls the master volume
         Browser,        // Opens a browser to choose tracks
+        LoadLeft,       // Load track on left  deck
+        LoadRight,      // Load track on right deck
+        ScrollDown,     // Scroll down the tracks list
+        ScrollUp,       // Scroll up   the tracks list
         Spacer,         // Blank space, insert this to fill gaps when needed
         //radialComponents in Deck:
         Seek,           // Seeks through track
@@ -90,17 +94,15 @@ public:
      * mentre con un metodo tau/NUM_COMP e poi spingendo i componenti verso l'esterno,
      * si ottiene una sezione "centrale" non perfettamente circolare.
      */
-    float getComponentSeparationAngle() {
-        return (MathConstants<float>::twoPi / getNumRadialComponents()) * SEPARATION_TO_COMPONENT_DIMENSION_RATIO;
-    }
+    float inline getComponentSeparationAngle() {
+        return (MathConstants<float>::twoPi / getNumRadialComponents()) * SEPARATION_TO_COMPONENT_DIMENSION_RATIO; }
     /**
      * @brief returns the angle in of the radial components
      * @see getComponentSeparationAngle
      */
-    float getComponentAngle(){
+    float inline getComponentAngle(){
         return (MathConstants<float>::twoPi - (getComponentSeparationAngle () * getNumRadialComponents()))
-                / getNumRadialComponents() ;
-    }
+                / getNumRadialComponents(); }
 
 protected:
 

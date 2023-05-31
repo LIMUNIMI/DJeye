@@ -26,7 +26,7 @@ public:
         //setColour (Slider::trackColourId,               Colour::fromString(colourLight));
         setColour (Slider::rotarySliderFillColourId,    Colour::fromString (colourLessLight)); //riempimento slider
         setColour (Slider::rotarySliderOutlineColourId, Colour::fromString (colourLight));    //bordo slider
-
+        setColour (DrawableButton::backgroundColourId,  Colours::transparentWhite);
         //        setColour (TextButton::buttonColourId,  Colours::white);
         //        setColour (TextButton::textColourOffId, Colours::white);
         //        setColour (TextButton::buttonOnColourId, findColour (TextButton::textColourOffId));
@@ -34,6 +34,9 @@ public:
 
     }
 
+    MouseCursor getMouseCursorFor(Component& /*c*/) override{
+        return MouseCursor(MouseCursor::StandardCursorType::CrosshairCursor);
+    }
 
     void drawRotarySlider(Graphics& g,
                           int /*x*/, int /*y*/, int width, int height,
@@ -52,7 +55,7 @@ public:
             p.addPieSegment (bounds.reduced(SLIDER_PADDING),rotaryStartAngle,rotaryEndAngle,INNER_CIRCLE_TO_SLIDER_RATIO);
 
             auto colour = slider.findColour (Slider::rotarySliderOutlineColourId)
-                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
 
             g.setColour (colour);
             g.fillPath (p.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));
@@ -73,7 +76,7 @@ public:
                              INNER_CIRCLE_TO_SLIDER_RATIO);
 
             auto colour = slider.findColour (Slider::rotarySliderFillColourId)
-                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 2.0f);
+                    .withMultipliedSaturation (slider.isMouseOver () ? 1.0f : 1.3f);
 
             g.setColour (colour);
             g.fillPath (p.createPathWithRoundedCorners (COMPONENT_CORNER_ROUNDING));

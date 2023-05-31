@@ -3,6 +3,7 @@
 #include "../MyLookAndFeel.h"
 #include "Deck.h"
 #include "VerticalStrip.h"
+#include "BrowserWindow.h"
 
 //==============================================================================
 /*

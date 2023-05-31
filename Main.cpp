@@ -56,19 +56,15 @@ public:
     public:
         explicit MainWindow (juce::String name)
             : DocumentWindow (name,
-                              juce::Desktop::getInstance().getDefaultLookAndFeel()
-                                                          .findColour (ResizableWindow::backgroundColourId),
+                              juce::Desktop::getInstance().getDefaultLookAndFeel().findColour (ResizableWindow::backgroundColourId),
                               DocumentWindow::allButtons)
         {
-            setUsingNativeTitleBar (true);
             setContentOwned (new MainComponent(), true);
-
-           #if JUCE_IOS || JUCE_ANDROID
+            setTitleBarHeight (10);
             setFullScreen (true);
-           #else
-            setResizable (true, true);
-            centreWithSize (getWidth(), getHeight());
-           #endif
+            //setUsingNativeTitleBar (true);
+            //setResizable (true, true);
+            //centreWithSize (getWidth(), getHeight());
 
             setVisible (true);
         }
