@@ -1,0 +1,87 @@
+# Based on workflow at
+# https://github.com/jatinchowdhury18/plugin-ci-example/blob/a2b34a2ee67c58adb4f26bdf0710f32da38fb4d9/.github/workflows/cmake.yml
+# and
+# https://github.com/ChromaticIsobar/HyperTremolo/blob/e84b49abe926fd2bd8db6a95ab0dd53544baf639/.github/workflows/main.yml 
+
+# BSD 3-Clause License
+#
+# Copyright (c) 2020, jatinchowdhury18
+# All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# 1. Redistributions of source code must retain the above copyright notice, this
+#    list of conditions and the following disclaimer.
+#
+# 2. Redistributions in binary form must reproduce the above copyright notice,
+#    this list of conditions and the following disclaimer in the documentation
+#    and/or other materials provided with the distribution.
+#
+# 3. Neither the name of the copyright holder nor the names of its
+#    contributors may be used to endorse or promote products derived from
+#    this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+name: juce cmake CI/CD
+
+on:
+  push:
+    branches:
+    - main
+    - develop
+  pull_request:
+    branches:
+    - main
+    - develop
+
+  workflow_dispatch:
+
+jobs:
+  build_and_test:
+    if: contains(toJson(github.event.commits), '***NO_CI***') == false && contains(toJson(github.event.commits), '[ci skip]') == false && contains(toJson(github.event.commits), '[skip ci]') == false
+    name: Test plugin on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false # show all errors for each platform (vs. cancel jobs on error)
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest] 
+    
+    steps:
+    - name: Install Linux Deps
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt install libasound2-dev libcurl4-openssl-dev libx11-dev libxinerama-dev libxext-dev libfreetype6-dev libwebkit2gtk-4.0-dev libglu1-mesa-dev libjack-jackd2-dev lv2-dev
+        sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 9
+        sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 9
+
+    - name: Get latest CMake
+      uses: lukka/get-cmake@latest
+
+    - name: Checkout code
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+
+    - name: Configure
+      shell: bash
+      run: cmake -Bbuild
+
+    - name: Build
+      shell: bash
+      run: cmake --build build --config Release --parallel 4
+
+    - name: Validate
+      if: runner.os == 'Windows'
+      run: bash scripts/validate.sh
+
