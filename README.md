@@ -1,26 +1,38 @@
 # Djeye-controller
-Djeye-controller is a MIDI controller which interface is thought to be easy to use with input coming fom an eye tracker.
-it is written in c++ using the JUCE library for midi and GUI creation.
+Djeye-controller is a MIDI controller which interface is thought to be easy to use through input coming from an eye tracker.
+It is written in c++ using the [JUCE](https://github.com/juce-framework/JUCE) library.
+To use the eye-tracker see [Tobii-eye-interface](https://gitlab.com/djeyes/tobii-eye-interface).
+</br>
+![djeye-interface video](./Media/djeye-demo.webm)
 
 ## Building
-use CMake, pretty much the [JUCE](https://github.com/juce-framework/JUCE/tree/master/examples/CMake) base examples
+Use CMake, pretty much the [JUCE](https://github.com/juce-framework/JUCE/tree/master/examples/CMake) base examples.
 
-## Monitoring MIDI messages from terminal
-`~aconnect -iol` : visualize port list.
+## Monitoring MIDI messages from terminal emulator
+Show port list:
+~`aconnect -iol`
 
-`~aseqdump -p [#port]` : dump port messages.
+Dump port messages
+~`aseqdump -p <#port>`
 
-
-## MIXX setup
-install mixxx from [flathub](https://flathub.org/apps/details/org.mixxx.Mixxx)
+## MIXXX setup
+Install mixxx from [flathub](https://flathub.org/apps/details/org.mixxx.Mixxx).
 
 ### MIDI mappings
-copy the provided mapping (djeye.midi.xml) and script (djeye-scripts.js) in this location:
-/home/.var/app/org.mixxx.Mixxx/.mixxx/controllers/
+Copy the provided mapping (`Mappings/djeye.midi.xml`) and script (`Mappings/djeye-scripts.js`) in this location:
+`/home/.var/app/org.mixxx.Mixxx/.mixxx/controllers/`
 
 ### Preferences
-- After launching djeye-controller, go to preferences (`ctrl+p`) then to Controllers, select djeye controller and assign to it the "djeye" mapping, shoud be first on the list
-- Go to Library -> Library row height and set it to 70px;
-- Activate [master sync](https://manual.mixxx.org/2.0/en/chapters/djing_with_mixxx.html#master-sync) on both decks, holding down the sync button. this means you should play tracks which are similar BPM
-- enable fullscreen (`F11`)
-- djeye-controller and MIXXX should be in the same desktop
+0. Launch djeye-controller.
+0. Open MIXXX preferences (`ctrl+p`) 
+	a. Go to Controllers, select "DJEYE" and select from the "Load Mapping" dropdown the "djeye" mapping, shoud be first on the list.
+	b. Go to Library and set library row height to 70px.
+
+0. Activate [master sync](https://manual.mixxx.org/2.0/en/chapters/djing_with_mixxx.html#master-sync) on both decks, holding down the sync button. (this implies you should play tracks which are similar BPM)
+0. enable fullscreen (`F11`).
+0. Enable "big library" from the button on the top-left.
+0. Put djeye-controller and MIXXX in the same desktop, so that MIXXX is "under" the controller.
+
+# Architecture
+The configuration of the controller is quite easy to modify, just chenge the initializer list's parameters.
+![uml diagram](./Media/uml_djeye_controller.svg)
