@@ -54,14 +54,9 @@ jobs:
     strategy:
       fail-fast: false # show all errors for each platform (vs. cancel jobs on error)
       matrix:
-<<<<<<< Updated upstream
-      #        os: [ubuntu-latest, windows-latest, macOS-latest]
-        os: [ubuntu-latest]
-=======
        os: [ubuntu-latest, windows-latest, macOS-latest]
       #os: [ubuntu-latest]
->>>>>>> Stashed changes
-    
+
     steps:
     - name: Install Linux Deps
       if: runner.os == 'Linux'
@@ -94,7 +89,7 @@ jobs:
     - name: Upload Standalone
       uses: actions/upload-artifact@v3
       with:
-        name: djeye_${{ matrix.label }}_standalone
+        name: djeye_${{ matrix.os }}_standalone
         path: build/djeye-controller_artefacts/
 
 #     outputs:
@@ -115,11 +110,12 @@ jobs:
 
     - name: Make installer script
       run: |
-         ./installers/windows/build_win_installer.sh
+         ./installers/windows/build_win_installer.sh \
+         tree /f
       shell: bash
 
     - name: Upload Installer
       uses: actions/upload-artifact@v3
       with:
         name: djeye_win_installer
-        path: "djeye-Win-$app_version.exe"
+        path: djeye-Win-$app_version.exe
