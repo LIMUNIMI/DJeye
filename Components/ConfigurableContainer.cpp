@@ -99,7 +99,6 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
             DrawableButtonAdaptive *load = static_cast<DrawableButtonAdaptive*>(comp.get());
             auto image = Drawable::createFromImageData (BinaryData::loadL_svg,BinaryData::loadL_svgSize);
             load->setImages (image.get ());
-
         } break;
         case LoadRight: {
 
@@ -117,9 +116,9 @@ ConfigurableContainer::ConfigurableContainer(const std::vector<ConfigurableConta
         } break;
         case ScrollUp: {
 
-            DrawableButtonAdaptive *browser = static_cast<DrawableButtonAdaptive*>(comp.get());
+            DrawableButtonAdaptive *scroll = static_cast<DrawableButtonAdaptive*>(comp.get());
             auto image = Drawable::createFromImageData (BinaryData::browserUp_svg,BinaryData::browserUp_svgSize);
-            browser->setImages (image.get ());
+            scroll->setImages (image.get ());
 
         } break;
         case ConfigurableContainer::Browser:{

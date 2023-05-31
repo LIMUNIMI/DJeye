@@ -6,7 +6,7 @@ it is written in c++ using the JUCE library for midi and GUI creation.
 use CMake, pretty much the [JUCE](https://github.com/juce-framework/JUCE/tree/master/examples/CMake) base examples
 
 ## Monitoringi MIDI messages from terminal
-`~aconnect -i -o -l` : visualize port list.
+`~aconnect -iol` : visualize port list.
 
 `~aseqdump -p [#porta]` : dump port messages.
 
