@@ -40,22 +40,21 @@ Controller::Controller():
                   ConfigurableContainer::Browser,
                   ConfigurableContainer::Spacer*/
 {
-#if JUCE_LINUX || JUCE_BSD || JUCE_MAC || JUCE_IOS || DOXYGEN
-    auto unique = juce::MidiOutput::createNewDevice("DJEYE");
-#else
     std::unique_ptr< MidiOutput > unique = nullptr;
+#if JUCE_LINUX || JUCE_BSD || JUCE_MAC || JUCE_IOS || DOXYGEN
+    unique = juce::MidiOutput::createNewDevice("DJEYE");
+#else
     auto devices = juce::MidiOutput::getAvailableDevices();
-
-    for (int i = 0; i < devices.indexOf(devices.getLast()); i++) {
-        if (devices[i].name == "DJEYE") {
+    for (int i = 0; i <= devices.indexOf(devices.getLast()); i++) {
+        if (devices[i].name == "DJEYE")
             unique = juce::MidiOutput::openDevice(devices[i].identifier);
-        }
     }
 #endif
-    midiOut = std::move(unique);
-    if (midiOut){
-        //TODO: eccezione
+    if(unique == nullptr){
+        DBG("unable to open/create port");
+        return;
     }
+    midiOut = std::move(unique);
 
     //animator = Desktop::getInstance().getAnimator ();
 
@@ -144,22 +143,22 @@ Controller::Controller():
         auto ch = 3;
         middleStrip.setComponentOnClick (ConfigurableContainer::ComponentType::Browser, [&,ch]{
 
+            getTopLevelComponent ()->setVisible (false);
             auto* browser = new BrowserWindow(midiOut);
             browser->setVisible (true);
             browser->setBounds (getBounds ().expanded (CONTROLLLER_RECUCTION));
             browser->addToDesktop (ComponentPeer::windowIsTemporary);
             browser->setMainWindow (getTopLevelComponent());
 
-            getTopLevelComponent ()->setVisible (false);
 /* metodi alternativi:
-Desktop::getInstance().setKioskModeComponent(this);
+            Desktop::getInstance().setKioskModeComponent(this);
 
-auto win = dynamic_cast<DocumentWindow*> (getTopLevelComponent   ());
-auto btn = dynamic_cast<Button*>         (win->getMinimizeButton ());
-btn->triggerClick ();
+            auto win = dynamic_cast<DocumentWindow*> (getTopLevelComponent   ());
+            auto btn = dynamic_cast<Button*>         (win->getMinimizeButton ());
+            btn->triggerClick ();
 */
 
-            //midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 100, (juce::uint8) 127));
+            midiOut->sendMessageNow(juce::MidiMessage::noteOn (ch, 100, (juce::uint8) 127));
         });
 
         middleStrip.setComponentOnValueChange (ConfigurableContainer::ComponentType::Crossfader, [&,ch](const int value){

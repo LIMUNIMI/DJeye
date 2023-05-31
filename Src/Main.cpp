@@ -68,6 +68,7 @@ public:
             setTitle (" ");
 #endif
             setContentOwned (new MainComponent(), true);
+            //setSize(200,200);
             setFullScreen (true);
             //setUsingNativeTitleBar (true);
             //centreWithSize (getWidth(), getHeight());

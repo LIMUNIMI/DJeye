@@ -54,6 +54,7 @@ BrowserWindow::BrowserWindow(std::shared_ptr<MidiOutput> midiOutput):
     addAndMakeVisible (leftStrip  );
     addAndMakeVisible (middleStrip);
     addAndMakeVisible (rightStrip );
+    setAlwaysOnTop(true);
     DBG((hasKeyboardFocus (true) ? "lo ha" : "non lo ha"));
     setLookAndFeel (&laf);
 }
@@ -74,8 +75,8 @@ void BrowserWindow::resized()
 void BrowserWindow::closeBrowser()
 {
     auto mainWin = dynamic_cast<DocumentWindow*> (getMainWindow ());
-    mainWin->setFullScreen (false);
-    mainWin->setFullScreen (true);
+//    mainWin->setFullScreen (false);
+//    mainWin->setFullScreen (true);
     mainWin->setVisible   (true);
 
     removeFromDesktop ();
