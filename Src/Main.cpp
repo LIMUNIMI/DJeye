@@ -68,7 +68,8 @@ public:
             setTitle (" ");
 #endif
             setContentOwned (new MainComponent(), true);
-            setFullScreen (true);
+            //setFullScreen (true);
+            Desktop::getInstance().setKioskModeComponent(getTopLevelComponent (),false);
             setVisible (true);
             //setUsingNativeTitleBar (true);
             //centreWithSize (getWidth(), getHeight());

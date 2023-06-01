@@ -148,8 +148,9 @@ Controller::Controller():
             browser->setBounds (getBounds ().expanded (CONTROLLLER_RECUCTION));
             browser->addToDesktop (ComponentPeer::windowIsTemporary);
             browser->setMainWindow (mainWin);
-            mainWin ->setFullScreen (false);
+            //mainWin ->setFullScreen (false);
             mainWin ->setVisible (false);
+            Desktop::getInstance().setKioskModeComponent(nullptr);
 
 /* metodi alternativi:
             Desktop::getInstance().setKioskModeComponent(this);

@@ -75,7 +75,8 @@ void BrowserWindow::resized()
 void BrowserWindow::closeBrowser()
 {
     mainWindow->setVisible   (true);
-    mainWindow->setFullScreen (true);
+    //mainWindow->setFullScreen (true);
+    Desktop::getInstance().setKioskModeComponent(mainWindow,false);
 
     removeFromDesktop ();
     DBG("closing browser");
