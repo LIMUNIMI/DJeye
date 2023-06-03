@@ -4,6 +4,7 @@ It is written in c++ using the [JUCE](https://github.com/juce-framework/JUCE) li
 To use the eye-tracker see [Tobii-eye-interface](https://gitlab.com/djeyes/tobii-eye-interface).
 </br>
 [djeye-interface-video](./Assets/Media/djeye-demo.webm)
+[video demo on youtube](https://youtu.be/-bs08Ohdr7w)
 
 ## Building
 Use CMake, pretty much the [JUCE](https://github.com/juce-framework/JUCE/tree/master/examples/CMake) base examples.
