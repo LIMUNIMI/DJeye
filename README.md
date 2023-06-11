@@ -35,7 +35,9 @@ You have to open this port **before** launching DJeye.
 	
 # Tweak MIXXX Preferences
 0. Launch djeye-controller.
-0. Open MIXXX preferences (`ctrl+p`) > Go to Controllers, select "DJEYE" and select from the "Load Mapping" dropdown the "djeye" mapping, should be first on the list > Go to Library and set library row height to 70px.
+0. Open MIXXX preferences (`ctrl+p`)
+    - Go to Controllers, select "DJEYE" and select from the "Load Mapping" dropdown the "djeye" mapping (should be first on the list).
+    - Go to Library and set library row height to 70px.
 0. Activate [master sync](https://manual.mixxx.org/2.0/en/chapters/djing_with_mixxx.html#master-sync) on both decks, holding down the sync button. (this implies you should play tracks which are similar BPM)
 0. enable fullscreen (`F11`).
 0. Enable "big library" from the button on the top-left.
